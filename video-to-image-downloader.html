@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Image Converter & Compressor Tool</title>
+<style>
+  /* Bright blue and white theme */
+  :root {
+    --blue: #007bff;
+    --light-blue: #66b2ff;
+    --white: #ffffff;
+  }
+
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: var(--white);
+    color: #222;
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+  }
+
+  .container {
+    max-width: 400px;
+    width: 100%;
+    background: var(--white);
+    border: 2px solid var(--blue);
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 0 15px rgba(0, 123, 255, 0.3);
+  }
+
+  h1 {
+    color: var(--blue);
+    text-align: center;
+    margin-bottom: 1rem;
+    font-weight: 700;
+  }
+
+  label {
+    display: block;
+    margin: 0.8rem 0 0.4rem;
+    font-weight: 600;
+    color: var(--blue);
+  }
+
+  input[type="file"] {
+    width: 100%;
+    padding: 0.4rem;
+  }
+
+  select, input[type="range"] {
+    width: 100%;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 1.5px solid var(--light-blue);
+    border-radius: 5px;
+    outline-color: var(--blue);
+  }
+
+  #qualityValue {
+    font-weight: 600;
+    color: var(--blue);
+    margin-left: 0.5rem;
+  }
+
+  .preview {
+    margin-top: 1rem;
+    text-align: center;
+  }
+
+  .preview img {
+    max-width: 100%;
+    max-height: 250px;
+    border: 2px solid var(--light-blue);
+    border-radius: 6px;
+  }
+
+  button {
+    margin-top: 1.2rem;
+    width: 100%;
+    padding: 0.7rem;
+    font-size: 1.1rem;
+    font-weight: 700;
+    background: var(--blue);
+    border: none;
+    border-radius: 6px;
+    color: var(--white);
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+
+  button:disabled {
+    background: #7db8ff;
+    cursor: not-allowed;
+  }
+
+  button:hover:not(:disabled) {
+    background: #0056b3;
+  }
+
+  /* Responsive */
+  @media (max-width: 480px) {
+    .container {
+      max-width: 95vw;
+      padding: 1rem;
+    }
+  }
+</style>
+</head>
+<body>
+  <div class="container" role="main" aria-label="Image Converter and Compressor Tool">
+    <h1>Image Converter & Compressor</h1>
+    <label for="upload">Upload Image</label>
+    <input type="file" id="upload" accept="image/*" aria-describedby="uploadDesc" />
+    <small id="uploadDesc" style="color:var(--blue)">Supported formats: PNG, JPEG, WebP, GIF</small>
+
+    <label for="format">Convert To</label>
+    <select id="format" aria-label="Select output image format">
+      <option value="image/jpeg">JPEG</option>
+      <option value="image/png">PNG</option>
+      <option value="image/webp">WebP</option>
+    </select>
+
+    <label for="quality">Compression Quality 
+      <span id="qualityValue">80%</span>
+    </label>
+    <input type="range" id="quality" min="10" max="100" step="1" value="80" aria-valuemin="10" aria-valuemax="100" aria-valuenow="80" aria-label="Compression quality slider"/>
+
+    <div class="preview" aria-live="polite">
+      <p>No image uploaded</p>
+    </div>
+
+    <button id="convertBtn" disabled>Convert & Download</button>
+  </div>
+
+<script>
+  const uploadInput = document.getElementById('upload');
+  const previewContainer = document.querySelector('.preview');
+  const formatSelect = document.getElementById('format');
+  const qualitySlider = document.getElementById('quality');
+  const qualityValue = document.getElementById('qualityValue');
+  const convertBtn = document.getElementById('convertBtn');
+
+  let originalImage = null;
+  let originalImageElement = null;
+
+  // Update quality label
+  qualitySlider.addEventListener('input', () => {
+    qualityValue.textContent = qualitySlider.value + '%';
+  });
+
+  // Handle file upload & preview
+  uploadInput.addEventListener('change', () => {
+    const file = uploadInput.files[0];
+    if (!file) {
+      previewContainer.innerHTML = '<p>No image uploaded</p>';
+      convertBtn.disabled = true;
+      return;
+    }
+
+    if (!file.type.startsWith('image/')) {
+      previewContainer.innerHTML = '<p style="color:red;">Please upload a valid image file.</p>';
+      convertBtn.disabled = true;
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      previewContainer.innerHTML = '';
+      originalImageElement = new Image();
+      originalImageElement.src = e.target.result;
+      originalImageElement.alt = 'Uploaded Image Preview';
+      previewContainer.appendChild(originalImageElement);
+      convertBtn.disabled = false;
+      originalImage = originalImageElement;
+    };
+    reader.readAsDataURL(file);
+  });
+
+  // Convert & download image
+  convertBtn.addEventListener('click', () => {
+    if (!originalImage) return;
+
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+
+    canvas.width = originalImage.naturalWidth;
+    canvas.height = originalImage.naturalHeight;
+
+    ctx.drawImage(originalImage, 0, 0);
+
+    let outputFormat = formatSelect.value;
+    let quality = qualitySlider.value / 100;
+
+    // PNG does not support quality parameter; ignore it for PNG
+    if (outputFormat === 'image/png') {
+      quality = undefined;
+    }
+
+    canvas.toBlob(
+      (blob) => {
+        if (!blob) {
+          alert('Conversion failed. Please try another image or format.');
+          return;
+        }
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        // Generate filename
+        let extension = outputFormat.split('/')[1];
+        if (extension === 'jpeg') extension = 'jpg';
+        a.download = `converted_image.${extension}`;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        URL.revokeObjectURL(url);
+      },
+      outputFormat,
+      quality
+    );
+  });
+</script>
+</body>
+</html>
