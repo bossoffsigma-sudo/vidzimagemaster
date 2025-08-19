@@ -1,155 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Video Frame Extractor from URL</title>
-<style>
-  :root {
-    --blue: #007bff;
-    --white: #ffffff;
-    --light-blue: #66b2ff;
-  }
-
-  body {
-    font-family: Arial, sans-serif;
-    background: var(--white);
-    color: #222;
-    padding: 1rem;
-    display: flex;
-    justify-content: center;
-  }
-
-  .container {
-    max-width: 450px;
-    width: 100%;
-    border: 2px solid var(--blue);
-    border-radius: 8px;
-    padding: 1rem 1.5rem 2rem 1.5rem;
-    box-shadow: 0 0 15px rgba(0, 123, 255, 0.3);
-  }
-
-  h1 {
-    text-align: center;
-    color: var(--blue);
-    margin-bottom: 1rem;
-    font-weight: 700;
-  }
-
-  label {
-    color: var(--blue);
-    font-weight: 600;
-    display: block;
-    margin-bottom: 0.3rem;
-  }
-
-  input[type="url"] {
-    width: 100%;
-    padding: 0.5rem;
-    border: 2px solid var(--light-blue);
-    border-radius: 5px;
-    font-size: 1rem;
-    margin-bottom: 1rem;
-  }
-
-  button {
-    width: 100%;
-    padding: 0.7rem;
-    background: var(--blue);
-    border: none;
-    border-radius: 6px;
-    color: var(--white);
-    font-weight: 700;
-    font-size: 1.1rem;
-    cursor: pointer;
-    transition: background 0.3s ease;
-  }
-
-  button:disabled {
-    background: #7db8ff;
-    cursor: not-allowed;
-  }
-
-  button:hover:not(:disabled) {
-    background: #0056b3;
-  }
-
-  video {
-    display: block;
-    margin: 1rem auto;
-    max-width: 100%;
-    border: 2px solid var(--light-blue);
-    border-radius: 6px;
-  }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Auto Snapshot Extractor</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f0f8ff; color: #023047; text-align: center; padding: 20px; }
+    .card { background: #fff; border-radius: 14px; padding: 20px; box-shadow: 0 8px 20px rgba(2,132,199,.15); max-width: 600px; margin: auto; }
+    input, button { padding: 10px; margin: 8px; border-radius: 8px; border: 1px solid #ccc; }
+    button { background: #0ea5e9; color: #fff; border: none; cursor: pointer; }
+    button:hover { background: #0284c7; }
+    #preview img { width: 120px; margin: 5px; border-radius: 8px; }
+  </style>
 </head>
 <body>
-  <div class="container" aria-label="Video Frame Extractor Tool">
-    <h1>Video Frame Extractor</h1>
-
-    <label for="videoURL">Paste Video URL (Direct link to MP4/WebM/OGG)</label>
-    <input type="url" id="videoURL" placeholder="https://example.com/video.mp4" aria-describedby="urlHelp" />
-    <small id="urlHelp" style="color:var(--blue)">Example: Direct video file URL (MP4, WebM, OGG)</small>
-
-    <button id="loadBtn" disabled>Load Video</button>
-
-    <video id="video" controls crossorigin="anonymous" style="display:none;"></video>
-
-    <button id="captureBtn" disabled>Capture Frame & Download</button>
+  <div class="card">
+    <h2>Video to Image (Auto Extract)</h2>
+    <input type="file" id="videoFile" accept="video/*"><br>
+    <label>Snapshot every (seconds): </label>
+    <input type="number" id="interval" value="2" min="1"><br>
+    <button onclick="processVideo()">Extract Snapshots</button>
+    <div id="status"></div>
+    <div id="preview"></div>
+    <button id="downloadAll" style="display:none" onclick="downloadAll()">Download All (ZIP)</button>
   </div>
 
-<script>
-  const videoURLInput = document.getElementById('videoURL');
-  const loadBtn = document.getElementById('loadBtn');
-  const video = document.getElementById('video');
-  const captureBtn = document.getElementById('captureBtn');
+  <!-- Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@0.12.6/dist/ffmpeg.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
 
-  // Enable load button only if input has some text
-  videoURLInput.addEventListener('input', () => {
-    loadBtn.disabled = videoURLInput.value.trim() === '';
-    captureBtn.disabled = true;
-    video.style.display = 'none';
-    video.src = '';
-  });
+  <script>
+    const { createFFmpeg, fetchFile } = FFmpeg;
+    const ffmpeg = createFFmpeg({ log: true });
+    let images = [];
 
-  loadBtn.addEventListener('click', () => {
-    const url = videoURLInput.value.trim();
-    if (!url) return;
+    async function processVideo() {
+      const fileInput = document.getElementById('videoFile');
+      if (!fileInput.files.length) return alert("Please upload a video file!");
+      const interval = parseInt(document.getElementById('interval').value);
+      document.getElementById('status').innerText = "Loading FFmpeg...";
+      if (!ffmpeg.isLoaded()) await ffmpeg.load();
 
-    video.src = url;
-    video.load();
-    video.style.display = 'block';
-    captureBtn.disabled = false;
-  });
+      const file = fileInput.files[0];
+      ffmpeg.FS('writeFile', 'input.mp4', await fetchFile(file));
+      document.getElementById('status').innerText = "Extracting snapshots...";
 
-  captureBtn.addEventListener('click', () => {
-    if (video.readyState < 2) {
-      alert('Video not loaded yet or cannot seek.');
-      return;
+      // FFmpeg command: extract frame every X seconds
+      await ffmpeg.run('-i', 'input.mp4', '-vf', `fps=1/${interval}`, 'frame_%03d.png');
+
+      images = [];
+      const previewDiv = document.getElementById('preview');
+      previewDiv.innerHTML = "";
+
+      let frameNum = 1;
+      while (true) {
+        const filename = `frame_${String(frameNum).padStart(3, '0')}.png`;
+        try {
+          const data = ffmpeg.FS('readFile', filename);
+          const blob = new Blob([data.buffer], { type: 'image/png' });
+          const url = URL.createObjectURL(blob);
+          images.push({ blob, filename });
+          const img = document.createElement('img');
+          img.src = url;
+          previewDiv.appendChild(img);
+          frameNum++;
+        } catch {
+          break;
+        }
+      }
+      document.getElementById('status').innerText = `${images.length} snapshots extracted.`;
+      if (images.length) document.getElementById('downloadAll').style.display = 'inline-block';
     }
 
-    const canvas = document.createElement('canvas');
-    canvas.width = video.videoWidth;
-    canvas.height = video.videoHeight;
-
-    const ctx = canvas.getContext('2d');
-    ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-
-    canvas.toBlob(blob => {
-      if (!blob) {
-        alert('Could not extract frame.');
-        return;
-      }
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = 'frame.png';
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-      URL.revokeObjectURL(url);
-    }, 'image/png');
-  });
-</script>
+    async function downloadAll() {
+      const zip = new JSZip();
+      images.forEach(img => {
+        zip.file(img.filename, img.blob);
+      });
+      const content = await zip.generateAsync({ type: "blob" });
+      saveAs(content, "snapshots.zip");
+    }
+  </script>
 </body>
 </html>
