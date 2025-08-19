@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YouTube Video Transcriber Tool</title>
+<style>
+    /* Basic Reset */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: Arial, sans-serif; background: #f0f8ff; color: #000; }
+    .container { max-width: 800px; margin: 50px auto; padding: 20px; background: #fff; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+    h1 { text-align: center; color: #007BFF; margin-bottom: 30px; }
+    input[type="text"] { width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 5px; }
+    button { background: #007BFF; color: #fff; border: none; padding: 12px 20px; border-radius: 5px; cursor: pointer; margin-right: 10px; }
+    button:hover { background: #0056b3; }
+    #transcript { width: 100%; height: 300px; padding: 10px; border: 1px solid #ccc; border-radius: 5px; margin-top: 15px; overflow-y: auto; white-space: pre-wrap; background: #e9f5ff; }
+    .actions { margin-top: 15px; text-align: center; }
+    @media(max-width: 600px) {
+        .container { margin: 20px; padding: 15px; }
+        button { width: 100%; margin-bottom: 10px; }
+        .actions { display: flex; flex-direction: column; align-items: center; }
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <h1>YouTube Video Transcriber</h1>
+    <input type="text" id="youtubeURL" placeholder="Paste YouTube Video URL here">
+    <button id="generateTranscript">Generate Transcript</button>
+    
+    <div id="transcript"></div>
+    
+    <div class="actions">
+        <button id="copyTranscript">Copy Transcript</button>
+        <button id="downloadTranscript">Download Transcript</button>
+    </div>
+</div>
+
+<script>
+async function fetchTranscript(videoUrl) {
+    try {
+        const videoId = videoUrl.split('v=')[1] || videoUrl.split('youtu.be/')[1];
+        if(!videoId) throw new Error('Invalid YouTube URL');
+
+        // Using a public API to fetch transcript (replace with your own backend API if needed)
+        const response = await fetch(`https://api.assemblyai.com/v2/transcript`, {
+            method: 'POST',
+            headers: {
+                'Authorization': 'YOUR_ASSEMBLYAI_API_KEY',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ audio_url: `https://www.youtube.com/watch?v=${videoId}` })
+        });
+
+        const data = await response.json();
+        // Polling until transcript is ready
+        let transcriptData;
+        while(true){
+            const res = await fetch(`https://api.assemblyai.com/v2/transcript/${data.id}`, {
+                headers: { 'Authorization': 'YOUR_ASSEMBLYAI_API_KEY' }
+            });
+            transcriptData = await res.json();
+            if(transcriptData.status === 'completed') break;
+            await new Promise(r => setTimeout(r, 2000));
+        }
+        return transcriptData.text;
+    } catch(err) {
+        return `Error: ${err.message}`;
+    }
+}
+
+document.getElementById('generateTranscript').addEventListener('click', async () => {
+    const url = document.getElementById('youtubeURL').value.trim();
+    if(!url) { alert('Please enter a YouTube URL'); return; }
+    document.getElementById('transcript').textContent = 'Generating transcript...';
+    const transcript = await fetchTranscript(url);
+    document.getElementById('transcript').textContent = transcript;
+});
+
+document.getElementById('copyTranscript').addEventListener('click', () => {
+    const text = document.getElementById('transcript').textContent;
+    if(!text) return;
+    navigator.clipboard.writeText(text);
+    alert('Transcript copied to clipboard');
+});
+
+document.getElementById('downloadTranscript').addEventListener('click', () => {
+    const text = document.getElementById('transcript').textContent;
+    if(!text) return;
+    const blob = new Blob([text], { type: 'text/plain' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = 'transcript.txt';
+    link.click();
+});
+</script>
+</body>
+</html>
