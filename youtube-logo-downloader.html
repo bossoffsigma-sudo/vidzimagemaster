@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Logo & Banner Downloader</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0079ff 0%, #00c6ff 100%);
+            color: #333;
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            margin: 20px 0;
+        }
+
+        header {
+            background: #0079ff;
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .main-content {
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .input-section {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        label {
+            font-weight: 600;
+            color: #0079ff;
+        }
+
+        .url-input {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        input[type="text"] {
+            flex: 1;
+            min-width: 250px;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus {
+            border-color: #0079ff;
+            outline: none;
+        }
+
+        button {
+            background: #0079ff;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 15px 25px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        button:hover {
+            background: #0066d4;
+            transform: translateY(-2px);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .download-btn {
+            background: #00c46b;
+        }
+
+        .download-btn:hover {
+            background: #00a85a;
+        }
+
+        .results {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        .result-card {
+            background: #f8fbff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s;
+        }
+
+        .result-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-header {
+            background: #0079ff;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .card-body {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .logo-preview {
+            width: 100%;
+            aspect-ratio: 1;
+            background: #f0f0f0;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .logo-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .banner-preview {
+            width: 100%;
+            height: 150px;
+            background: #f0f0f0;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .banner-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .placeholder {
+            color: #999;
+            font-size: 3rem;
+        }
+
+        .card-footer {
+            padding: 15px;
+            display: flex;
+            justify-content: center;
+            background: #f1f8ff;
+        }
+
+        .instructions {
+            background: #e8f4ff;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        .instructions h3 {
+            color: #0079ff;
+            margin-bottom: 15px;
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .step {
+            display: flex;
+            gap: 15px;
+            align-items: flex-start;
+        }
+
+        .step-number {
+            background: #0079ff;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: white;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .main-content {
+                padding: 20px;
+            }
+            
+            .url-input {
+                flex-direction: column;
+            }
+            
+            input[type="text"] {
+                width: 100%;
+            }
+            
+            button {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .results {
+                grid-template-columns: 1fr;
+            }
+            
+            .steps {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .loading {
+            display: none;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(0, 121, 255, 0.2);
+            border-radius: 50%;
+            border-top-color: #0079ff;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>YouTube Channel Logo & Banner Downloader</h1>
+            <p class="subtitle">Download high-quality YouTube channel logos and banners instantly</p>
+        </header>
+
+        <div class="main-content">
+            <div class="input-section">
+                <div class="input-group">
+                    <label for="channel-url">Enter YouTube Channel URL</label>
+                    <div class="url-input">
+                        <input type="text" id="channel-url" placeholder="https://www.youtube.com/@channelname">
+                        <button id="fetch-btn">
+                            <i class="fas fa-download"></i> Fetch Logos
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="loading">
+                <div class="spinner"></div>
+            </div>
+
+            <div class="results">
+                <div class="result-card">
+                    <div class="card-header">Channel Logo</div>
+                    <div class="card-body">
+                        <div class="logo-preview">
+                            <i class="fas fa-user-circle placeholder"></i>
+                        </div>
+                        <p>High quality channel profile picture. Perfect for avatars.</p>
+                    </div>
+                    <div class="card-footer">
+                        <button class="download-btn" disabled>
+                            <i class="fas fa-download"></i> Download Logo
+                        </button>
+                    </div>
+                </div>
+
+                <div class="result-card">
+                    <div class="card-header">Channel Banner</div>
+                    <div class="card-body">
+                        <div class="banner-preview">
+                            <i class="fas fa-image placeholder"></i>
+                        </div>
+                        <p>Channel banner image. Ideal for cover photos and headers.</p>
+                    </div>
+                    <div class="card-footer">
+                        <button class="download-btn" disabled>
+                            <i class="fas fa-download"></i> Download Banner
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="instructions">
+                <h3>How to Use This Tool</h3>
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <p>Copy the YouTube channel URL from the address bar</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <p>Paste the URL in the input field above</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <p>Click the "Fetch Logos" button to generate previews</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <p>Download the logo or banner in high quality</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>YouTube Logo & Banner Downloader Tool &copy; 2023</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const fetchBtn = document.getElementById('fetch-btn');
+            const channelUrlInput = document.getElementById('channel-url');
+            const loadingElement = document.querySelector('.loading');
+            const downloadButtons = document.querySelectorAll('.download-btn');
+            const logoPreview = document.querySelector('.logo-preview');
+            const bannerPreview = document.querySelector('.banner-preview');
+            
+            // Sample logo and banner URLs for demonstration
+            const sampleLogoUrl = 'https://via.placeholder.com/300x300/0079ff/ffffff?text=Channel+Logo';
+            const sampleBannerUrl = 'https://via.placeholder.com/1024x576/0079ff/ffffff?text=Channel+Banner';
+            
+            fetchBtn.addEventListener('click', function() {
+                const channelUrl = channelUrlInput.value.trim();
+                
+                if (!channelUrl) {
+                    alert('Please enter a valid YouTube channel URL');
+                    return;
+                }
+                
+                // Show loading animation
+                loadingElement.style.display = 'flex';
+                
+                // Simulate API call with timeout
+                setTimeout(() => {
+                    // Hide loading animation
+                    loadingElement.style.display = 'none';
+                    
+                    // Create and set logo image
+                    logoPreview.innerHTML = '';
+                    const logoImg = document.createElement('img');
+                    logoImg.src = sampleLogoUrl;
+                    logoImg.alt = 'Channel Logo';
+                    logoPreview.appendChild(logoImg);
+                    
+                    // Create and set banner image
+                    bannerPreview.innerHTML = '';
+                    const bannerImg = document.createElement('img');
+                    bannerImg.src = sampleBannerUrl;
+                    bannerImg.alt = 'Channel Banner';
+                    bannerPreview.appendChild(bannerImg);
+                    
+                    // Enable download buttons
+                    downloadButtons.forEach(btn => {
+                        btn.disabled = false;
+                    });
+                    
+                    // Set up download functionality
+                    downloadButtons[0].onclick = function() {
+                        const a = document.createElement('a');
+                        a.href = sampleLogoUrl;
+                        a.download = 'youtube-channel-logo.jpg';
+                        document.body.appendChild(a);
+                        a.click();
+                        document.body.removeChild(a);
+                    };
+                    
+                    downloadButtons[1].onclick = function() {
+                        const a = document.createElement('a');
+                        a.href = sampleBannerUrl;
+                        a.download = 'youtube-channel-banner.jpg';
+                        document.body.appendChild(a);
+                        a.click();
+                        document.body.removeChild(a);
+                    };
+                }, 1500);
+            });
+        });
+    </script>
+</body>
+</html>
