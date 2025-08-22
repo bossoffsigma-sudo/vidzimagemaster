@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OCR Tool - MultiTool</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/tesseract.js@4/dist/tesseract.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0074e4 0%, #00a2ff 100%);
+            color: #333;
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            width: 100%;
+        }
+
+        h1 {
+            color: #0074e4;
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+        }
+
+        .description {
+            color: #555;
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .main-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+
+        .upload-section, .preview-section, .result-section {
+            background-color: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .section-title {
+            color: #0074e4;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #00a2ff;
+            font-size: 1.5rem;
+        }
+
+        .upload-area {
+            border: 3px dashed #0074e4;
+            border-radius: 12px;
+            padding: 40px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            background-color: #f0f8ff;
+        }
+
+        .upload-area:hover {
+            background-color: #e0f0ff;
+            transform: translateY(-5px);
+        }
+
+        .upload-icon {
+            font-size: 60px;
+            color: #0074e4;
+            margin-bottom: 15px;
+        }
+
+        .btn {
+            background-color: #0074e4;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s;
+            margin-top: 15px;
+            display: inline-block;
+        }
+
+        .btn:hover {
+            background-color: #005bb9;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .btn-secondary {
+            background-color: #00a2ff;
+        }
+
+        .preview-container {
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 20px;
+            min-height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f8f8f8;
+            border-radius: 8px;
+        }
+
+        #image-preview {
+            max-width: 100%;
+            max-height: 300px;
+            display: block;
+        }
+
+        .crop-info {
+            text-align: center;
+            color: #666;
+            font-style: italic;
+            margin: 15px 0;
+        }
+
+        .result-container {
+            min-height: 200px;
+            max-height: 300px;
+            overflow-y: auto;
+            padding: 15px;
+            background-color: #f8f8f8;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .progress-bar {
+            height: 10px;
+            background-color: #e0e0e0;
+            border-radius: 5px;
+            margin: 15px 0;
+            overflow: hidden;
+        }
+
+        .progress {
+            height: 100%;
+            background-color: #00a2ff;
+            width: 0%;
+            transition: width 0.3s;
+        }
+
+        .status {
+            text-align: center;
+            font-weight: 500;
+            color: #0074e4;
+            margin-bottom: 15px;
+        }
+
+        footer {
+            margin-top: 40px;
+            text-align: center;
+            color: white;
+            padding: 20px;
+            font-size: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                flex-direction: column;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .description {
+                font-size: 1rem;
+            }
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-file-image"></i> OCR Image to Text Tool</h1>
+            <p class="description">Upload an image, crop the desired area, extract text with precision, and download the results.</p>
+        </header>
+
+        <div class="main-content">
+            <div class="upload-section">
+                <h2 class="section-title">Upload Image</h2>
+                <div class="upload-area" id="drop-area">
+                    <i class="fas fa-cloud-upload-alt upload-icon"></i>
+                    <p>Drag & drop your image here or click to browse</p>
+                    <input type="file" id="file-input" accept="image/*" hidden>
+                    <button class="btn" id="browse-btn">Browse Files</button>
+                </div>
+                <p class="crop-info">After uploading, you can crop the image to select the specific area for text extraction.</p>
+            </div>
+
+            <div class="preview-section">
+                <h2 class="section-title">Crop & Preview</h2>
+                <div class="preview-container">
+                    <img id="image-preview" src="" alt="Image preview">
+                </div>
+                <div class="action-buttons">
+                    <button class="btn" id="crop-btn"><i class="fas fa-crop-alt"></i> Crop Selection</button>
+                    <button class="btn btn-secondary" id="reset-btn"><i class="fas fa-redo"></i> Reset</button>
+                </div>
+                <p class="crop-info">Select an area on the image and click "Crop Selection" to proceed.</p>
+            </div>
+
+            <div class="result-section">
+                <h2 class="section-title">Extracted Text</h2>
+                <div class="status" id="status">Ready to process image</div>
+                <div class="progress-bar">
+                    <div class="progress" id="progress-bar"></div>
+                </div>
+                <div class="result-container" id="extracted-text">
+                    Extracted text will appear here...
+                </div>
+                <div class="action-buttons">
+                    <button class="btn" id="extract-btn"><i class="fas fa-qrcode"></i> Extract Text</button>
+                    <button class="btn btn-secondary" id="download-btn"><i class="fas fa-download"></i> Download Text</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>MultiTool OCR © 2023 | Fast and Accurate Image to Text Conversion</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Elements
+            const fileInput = document.getElementById('file-input');
+            const browseBtn = document.getElementById('browse-btn');
+            const dropArea = document.getElementById('drop-area');
+            const imagePreview = document.getElementById('image-preview');
+            const cropBtn = document.getElementById('crop-btn');
+            const resetBtn = document.getElementById('reset-btn');
+            const extractBtn = document.getElementById('extract-btn');
+            const downloadBtn = document.getElementById('download-btn');
+            const extractedText = document.getElementById('extracted-text');
+            const statusText = document.getElementById('status');
+            const progressBar = document.getElementById('progress-bar');
+            
+            // Event listeners
+            browseBtn.addEventListener('click', () => fileInput.click());
+            fileInput.addEventListener('change', handleFileSelect);
+            dropArea.addEventListener('dragover', handleDragOver);
+            dropArea.addEventListener('drop', handleDrop);
+            extractBtn.addEventListener('click', extractTextFromImage);
+            downloadBtn.addEventListener('click', downloadText);
+            resetBtn.addEventListener('click', resetAll);
+            
+            // Initialize cropper variable
+            let cropper;
+            
+            // Handle file selection
+            function handleFileSelect(e) {
+                const file = e.target.files[0];
+                if (file && file.type.match('image.*')) {
+                    loadImage(file);
+                }
+            }
+            
+            // Handle drag over
+            function handleDragOver(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                dropArea.style.backgroundColor = '#e0f0ff';
+            }
+            
+            // Handle drop
+            function handleDrop(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                dropArea.style.backgroundColor = '#f0f8ff';
+                
+                const file = e.dataTransfer.files[0];
+                if (file && file.type.match('image.*')) {
+                    loadImage(file);
+                }
+            }
+            
+            // Load image for preview
+            function loadImage(file) {
+                const reader = new FileReader();
+                
+                reader.onload = function(e) {
+                    imagePreview.src = e.target.result;
+                    
+                    // Initialize cropper
+                    if (cropper) {
+                        cropper.destroy();
+                    }
+                    
+                    setTimeout(() => {
+                        cropper = new Cropper(imagePreview, {
+                            aspectRatio: NaN,
+                            viewMode: 1,
+                            guides: true,
+                            background: false
+                        });
+                    }, 100);
+                    
+                    // Update status
+                    statusText.textContent = 'Image loaded. Select area to crop.';
+                    extractedText.textContent = 'Extracted text will appear here...';
+                };
+                
+                reader.readAsDataURL(file);
+            }
+            
+            // Extract text from image using Tesseract
+            function extractTextFromImage() {
+                if (!cropper) {
+                    statusText.textContent = 'Please upload an image first.';
+                    return;
+                }
+                
+                // Get cropped canvas
+                const canvas = cropper.getCroppedCanvas();
+                
+                // Show processing status
+                statusText.textContent = 'Processing...';
+                progressBar.style.width = '0%';
+                
+                // Use Tesseract.js for OCR
+                Tesseract.recognize(
+                    canvas.toDataURL(),
+                    'eng',
+                    { 
+                        logger: progress => {
+                            if (progress.status === 'recognizing text') {
+                                progressBar.style.width = `${progress.progress * 100}%`;
+                            }
+                        }
+                    }
+                ).then(result => {
+                    // Display extracted text
+                    extractedText.textContent = result.data.text || 'No text detected.';
+                    statusText.textContent = 'Extraction completed!';
+                    progressBar.style.width = '100%';
+                }).catch(err => {
+                    statusText.textContent = 'Error: ' + err.message;
+                    extractedText.textContent = 'Error occurred during text extraction.';
+                });
+            }
+            
+            // Download extracted text
+            function downloadText() {
+                const text = extractedText.textContent;
+                if (!text || text === 'Extracted text will appear here...') {
+                    statusText.textContent = 'No text to download. Extract text first.';
+                    return;
+                }
+                
+                const blob = new Blob([text], { type: 'text/plain' });
+                const url = URL.createObjectURL(blob);
+                
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'extracted-text.txt';
+                document.body.appendChild(a);
+                a.click();
+                
+                // Clean up
+                setTimeout(() => {
+                    document.body.removeChild(a);
+                    URL.revokeObjectURL(url);
+                }, 100);
+                
+                statusText.textContent = 'Text downloaded successfully!';
+            }
+            
+            // Reset all
+            function resetAll() {
+                if (cropper) {
+                    cropper.destroy();
+                    cropper = null;
+                }
+                
+                imagePreview.src = '';
+                extractedText.textContent = 'Extracted text will appear here...';
+                statusText.textContent = 'Ready to process image';
+                progressBar.style.width = '0%';
+                fileInput.value = '';
+            }
+        });
+    </script>
+    
+    <!-- Load Cropper.js CSS and JS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
+</body>
+</html>
