@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Converter | Multi-Tool Website</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0073e6 0%, #0058b8 100%);
+            color: #333;
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 800px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            padding: 30px;
+            margin: 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        header h1 {
+            color: #0073e6;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        .converter-box {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .upload-area {
+            border: 3px dashed #0073e6;
+            border-radius: 15px;
+            padding: 40px 20px;
+            text-align: center;
+            background-color: #f0f8ff;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .upload-area:hover {
+            background-color: #e0f0ff;
+            transform: translateY(-3px);
+        }
+
+        .upload-area i {
+            font-size: 3.5rem;
+            color: #0073e6;
+            margin-bottom: 15px;
+        }
+
+        .upload-area h3 {
+            color: #0073e6;
+            margin-bottom: 10px;
+        }
+
+        .upload-area p {
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .browse-btn {
+            background: #0073e6;
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .browse-btn:hover {
+            background: #0058b8;
+            transform: scale(1.05);
+        }
+
+        .format-selector {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .format-box {
+            flex: 1;
+            min-width: 200px;
+            background: #f0f8ff;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .format-box h3 {
+            color: #0073e6;
+            margin-bottom: 15px;
+        }
+
+        .format-select {
+            width: 100%;
+            padding: 12px;
+            border-radius: 10px;
+            border: 2px solid #0073e6;
+            background: white;
+            color: #333;
+            font-weight: bold;
+            outline: none;
+            cursor: pointer;
+        }
+
+        .convert-btn {
+            background: #0073e6;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .convert-btn:hover {
+            background: #0058b8;
+            transform: scale(1.03);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .convert-btn:active {
+            transform: scale(0.98);
+        }
+
+        .download-area {
+            text-align: center;
+            margin-top: 20px;
+            display: none;
+        }
+
+        .download-btn {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .download-btn:hover {
+            background: #218838;
+            transform: scale(1.05);
+        }
+
+        .file-info {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            text-align: left;
+            display: none;
+        }
+
+        .file-info h4 {
+            color: #0073e6;
+            margin-bottom: 10px;
+        }
+
+        .file-info p {
+            margin: 5px 0;
+            color: #666;
+        }
+
+        .icon {
+            font-size: 1.5rem;
+            vertical-align: middle;
+            margin-right: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            
+            header h1 {
+                font-size: 2rem;
+            }
+            
+            .format-selector {
+                flex-direction: column;
+            }
+            
+            .format-box {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .upload-area {
+                padding: 30px 15px;
+            }
+            
+            .upload-area i {
+                font-size: 2.5rem;
+            }
+            
+            .browse-btn, .convert-btn, .download-btn {
+                padding: 12px 25px;
+            }
+        }
+
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 25px;
+            background: #28a745;
+            color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transform: translateX(200%);
+            transition: transform 0.3s ease-out;
+            z-index: 1000;
+        }
+
+        .notification.show {
+            transform: translateX(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-file-contract icon"></i>Document Converter</h1>
+            <p>Convert your documents between PDF, DOCX, and TXT formats</p>
+        </header>
+        
+        <div class="converter-box">
+            <div class="upload-area" id="uploadArea">
+                <i class="fas fa-cloud-upload-alt"></i>
+                <h3>Upload Your Document</h3>
+                <p>Supported formats: PDF, DOCX, TXT</p>
+                <p>Max file size: 10MB</p>
+                <button class="browse-btn">Browse Files</button>
+                <input type="file" id="fileInput" hidden accept=".pdf,.docx,.txt">
+            </div>
+            
+            <div class="file-info" id="fileInfo">
+                <h4>Selected File</h4>
+                <p id="fileName"></p>
+                <p id="fileSize"></p>
+                <p id="fileType"></p>
+            </div>
+            
+            <div class="format-selector">
+                <div class="format-box">
+                    <h3>From Format</h3>
+                    <select class="format-select" id="fromFormat">
+                        <option value="pdf">PDF (.pdf)</option>
+                        <option value="docx">Word Document (.docx)</option>
+                        <option value="txt">Text File (.txt)</option>
+                    </select>
+                </div>
+                
+                <i class="fas fa-exchange-alt" style="font-size: 2rem; color: #0073e6;"></i>
+                
+                <div class="format-box">
+                    <h3>To Format</h3>
+                    <select class="format-select" id="toFormat">
+                        <option value="pdf">PDF (.pdf)</option>
+                        <option value="docx">Word Document (.docx)</option>
+                        <option value="txt">Text File (.txt)</option>
+                    </select>
+                </div>
+            </div>
+            
+            <button class="convert-btn" id="convertBtn">
+                <i class="fas fa-sync-alt"></i> Convert Document
+            </button>
+            
+            <div class="download-area" id="downloadArea">
+                <h3>Your document is ready!</h3>
+                <button class="download-btn" id="downloadBtn">
+                    <i class="fas fa-download"></i> Download Converted File
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="notification" id="notification">
+        <i class="fas fa-check-circle"></i> File converted successfully!
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const uploadArea = document.getElementById('uploadArea');
+            const fileInput = document.getElementById('fileInput');
+            const fileInfo = document.getElementById('fileInfo');
+            const fileName = document.getElementById('fileName');
+            const fileSize = document.getElementById('fileSize');
+            const fileType = document.getElementById('fileType');
+            const fromFormat = document.getElementById('fromFormat');
+            const toFormat = document.getElementById('toFormat');
+            const convertBtn = document.getElementById('convertBtn');
+            const downloadArea = document.getElementById('downloadArea');
+            const downloadBtn = document.getElementById('downloadBtn');
+            const notification = document.getElementById('notification');
+            
+            let convertedFile = null;
+            
+            // Upload area click handler
+            uploadArea.addEventListener('click', function() {
+                fileInput.click();
+            });
+            
+            // File input change handler
+            fileInput.addEventListener('change', function() {
+                if (fileInput.files.length > 0) {
+                    const file = fileInput.files[0];
+                    const fileExt = file.name.split('.').pop().toLowerCase();
+                    
+                    // Update from format based on file extension
+                    fromFormat.value = fileExt;
+                    
+                    // Show file info
+                    fileName.textContent = `Name: ${file.name}`;
+                    fileSize.textContent = `Size: ${(file.size / 1024 / 1024).toFixed(2)} MB`;
+                    fileType.textContent = `Type: .${fileExt.toUpperCase()} file`;
+                    fileInfo.style.display = 'block';
+                    
+                    // Simulate auto-selection of a different output format
+                    if (toFormat.value === fileExt) {
+                        toFormat.value = fileExt === 'pdf' ? 'docx' : 'pdf';
+                    }
+                    
+                    // Hide download area if a new file is selected
+                    downloadArea.style.display = 'none';
+                }
+            });
+            
+            // Convert button click handler
+            convertBtn.addEventListener('click', function() {
+                if (!fileInput.files.length) {
+                    alert('Please select a file first!');
+                    return;
+                }
+                
+                // Show loading state
+                convertBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Converting...';
+                convertBtn.disabled = true;
+                
+                // Simulate conversion process
+                setTimeout(function() {
+                    const originalFile = fileInput.files[0];
+                    const targetFormat = toFormat.value;
+                    
+                    // Create a converted file (simulated)
+                    const originalFileName = originalFile.name.split('.')[0];
+                    const convertedFileName = `${originalFileName}_converted.${targetFormat}`;
+                    
+                    // Create a blob with some sample content for download
+                    const content = `This is a simulated ${targetFormat.toUpperCase()} file converted from ${originalFile.name}.\n\n` +
+                                  `Original format: ${originalFile.name.split('.').pop().toUpperCase()}\n` +
+                                  `Converted to: ${targetFormat.toUpperCase()}\n` +
+                                  `Conversion date: ${new Date().toLocaleString()}`;
+                    
+                    convertedFile = new Blob([content], { type: 'application/octet-stream' });
+                    
+                    // Set up download
+                    downloadBtn.onclick = function() {
+                        const downloadUrl = URL.createObjectURL(convertedFile);
+                        const a = document.createElement('a');
+                        a.href = downloadUrl;
+                        a.download = convertedFileName;
+                        document.body.appendChild(a);
+                        a.click();
+                        document.body.removeChild(a);
+                        URL.revokeObjectURL(downloadUrl);
+                    };
+                    
+                    // Show success notification
+                    notification.classList.add('show');
+                    
+                    // Hide notification after 3 seconds
+                    setTimeout(function() {
+                        notification.classList.remove('show');
+                    }, 3000);
+                    
+                    // Show download area
+                    downloadArea.style.display = 'block';
+                    
+                    // Reset convert button
+                    convertBtn.innerHTML = '<i class="fas fa-sync-alt"></i> Convert Document';
+                    convertBtn.disabled = false;
+                    
+                    // Scroll to download area
+                    downloadArea.scrollIntoView({ behavior: 'smooth' });
+                }, 2000);
+            });
+            
+            // Drag and drop functionality
+            uploadArea.addEventListener('dragover', function(e) {
+                e.preventDefault();
+                uploadArea.style.borderColor = '#28a745';
+                uploadArea.style.backgroundColor = '#e0f0ff';
+            });
+            
+            uploadArea.addEventListener('dragleave', function() {
+                uploadArea.style.borderColor = '#0073e6';
+                uploadArea.style.backgroundColor = '#f0f8ff';
+            });
+            
+            uploadArea.addEventListener('drop', function(e) {
+                e.preventDefault();
+                uploadArea.style.borderColor = '#0073e6';
+                uploadArea.style.backgroundColor = '#f0f8ff';
+                
+                if (e.dataTransfer.files.length) {
+                    fileInput.files = e.dataTransfer.files;
+                    const event = new Event('change');
+                    fileInput.dispatchEvent(event);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
