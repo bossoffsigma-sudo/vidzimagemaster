@@ -3,512 +3,423 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>vidzimage master - Your Daily Tools, All in One Place</title>
+    <title>vidzimage master - Your All-in-One Tool Suite</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary-blue: #1976D2;
-            --dark-blue: #0D47A1;
-            --light-blue: #E3F2FD;
-            --accent-yellow: #FFC107;
-            --dark-yellow: #FFA000;
-            --text-dark: #333;
-            --text-light: #f8f9fa;
+            --primary-blue: #2563eb;
+            --dark-blue: #1e40af;
+            --light-blue: #dbeafe;
+            --accent-yellow: #f59e0b;
+            --dark-yellow: #d97706;
+            --light-gray: #f3f4f6;
+            --text-dark: #1f2937;
+            --text-light: #6b7280;
+            --white: #ffffff;
             --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             --transition: all 0.3s ease;
         }
-        
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        
+
         body {
-            background-color: #f9f9f9;
             color: var(--text-dark);
+            background-color: var(--white);
             line-height: 1.6;
         }
-        
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
         /* Header Styles */
         header {
-            background-color: var(--primary-blue);
-            color: var(--text-light);
-            padding: 1rem 2rem;
+            background-color: var(--white);
+            box-shadow: var(--shadow);
             position: sticky;
             top: 0;
             z-index: 100;
-            box-shadow: var(--shadow);
         }
-        
+
         .header-container {
-            max-width: 1200px;
-            margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 15px 0;
         }
-        
+
         .logo {
             font-size: 1.8rem;
             font-weight: 700;
-            color: white;
+            color: var(--primary-blue);
             text-decoration: none;
-            display: flex;
-            align-items: center;
         }
-        
-        .logo i {
-            margin-right: 10px;
-        }
-        
+
         .nav-menu {
             display: flex;
-            list-style: none;
+            gap: 30px;
         }
-        
-        .nav-menu li {
-            margin-left: 1.5rem;
-        }
-        
-        .nav-menu a {
-            color: var(--text-light);
+
+        .nav-link {
             text-decoration: none;
+            color: var(--text-dark);
             font-weight: 500;
             transition: var(--transition);
         }
-        
-        .nav-menu a:hover {
-            color: var(--accent-yellow);
+
+        .nav-link:hover {
+            color: var(--primary-blue);
         }
-        
-        .header-actions {
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-        }
-        
+
         .contact-email {
             display: flex;
             align-items: center;
-            font-size: 0.9rem;
-        }
-        
-        .contact-email i {
-            margin-right: 0.5rem;
-            color: var(--accent-yellow);
-        }
-        
-        .download-app {
-            background-color: var(--accent-yellow);
+            gap: 5px;
             color: var(--text-dark);
-            padding: 0.5rem 1rem;
-            border-radius: 50px;
-            font-weight: 600;
             text-decoration: none;
-            display: flex;
-            align-items: center;
-            transition: var(--transition);
+            font-weight: 500;
         }
-        
-        .download-app:hover {
-            background-color: var(--dark-yellow);
-            transform: translateY(-2px);
-        }
-        
-        .download-app i {
-            margin-right: 0.5rem;
-        }
-        
-        .mobile-menu-btn {
+
+        .hamburger {
             display: none;
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.5rem;
+            flex-direction: column;
+            gap: 6px;
             cursor: pointer;
         }
-        
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background-color: var(--primary-blue);
+            border-radius: 2px;
+            transition: var(--transition);
+        }
+
         /* Hero Section */
         .hero {
             background: linear-gradient(135deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
-            color: var(--text-light);
-            padding: 4rem 2rem;
+            color: var(--white);
+            padding: 80px 0;
             text-align: center;
         }
-        
+
         .hero-content {
             max-width: 800px;
             margin: 0 auto;
         }
-        
+
         .hero h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
         }
-        
+
         .hero p {
             font-size: 1.2rem;
-            margin-bottom: 2rem;
+            margin-bottom: 30px;
             opacity: 0.9;
         }
-        
-        .hero-actions {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-        
+
         .cta-button {
             display: inline-block;
             background-color: var(--accent-yellow);
             color: var(--text-dark);
-            padding: 0.8rem 2rem;
+            padding: 14px 32px;
             border-radius: 50px;
             font-weight: 600;
             text-decoration: none;
             transition: var(--transition);
-            border: none;
-            cursor: pointer;
             box-shadow: var(--shadow);
         }
-        
+
         .cta-button:hover {
             background-color: var(--dark-yellow);
             transform: translateY(-3px);
         }
-        
-        .cta-button.secondary {
-            background-color: transparent;
-            border: 2px solid var(--accent-yellow);
-            color: var(--text-light);
-        }
-        
-        .cta-button.secondary:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-        }
-        
-        .tools-illustration {
+
+        .tool-icons {
             display: flex;
             justify-content: center;
-            gap: 2rem;
-            margin-top: 3rem;
+            gap: 30px;
+            margin-top: 50px;
             flex-wrap: wrap;
         }
-        
+
         .tool-icon {
             background-color: rgba(255, 255, 255, 0.1);
             width: 80px;
             height: 80px;
-            border-radius: 50%;
+            border-radius: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 2rem;
         }
-        
+
         /* Search Section */
         .search-section {
-            padding: 2rem;
-            background-color: white;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            padding: 40px 0;
+            background-color: var(--light-gray);
         }
-        
+
         .search-container {
-            max-width: 600px;
+            max-width: 700px;
             margin: 0 auto;
             position: relative;
         }
-        
-        .search-bar {
+
+        .search-input {
             width: 100%;
-            padding: 1rem 1.5rem;
-            border: 2px solid #e0e0e0;
+            padding: 16px 60px 16px 20px;
             border-radius: 50px;
-            font-size: 1rem;
+            border: 2px solid #e5e7eb;
+            font-size: 1.1rem;
             transition: var(--transition);
         }
-        
-        .search-bar:focus {
+
+        .search-input:focus {
             outline: none;
             border-color: var(--primary-blue);
-            box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.2);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
         }
-        
-        .search-icon {
+
+        .search-button {
             position: absolute;
-            right: 1.5rem;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #757575;
+            right: 5px;
+            top: 5px;
+            background-color: var(--primary-blue);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            transition: var(--transition);
         }
-        
-        /* Tools Sections */
+
+        .search-button:hover {
+            background-color: var(--dark-blue);
+        }
+
+        /* Tools Section */
         .tools-section {
-            padding: 4rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
+            padding: 60px 0;
         }
-        
-        .section-header {
+
+        .section-heading {
             text-align: center;
-            margin-bottom: 3rem;
+            margin-bottom: 40px;
         }
-        
-        .section-title {
-            font-size: 2rem;
+
+        .section-heading h2 {
+            font-size: 2.2rem;
             color: var(--primary-blue);
-            margin-bottom: 0.5rem;
+            margin-bottom: 15px;
         }
-        
-        .section-subtitle {
-            color: #757575;
+
+        .section-heading p {
+            color: var(--text-light);
             max-width: 600px;
             margin: 0 auto;
         }
-        
+
         .tools-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 60px;
         }
-        
+
         .tool-card {
-            background-color: white;
-            border-radius: 10px;
-            padding: 1.5rem;
+            background-color: var(--white);
+            border-radius: 12px;
+            padding: 25px;
             box-shadow: var(--shadow);
             transition: var(--transition);
-            display: flex;
-            flex-direction: column;
-            height: 100%;
+            border: 1px solid #e5e7eb;
         }
-        
+
         .tool-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
         }
-        
-        .tool-card-header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 1rem;
-        }
-        
+
         .tool-icon-small {
-            background-color: var(--light-blue);
-            width: 50px;
-            height: 50px;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 1rem;
+            font-size: 2rem;
             color: var(--primary-blue);
-            font-size: 1.2rem;
+            margin-bottom: 15px;
         }
-        
-        .tool-name {
-            font-size: 1.2rem;
-            font-weight: 600;
+
+        .tool-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
             color: var(--text-dark);
         }
-        
-        .tool-description {
-            margin-bottom: 1.5rem;
-            color: #666;
-            flex-grow: 1;
+
+        .tool-card p {
+            color: var(--text-light);
+            margin-bottom: 20px;
+            font-size: 0.95rem;
         }
-        
-        .use-tool-btn {
+
+        .tool-button {
+            display: inline-block;
             background-color: var(--accent-yellow);
             color: var(--text-dark);
-            border: none;
-            padding: 0.6rem 1.2rem;
-            border-radius: 5px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: var(--transition);
-            text-align: center;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: 600;
             text-decoration: none;
+            transition: var(--transition);
         }
-        
-        .use-tool-btn:hover {
+
+        .tool-button:hover {
             background-color: var(--dark-yellow);
         }
-        
-        /* Download App Section */
-        .download-section {
-            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
-            color: var(--text-light);
-            padding: 4rem 2rem;
+
+        /* App Download Section */
+        .app-download {
+            background: linear-gradient(to right, var(--primary-blue), var(--dark-blue));
+            padding: 80px 0;
+            color: white;
             text-align: center;
         }
-        
-        .download-container {
-            max-width: 800px;
-            margin: 0 auto;
+
+        .app-download h2 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
         }
-        
-        .download-options {
+
+        .app-download p {
+            max-width: 600px;
+            margin: 0 auto 30px;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .download-buttons {
             display: flex;
             justify-content: center;
-            gap: 2rem;
-            margin-top: 2rem;
+            gap: 20px;
             flex-wrap: wrap;
         }
-        
-        .download-option {
-            background-color: rgba(255, 255, 255, 0.1);
-            padding: 1.5rem;
-            border-radius: 10px;
-            width: 200px;
+
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background-color: white;
+            color: var(--text-dark);
+            padding: 12px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
             transition: var(--transition);
         }
-        
-        .download-option:hover {
-            transform: translateY(-5px);
-            background-color: rgba(255, 255, 255, 0.2);
+
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
-        
-        .download-option i {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            color: var(--accent-yellow);
-        }
-        
+
         /* Footer */
         footer {
-            background-color: var(--dark-blue);
-            color: var(--text-light);
-            padding: 3rem 2rem;
+            background-color: var(--text-dark);
+            color: var(--white);
+            padding: 60px 0 30px;
         }
-        
-        .footer-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
         }
-        
-        .footer-info {
-            flex: 1;
-            min-width: 250px;
-            margin-bottom: 2rem;
-        }
-        
+
         .footer-logo {
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             font-weight: 700;
-            margin-bottom: 1rem;
-            color: white;
-            display: flex;
-            align-items: center;
+            color: var(--white);
+            margin-bottom: 15px;
         }
-        
-        .footer-logo i {
-            margin-right: 10px;
-        }
-        
-        .footer-tagline {
+
+        .footer-about p {
             opacity: 0.8;
-            margin-bottom: 1rem;
+            margin-bottom: 20px;
         }
-        
-        .footer-contact {
-            display: flex;
-            align-items: center;
-            margin-top: 1rem;
-        }
-        
-        .footer-contact i {
-            margin-right: 0.5rem;
-            color: var(--accent-yellow);
-        }
-        
-        .footer-download {
-            margin-top: 1.5rem;
-        }
-        
-        .footer-links {
-            flex: 1;
-            min-width: 150px;
-        }
-        
-        .footer-links h3 {
+
+        .footer-heading {
             font-size: 1.2rem;
-            margin-bottom: 1rem;
-            color: white;
+            margin-bottom: 20px;
+            color: var(--white);
         }
-        
-        .footer-links ul {
+
+        .footer-links {
             list-style: none;
         }
-        
+
         .footer-links li {
-            margin-bottom: 0.5rem;
+            margin-bottom: 12px;
         }
-        
+
         .footer-links a {
-            color: var(--text-light);
-            text-decoration: none;
+            color: var(--white);
             opacity: 0.8;
+            text-decoration: none;
             transition: var(--transition);
         }
-        
+
         .footer-links a:hover {
             opacity: 1;
             color: var(--accent-yellow);
         }
-        
-        .copyright {
+
+        .footer-bottom {
             text-align: center;
-            padding-top: 2rem;
-            margin-top: 2rem;
+            padding-top: 30px;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
-            opacity: 0.7;
-            width: 100%;
         }
-        
-        /* Responsive Design */
+
+        .footer-bottom p {
+            opacity: 0.7;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.3rem;
+            }
+            
+            .tool-icon {
+                width: 70px;
+                height: 70px;
+                font-size: 1.8rem;
+            }
+        }
+
         @media (max-width: 768px) {
             .header-container {
-                flex-wrap: wrap;
+                padding: 15px 0;
             }
             
-            .nav-menu {
-                display: none;
-                width: 100%;
-                flex-direction: column;
-                margin-top: 1rem;
-            }
-            
-            .nav-menu.active {
-                display: flex;
-            }
-            
-            .nav-menu li {
-                margin: 0.5rem 0;
-            }
-            
-            .header-actions {
+            .nav-menu, .contact-email {
                 display: none;
             }
             
-            .header-actions.mobile-visible {
+            .hamburger {
                 display: flex;
-                flex-direction: column;
-                width: 100%;
-                gap: 1rem;
-                margin-top: 1rem;
             }
             
-            .mobile-menu-btn {
-                display: block;
+            .hero {
+                padding: 60px 0;
             }
             
             .hero h1 {
@@ -516,12 +427,11 @@
             }
             
             .hero p {
-                font-size: 1rem;
+                font-size: 1.1rem;
             }
             
-            .hero-actions {
-                flex-direction: column;
-                align-items: center;
+            .tool-icons {
+                gap: 20px;
             }
             
             .tool-icon {
@@ -530,17 +440,35 @@
                 font-size: 1.5rem;
             }
             
-            .section-title {
-                font-size: 1.8rem;
+            .tools-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
             }
             
-            .download-options {
+            .download-buttons {
                 flex-direction: column;
                 align-items: center;
             }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
             
-            .footer-container {
-                flex-direction: column;
+            .section-heading h2 {
+                font-size: 1.8rem;
+            }
+            
+            .tools-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .tool-card {
+                padding: 20px;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -548,286 +476,443 @@
 <body>
     <!-- Header -->
     <header>
-        <div class="header-container">
-            <a href="#" class="logo"><i class="fas fa-tools"></i>vidzimage master</a>
+        <div class="container header-container">
+            <a href="#" class="logo">vidzimage master</a>
             
-            <button class="mobile-menu-btn">
-                <i class="fas fa-bars"></i>
-            </button>
+            <nav class="nav-menu">
+                <a href="#" class="nav-link">Home</a>
+                <a href="#tools" class="nav-link">Tools</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </nav>
             
-            <ul class="nav-menu">
-                <li><a href="#">Home</a></li>
-                <li><a href="#tools">Tools</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-            
-            <div class="header-actions">
-                <div class="contact-email">
-                    <i class="fas fa-envelope"></i>
-                    <span>bossoffsigma@gmail.com</span>
-                </div>
-                <a href="#download" class="download-app">
-                    <i class="fas fa-download"></i>Download App
-                </a>
-            </div>
-        </div>
-        
-        <!-- Mobile actions menu (hidden by default) -->
-        <div class="header-actions mobile-visible" style="display: none;">
-            <div class="contact-email">
-                <i class="fas fa-envelope"></i>
-                <span>bossoffsigma@gmail.com</span>
-            </div>
-            <a href="#download" class="download-app">
-                <i class="fas fa-download"></i>Download App
+            <a href="mailto:bossoffsigma@gmail.com" class="contact-email">
+                <i class="far fa-envelope"></i>
+                bossoffsigma@gmail.com
             </a>
+            
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </div>
     </header>
 
     <!-- Hero Section -->
     <section class="hero">
-        <div class="hero-content">
+        <div class="container hero-content">
             <h1>Your Daily Tools, All in One Place</h1>
             <p>Convert, calculate, compress, and simplify your everyday tasks — fast and free.</p>
+            <a href="#tools" class="cta-button">Explore Tools</a>
             
-            <div class="hero-actions">
-                <a href="#tools" class="cta-button">Explore Tools</a>
-                <a href="#download" class="cta-button secondary">
-                    <i class="fas fa-download"></i> Download Our App
-                </a>
-            </div>
-            
-            <div class="tools-illustration">
-                <div class="tool-icon">
-                    <i class="fas fa-image"></i>
-                </div>
-                <div class="tool-icon">
-                    <i class="fas fa-file-alt"></i>
-                </div>
-                <div class="tool-icon">
-                    <i class="fas fa-calculator"></i>
-                </div>
-                <div class="tool-icon">
-                    <i class="fas fa-code"></i>
-                </div>
-                <div class="tool-icon">
-                    <i class="fas fa-video"></i>
-                </div>
+            <div class="tool-icons">
+                <div class="tool-icon"><i class="fas fa-image"></i></div>
+                <div class="tool-icon"><i class="fas fa-file-alt"></i></div>
+                <div class="tool-icon"><i class="fas fa-video"></i></div>
+                <div class="tool-icon"><i class="fas fa-calculator"></i></div>
+                <div class="tool-icon"><i class="fas fa-code"></i></div>
             </div>
         </div>
     </section>
 
     <!-- Search Section -->
     <section class="search-section">
-        <div class="search-container">
-            <input type="text" class="search-bar" placeholder="Search a tool..." id="toolSearch">
-            <div class="search-icon">
+        <div class="container search-container">
+            <input type="text" class="search-input" placeholder="Search a tool...">
+            <button class="search-button">
                 <i class="fas fa-search"></i>
-            </div>
+            </button>
         </div>
     </section>
 
     <!-- Tools Sections -->
-    <main id="tools">
-        <!-- YouTube Tools -->
-        <section class="tools-section">
-            <div class="section-header">
-                <h2 class="section-title">▶️ YouTube Tools</h2>
-                <p class="section-subtitle">Extract, download and convert YouTube content with our specialized tools</p>
+    <section class="tools-section" id="tools">
+        <div class="container">
+            <!-- YouTube Tools -->
+            <div class="section-heading">
+                <h2><i class="fab fa-youtube"></i> YouTube Tools</h2>
+                <p>Powerful tools for working with YouTube videos and content</p>
             </div>
             
             <div class="tools-grid">
                 <div class="tool-card">
-                    <div class="tool-card-header">
-                        <div class="tool-icon-small">
-                            <i class="fas fa-download"></i>
-                        </div>
-                        <h3 class="tool-name">Video to Image Downloader</h3>
-                    </div>
-                    <p class="tool-description">Download images from any video URL with just a few clicks.</p>
-                    <a href="#" class="use-tool-btn">Use Tool</a>
+                    <div class="tool-icon-small"><i class="fas fa-download"></i></div>
+                    <h3>Video URL to Image Downloader</h3>
+                    <p>Extract and download images from any video URL</p>
+                    <a href="#" class="tool-button">Use Tool</a>
                 </div>
                 
                 <div class="tool-card">
-                    <div class="tool-card-header">
-                        <div class="tool-icon-small">
-                            <i class="fas fa-file-alt"></i>
-                        </div>
-                        <h3 class="tool-name">YouTube Video Transcripter</h3>
-                    </div>
-                    <p class="tool-description">Extract transcripts from YouTube videos quickly and accurately.</p>
-                    <a href="#" class="use-tool-btn">Use Tool</a>
+                    <div class="tool-icon-small"><i class="fas fa-file-alt"></i></div>
+                    <h3>YouTube Video Transcripter</h3>
+                    <p>Get accurate transcripts from YouTube videos</p>
+                    <a href="#" class="tool-button">Use Tool</a>
                 </div>
                 
                 <div class="tool-card">
-                    <div class="tool-card-header">
-                        <div class="tool-icon-small">
-                            <i class="fas fa-image"></i>
-                        </div>
-                        <h3 class="tool-name">YouTube Thumbnail Downloader</h3>
-                    </div>
-                    <p class="tool-description">Download high-quality thumbnails from YouTube videos.</p>
-                    <a href="#" class="use-tool-btn">Use Tool</a>
+                    <div class="tool-icon-small"><i class="fas fa-image"></i></div>
+                    <h3>YouTube Thumbnail Downloader</h3>
+                    <p>Download thumbnails from any YouTube video</p>
+                    <a href="#" class="tool-button">Use Tool</a>
                 </div>
                 
                 <div class="tool-card">
-                    <div class="tool-card-header">
-                        <div class="tool-icon-small">
-                            <i class="fab fa-youtube"></i>
-                        </div>
-                        <h3 class="tool-name">YouTube Logo Downloader</h3>
-                    </div>
-                    <p class="tool-description">Get YouTube channel logos in various sizes and formats.</p>
-                    <a href="#" class="use-tool-btn">Use Tool</a>
+                    <div class="tool-icon-small"><i class="fab fa-youtube"></i></div>
+                    <h3>YouTube Logo Downloader</h3>
+                    <p>Extract logos from YouTube channels</p>
+                    <a href="#" class="tool-button">Use Tool</a>
                 </div>
                 
                 <div class="tool-card">
-                    <div class="tool-card-header">
-                        <div class="tool-icon-small">
-                            <i class="fas fa-camera"></i>
-                        </div>
-                        <h3 class="tool-name">Video to Image Screenshoter</h3>
-                    </div>
-                    <p class="tool-description">Capture perfect screenshots from any video at specific timestamps.</p>
-                    <a href="#" class="use-tool-btn">Use Tool</a>
+                    <div class="tool-icon-small"><i class="fas fa-camera"></i></div>
+                    <h3>Video to Image Screenshoter</h3>
+                    <p>Capture screenshots from videos at specific times</p>
+                    <a href="#" class="tool-button">Use Tool</a>
                 </div>
                 
                 <div class="tool-card">
-                    <div class="tool-card-header">
-                        <div class="tool-icon-small">
-                            <i class="fas fa-closed-captioning"></i>
-                        </div>
-                        <h3 class="tool-name">Video URL Transcripter</h3>
-                    </div>
-                    <p class="tool-description">Convert any video URL to text transcript with high accuracy.</p>
-                    <a href="#" class="use-tool-btn">Use Tool</a>
+                    <div class="tool-icon-small"><i class="fas fa-transcript"></i></div>
+                    <h3>Any Video URL to Transcripter</h3>
+                    <p>Generate transcripts from any video link</p>
+                    <a href="#" class="tool-button">Use Tool</a>
                 </div>
             </div>
-        </section>
-        
-        <!-- Image Tools -->
-        <section class="tools-section">
-            <div class="section-header">
-                <h2 class="section-title">🖼 Image Tools</h2>
-                <p class="section-subtitle">Edit, convert and optimize your images with our powerful image tools</p>
+            
+            <!-- Image Tools -->
+            <div class="section-heading">
+                <h2><i class="fas fa-image"></i> Image Tools</h2>
+                <p>Comprehensive image editing and conversion utilities</p>
             </div>
             
             <div class="tools-grid">
                 <div class="tool-card">
-                    <div class="tool-card-header">
-                        <div class="tool-icon-small">
-                            <i class="fas fa-exchange-alt"></i>
-                        </div>
-                        <h3 class="tool-name">Image Converter</h3>
-                    </div>
-                    <p class="tool-description">Convert images between different formats with ease.</p>
-                    <a href="#" class="use-tool-btn">Use Tool</a>
+                    <div class="tool-icon-small"><i class="fas fa-exchange-alt"></i></div>
+                    <h3>Image Converter</h3>
+                    <p>Convert between JPG, PNG, WEBP, and other formats</p>
+                    <a href="#" class="tool-button">Use Tool</a>
                 </div>
                 
                 <div class="tool-card">
-                    <div class="tool-card-header">
-                        <div class="tool-icon-small">
-                            <i class="fas fa-compress-arrows-alt"></i>
-                        </div>
-                        <h3 class="tool-name">Image Compressor</h3>
-                    </div>
-                    <p class="tool-description">Reduce image file size without sacrificing quality.</p>
-                    <a href="#" class="use-tool-btn">Use Tool</a>
+                    <div class="tool-icon-small"><i class="fas fa-compress-arrows-alt"></i></div>
+                    <h3>Image Compressor</h3>
+                    <p>Reduce image size without losing quality</p>
+                    <a href="#" class="tool-button">Use Tool</a>
                 </div>
                 
-                <!-- More image tools would go here -->
-            </div>
-        </section>
-        
-        <!-- Download App Section -->
-        <section id="download" class="download-section">
-            <div class="download-container">
-                <h2>Download Our Mobile App</h2>
-                <p>Access all tools on the go with our fast and user-friendly mobile application</p>
+                <div class="tool-card">
+                    <div class="tool-icon-small"><i class="fas fa-expand-arrows-alt"></i></div>
+                    <h3>Image Resizer</h3>
+                    <p>Resize images to exact dimensions</p>
+                    <a href="#" class="tool-button">Use Tool</a>
+                </div>
                 
-                <div class="download-options">
-                    <div class="download-option">
-                        <i class="fab fa-apple"></i>
-                        <h3>iOS App</h3>
-                        <p>Download from App Store</p>
-                    </div>
-                    
-                    <div class="download-option">
-                        <i class="fab fa-android"></i>
-                        <h3>Android App</h3>
-                        <p>Get it on Google Play</p>
-                    </div>
-                    
-                    <div class="download-option">
-                        <i class="fas fa-desktop"></i>
-                        <h3>Desktop</h3>
-                        <p>Windows & Mac Version</p>
-                    </div>
+                <div class="tool-card">
+                    <div class="tool-icon-small"><i class="fas fa-crop-alt"></i></div>
+                    <h3>Image Cropper</h3>
+                    <p>Crop images to remove unwanted areas</p>
+                    <a href="#" class="tool-button">Use Tool</a>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="tool-icon-small"><i class="fas fa-font"></i></div>
+                    <h3>Image to Text (OCR)</h3>
+                    <p>Extract text from images with OCR technology</p>
+                    <a href="#" class="tool-button">Use Tool</a>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="tool-icon-small"><i class="fas fa-sync"></i></div>
+                    <h3>Image Rotator/Flipper</h3>
+                    <p>Rotate and flip images with ease</p>
+                    <a href="#" class="tool-button">Use Tool</a>
                 </div>
             </div>
-        </section>
-        
-        <!-- Additional tool sections would follow the same pattern -->
-        
-    </main>
+            
+            <!-- Document Tools -->
+            <div class="section-heading">
+                <h2><i class="fas fa-file"></i> Document Tools</h2>
+                <p>Tools for working with PDFs and other document formats</p>
+            </div>
+            
+            <div class="tools-grid">
+                <div class="tool-card">
+                    <div class="tool-icon-small"><i class="fas fa-file-word"></i></div>
+                    <h3>PDF to Word / Word to PDF</h3>
+                    <p>Convert between PDF and Word documents</p>
+                    <a href="#" class="tool-button">Use Tool</a>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="tool-icon-small"><i class="fas fa-file-archive"></i></div>
+                    <h3>PDF Compressor</h3>
+                    <p>Reduce PDF file size while maintaining quality</p>
+                    <a href="#" class="tool-button">Use Tool</a>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="tool-icon-small"><i class="fas fa-object-group"></i></div>
+                    <h3>PDF Merger & Splitter</h3>
+                    <p>Combine or split PDF files as needed</p>
+                    <a href="#" class="tool-button">Use Tool</a>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="tool-icon-small"><i class="fas fa-exchange-alt"></i></div>
+                    <h3>Document Converter</h3>
+                    <p>Convert between various document formats</p>
+                    <a href="#" class="tool-button">Use Tool</a>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="tool-icon-small"><i class="fas fa-lock"></i></div>
+                    <h3>PDF Lock/Unlock</h3>
+                    <p>Add or remove password protection from PDFs</p>
+                    <a href="#" class="tool-button">Use Tool</a>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="tool-icon-small"><i class="fas fa-signature"></i></div>
+                    <h3>eSign PDF</h3>
+                    <p>Add electronic signatures to your documents</p>
+                    <a href="#" class="tool-button">Use Tool</a>
+                </div>
+            </div>
+            
+            <!-- Calculator Tools -->
+            <div class="section-heading">
+                <h2><i class="fas fa-calculator"></i> Calculator Tools</h2>
+                <p>Various calculators for everyday and specialized use</p>
+            </div>
+            
+            <div class="tools-grid">
+                <div class="tool-card">
+                    <div class="tool-icon-small"><i class="fas fa-square-root-alt"></i></div>
+                    <h3>Scientific Calculator</h3>
+                    <p>Advanced calculator for complex calculations</p>
+                    <a href="#" class="tool-button">Use Tool</a>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="tool-icon-small"><i class="fas fa-birthday-cake"></i></div>
+                    <h3>Age Calculator</h3>
+                    <p>Calculate exact age between two dates</p>
+                    <a href="#" class="tool-button">Use Tool</a>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="tool-icon-small"><i class="fas fa-weight"></i></div>
+                    <h3>BMI Calculator</h3>
+                    <p>Calculate your Body Mass Index</p>
+                    <a href="#" class="tool-button">Use Tool</a>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="tool-icon-small"><i class="fas fa-money-bill-wave"></i></div>
+                    <h3>Loan EMI Calculator</h3>
+                    <p>Calculate Equated Monthly Installments for loans</p>
+                    <a href="#" class="tool-button">Use Tool</a>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="tool-icon-small"><i class="fas fa-percentage"></i></div>
+                    <h3>GST Calculator</h3>
+                    <p>Calculate GST amounts easily</p>
+                    <a href="#" class="tool-button">Use Tool</a>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="tool-icon-small"><i class="fas fa-exchange-alt"></i></div>
+                    <h3>Currency Converter</h3>
+                    <p>Convert between world currencies</p>
+                    <a href="#" class="tool-button">Use Tool</a>
+                </div>
+            </div>
+            
+            <!-- Web/Developer Tools -->
+            <div class="section-heading">
+                <h2><i class="fas fa-code"></i> Web/Developer Tools</h2>
+                <p>Utilities for developers and web professionals</p>
+            </div>
+            
+            <div class="tools-grid">
+                <div class="tool-card">
+                    <div class="tool-icon-small"><i classfas fa-file-code"></i></div>
+                    <h3>HTML/CSS/JS Minifier</h3>
+                    <p>Minify your code for better performance</p>
+                    <a href="#" class="tool-button">Use Tool</a>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="tool-icon-small"><i class="fas fa-brackets-curly"></i></div>
+                    <h3>JSON Formatter & Validator</h3>
+                    <p>Format and validate JSON data</p>
+                    <a href="#" class="tool-button">Use Tool</a>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="tool-icon-small"><i class="fas fa-key"></i></div>
+                    <h3>Base64 Encoder/Decoder</h3>
+                    <p>Encode and decode Base64 strings</p>
+                    <a href="#" class="tool-button">Use Tool</a>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="tool-icon-small"><i class="fas fa-link"></i></div>
+                    <h3>URL Encoder/Decoder</h3>
+                    <p>Encode and decode URL strings</p>
+                    <a href="#" class="tool-button">Use Tool</a>
+                </div>
+            </div>
+            
+            <!-- Utility Tools -->
+            <div class="section-heading">
+                <h2><i class="fas fa-tools"></i> Utility Tools</h2>
+                <p>Various helpful utilities for everyday tasks</p>
+            </div>
+            
+            <div class="tools-grid">
+                <div class="tool-card">
+                    <div class="tool-icon-small"><i class="fas fa-qrcode"></i></div>
+                    <h3>QR Code Generator & Scanner</h3>
+                    <p>Create and scan QR codes</p>
+                    <a href="#" class="tool-button">Use Tool</a>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="tool-icon-small"><i class="fas fa-barcode"></i></div>
+                    <h3>Barcode Generator</h3>
+                    <p>Generate barcodes for products</p>
+                    <a href="#" class="tool-button">Use Tool</a>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="tool-icon-small"><i class="fas fa-fingerprint"></i></div>
+                    <h3>UUID Generator</h3>
+                    <p>Generate unique identifiers</p>
+                    <a href="#" class="tool-button">Use Tool</a>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="tool-icon-small"><i class="fas fa-ruler-combined"></i></div>
+                    <h3>Unit Converter</h3>
+                    <p>Convert between different units of measurement</p>
+                    <a href="#" class="tool-button">Use Tool</a>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="tool-icon-small"><i class="fas fa-globe"></i></div>
+                    <h3>Time Zone Converter</h3>
+                    <p>Convert time between different time zones</p>
+                    <a href="#" class="tool-button">Use Tool</a>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="tool-icon-small"><i class="fas fa-key"></i></div>
+                    <h3>Random Number/Password Generator</h3>
+                    <p>Generate secure random numbers and passwords</p>
+                    <a href="#" class="tool-button">Use Tool</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- App Download Section -->
+    <section class="app-download">
+        <div class="container">
+            <h2>Get Our Mobile App</h2>
+            <p>Download our app for iOS and Android to access all tools on the go</p>
+            <div class="download-buttons">
+                <a href="#" class="download-btn">
+                    <i class="fab fa-apple"></i>
+                    App Store
+                </a>
+                <a href="#" class="download-btn">
+                    <i class="fab fa-google-play"></i>
+                    Google Play
+                </a>
+            </div>
+        </div>
+    </section>
 
     <!-- Footer -->
     <footer id="contact">
-        <div class="footer-container">
-            <div class="footer-info">
-                <div class="footer-logo"><i class="fas fa-tools"></i>vidzimage master</div>
-                <p class="footer-tagline">Simplifying your digital life.</p>
-                <div class="footer-contact">
-                    <i class="fas fa-envelope"></i>
-                    <span>bossoffsigma@gmail.com</span>
-                </div>
-                
-                <div class="footer-download">
-                    <a href="#download" class="download-app">
-                        <i class="fas fa-download"></i>Download Our App
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <div class="footer-logo">vidzimage master</div>
+                    <p>Simplifying your digital life with powerful, easy-to-use tools for all your needs.</p>
+                    <a href="mailto:bossoffsigma@gmail.com" class="contact-email" style="color: white;">
+                        <i class="far fa-envelope"></i>
+                        bossoffsigma@gmail.com
                     </a>
                 </div>
+                
+                <div class="footer-links-container">
+                    <h3 class="footer-heading">Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#tools">Tools</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Use</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links-container">
+                    <h3 class="footer-heading">Tool Categories</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">YouTube Tools</a></li>
+                        <li><a href="#">Image Tools</a></li>
+                        <li><a href="#">Document Tools</a></li>
+                        <li><a href="#">Calculator Tools</a></li>
+                        <li><a href="#">Web Tools</a></li>
+                        <li><a href="#">Utility Tools</a></li>
+                    </ul>
+                </div>
             </div>
             
-            <div class="footer-links">
-                <h3>Quick Links</h3>
-                <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#tools">Tools</a></li>
-                    <li><a href="#download">Download App</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Terms of Use</a></li>
-                </ul>
-            </div>
-            
-            <div class="copyright">
+            <div class="footer-bottom">
                 <p>&copy; 2023 vidzimage master. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
     <script>
-        // Mobile menu toggle
-        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
-            document.querySelector('.nav-menu').classList.toggle('active');
-            document.querySelector('.header-actions.mobile-visible').style.display = 
-                document.querySelector('.header-actions.mobile-visible').style.display === 'flex' ? 'none' : 'flex';
-        });
-        
-        // Tool search functionality
-        document.getElementById('toolSearch').addEventListener('keyup', function() {
-            const searchText = this.value.toLowerCase();
+        // Simple search functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.querySelector('.search-input');
             const toolCards = document.querySelectorAll('.tool-card');
             
-            toolCards.forEach(card => {
-                const toolName = card.querySelector('.tool-name').textContent.toLowerCase();
-                const toolDesc = card.querySelector('.tool-description').textContent.toLowerCase();
+            searchInput.addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase();
                 
-                if (toolName.includes(searchText) || toolDesc.includes(searchText)) {
-                    card.style.display = 'flex';
+                toolCards.forEach(card => {
+                    const toolName = card.querySelector('h3').textContent.toLowerCase();
+                    const toolDesc = card.querySelector('p').textContent.toLowerCase();
+                    
+                    if (toolName.includes(searchTerm) || toolDesc.includes(searchTerm)) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+            
+            // Mobile menu toggle
+            const hamburger = document.querySelector('.hamburger');
+            const navMenu = document.querySelector('.nav-menu');
+            const contactEmail = document.querySelector('.contact-email');
+            
+            hamburger.addEventListener('click', function() {
+                navMenu.classList.toggle('show');
+                contactEmail.classList.toggle('show');
+                
+                if (navMenu.classList.contains('show')) {
+                    navMenu.style.display = 'flex';
+                    contactEmail.style.display = 'flex';
                 } else {
-                    card.style.display = 'none';
+                    navMenu.style.display = 'none';
+                    contactEmail.style.display = 'none';
                 }
             });
         });
