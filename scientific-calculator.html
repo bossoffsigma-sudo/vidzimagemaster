@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scientific Calculator | Multi-Tool Website</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #0074e4, #005bb9);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .calculator-container {
+            width: 100%;
+            max-width: 400px;
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+        
+        .calculator-header {
+            background-color: #0084ff;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+        
+        .display {
+            background-color: #f5f9ff;
+            padding: 20px;
+            text-align: right;
+            border-bottom: 2px solid #e6f0ff;
+        }
+        
+        .calculation {
+            font-size: 1.2rem;
+            color: #555;
+            min-height: 28px;
+            overflow-x: auto;
+            white-space: nowrap;
+            margin-bottom: 10px;
+        }
+        
+        .result {
+            font-size: 2.2rem;
+            font-weight: 600;
+            color: #0084ff;
+            min-height: 50px;
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+        
+        .keypad {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            padding: 20px;
+            background-color: white;
+        }
+        
+        .key {
+            padding: 16px 10px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .key:active {
+            transform: scale(0.95);
+        }
+        
+        .number {
+            background-color: #e6f2ff;
+            color: #0084ff;
+        }
+        
+        .operation {
+            background-color: #0084ff;
+            color: white;
+        }
+        
+        .function {
+            background-color: #66b5ff;
+            color: white;
+        }
+        
+        .equals {
+            background-color: #00c853;
+            color: white;
+            grid-column: span 2;
+        }
+        
+        .clear, .delete {
+            background-color: #ff5252;
+            color: white;
+        }
+        
+        .toggle-scientific {
+            background-color: #ff9e00;
+            color: white;
+            grid-column: span 2;
+            margin-top: 10px;
+        }
+        
+        .scientific-panel {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            padding: 0 20px 20px;
+            background-color: white;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        
+        .scientific-panel.active {
+            max-height: 500px;
+        }
+        
+        @media (max-width: 480px) {
+            .calculator-container {
+                border-radius: 15px;
+            }
+            
+            .key {
+                padding: 14px 8px;
+                font-size: 1rem;
+            }
+            
+            .result {
+                font-size: 1.8rem;
+            }
+            
+            .calculation {
+                font-size: 1rem;
+            }
+        }
+        
+        @media (max-width: 350px) {
+            .key {
+                padding: 12px 6px;
+                font-size: 0.9rem;
+            }
+        }
+        
+        .history {
+            background-color: #f5f9ff;
+            padding: 15px;
+            margin-top: 10px;
+            border-radius: 10px;
+            max-height: 150px;
+            overflow-y: auto;
+        }
+        
+        .history-title {
+            color: #0084ff;
+            font-weight: 600;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        
+        .history-item {
+            padding: 8px;
+            border-bottom: 1px solid #e6f0ff;
+            font-size: 0.9rem;
+            color: #555;
+        }
+        
+        .history-item:last-child {
+            border-bottom: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator-container">
+        <div class="calculator-header">
+            <i class="fas fa-calculator"></i> Scientific Calculator
+        </div>
+        
+        <div class="display">
+            <div class="calculation" id="calculation"></div>
+            <div class="result" id="result">0</div>
+        </div>
+        
+        <div class="keypad">
+            <button class="key clear" data-action="clear">C</button>
+            <button class="key delete" data-action="delete">⌫</button>
+            <button class="key function" data-operator="%">%</button>
+            <button class="key operation" data-operator="/">÷</button>
+            
+            <button class="key number" data-number="7">7</button>
+            <button class="key number" data-number="8">8</button>
+            <button class="key number" data-number="9">9</button>
+            <button class="key operation" data-operator="*">×</button>
+            
+            <button class="key number" data-number="4">4</button>
+            <button class="key number" data-number="5">5</button>
+            <button class="key number" data-number="6">6</button>
+            <button class="key operation" data-operator="-">−</button>
+            
+            <button class="key number" data-number="1">1</button>
+            <button class="key number" data-number="2">2</button>
+            <button class="key number" data-number="3">3</button>
+            <button class="key operation" data-operator="+">+</button>
+            
+            <button class="key number" data-number="0">0</button>
+            <button class="key number" data-number=".">.</button>
+            <button class="key equals" data-action="calculate">=</button>
+            
+            <button class="key toggle-scientific" id="toggleScientific">
+                <i class="fas fa-flask"></i> Scientific Functions
+            </button>
+        </div>
+        
+        <div class="scientific-panel" id="scientificPanel">
+            <button class="key function" data-function="sqrt">√</button>
+            <button class="key function" data-function="square">x²</button>
+            <button class="key function" data-function="power">x^y</button>
+            <button class="key function" data-function="pi">π</button>
+            
+            <button class="key function" data-function="sin">sin</button>
+            <button class="key function" data-function="cos">cos</button>
+            <button class="key function" data-function="tan">tan</button>
+            <button class="key function" data-function="log">log</button>
+            
+            <button class="key function" data-function="ln">ln</button>
+            <button class="key function" data-function="fact">x!</button>
+            <button class="key function" data-function="exp">exp</button>
+            <button class="key function" data-function="mod">mod</button>
+        </div>
+        
+        <div class="history">
+            <div class="history-title">Calculation History</div>
+            <div id="historyContainer"></div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const calculationElement = document.getElementById('calculation');
+            const resultElement = document.getElementById('result');
+            const historyContainer = document.getElementById('historyContainer');
+            const toggleScientificBtn = document.getElementById('toggleScientific');
+            const scientificPanel = document.getElementById('scientificPanel');
+            
+            let currentInput = '0';
+            let calculation = '';
+            let result = '';
+            let calculationHistory = [];
+            
+            // Toggle scientific panel
+            toggleScientificBtn.addEventListener('click', function() {
+                scientificPanel.classList.toggle('active');
+                if (scientificPanel.classList.contains('active')) {
+                    toggleScientificBtn.innerHTML = '<i class="fas fa-times"></i> Basic Functions';
+                } else {
+                    toggleScientificBtn.innerHTML = '<i class="fas fa-flask"></i> Scientific Functions';
+                }
+            });
+            
+            // Add event listeners to all buttons
+            document.querySelectorAll('.key').forEach(button => {
+                button.addEventListener('click', function() {
+                    const action = this.dataset.action;
+                    const number = this.dataset.number;
+                    const operator = this.dataset.operator;
+                    const functionName = this.dataset.function;
+                    
+                    if (number) {
+                        inputNumber(number);
+                    } else if (operator) {
+                        inputOperator(operator);
+                    } else if (functionName) {
+                        inputFunction(functionName);
+                    } else if (action) {
+                        handleAction(action);
+                    }
+                    
+                    updateDisplay();
+                });
+            });
+            
+            // Handle number input
+            function inputNumber(number) {
+                if (currentInput === '0' || result !== '') {
+                    currentInput = number;
+                    if (result !== '') {
+                        calculation = '';
+                    }
+                } else {
+                    currentInput += number;
+                }
+                result = '';
+            }
+            
+            // Handle operator input
+            function inputOperator(operator) {
+                const lastChar = calculation.slice(-1);
+                
+                if (result !== '' && calculation === '') {
+                    calculation = result + operator;
+                    currentInput = '0';
+                } else if (result !== '') {
+                    calculation = result + operator;
+                    result = '';
+                    currentInput = '0';
+                } else {
+                    if (currentInput !== '0') {
+                        calculation += currentInput + operator;
+                        currentInput = '0';
+                    } else if (calculation !== '' && !isOperator(lastChar)) {
+                        calculation += operator;
+                    } else if (calculation !== '' && isOperator(lastChar)) {
+                        calculation = calculation.slice(0, -1) + operator;
+                    }
+                }
+                result = '';
+            }
+            
+            // Handle scientific functions
+            function inputFunction(functionName) {
+                if (currentInput === '0' && calculation === '' && result === '') return;
+                
+                let inputValue = parseFloat(currentInput);
+                let functionResult;
+                
+                switch(functionName) {
+                    case 'sqrt':
+                        if (inputValue < 0) {
+                            result = 'Error';
+                            return;
+                        }
+                        functionResult = Math.sqrt(inputValue);
+                        calculation = `√(${currentInput})`;
+                        break;
+                    case 'square':
+                        functionResult = Math.pow(inputValue, 2);
+                        calculation = `(${currentInput})²`;
+                        break;
+                    case 'power':
+                        calculation += currentInput + '^';
+                        currentInput = '0';
+                        return;
+                    case 'pi':
+                        if (currentInput === '0') {
+                            currentInput = Math.PI.toString();
+                        } else {
+                            currentInput += Math.PI.toString();
+                        }
+                        return;
+                    case 'sin':
+                        functionResult = Math.sin(inputValue * Math.PI / 180); // Convert to radians
+                        calculation = `sin(${currentInput})`;
+                        break;
+                    case 'cos':
+                        functionResult = Math.cos(inputValue * Math.PI / 180);
+                        calculation = `cos(${currentInput})`;
+                        break;
+                    case 'tan':
+                        functionResult = Math.tan(inputValue * Math.PI / 180);
+                        calculation = `tan(${currentInput})`;
+                        break;
+                    case 'log':
+                        if (inputValue <= 0) {
+                            result = 'Error';
+                            return;
+                        }
+                        functionResult = Math.log10(inputValue);
+                        calculation = `log(${currentInput})`;
+                        break;
+                    case 'ln':
+                        if (inputValue <= 0) {
+                            result = 'Error';
+                            return;
+                        }
+                        functionResult = Math.log(inputValue);
+                        calculation = `ln(${currentInput})`;
+                        break;
+                    case 'fact':
+                        if (inputValue < 0 || !Number.isInteger(inputValue)) {
+                            result = 'Error';
+                            return;
+                        }
+                        functionResult = factorial(inputValue);
+                        calculation = `(${currentInput})!`;
+                        break;
+                    case 'exp':
+                        calculation += currentInput + 'E';
+                        currentInput = '0';
+                        return;
+                    case 'mod':
+                        calculation += currentInput + ' mod ';
+                        currentInput = '0';
+                        return;
+                }
+                
+                result = functionResult.toString();
+                addToHistory(`${calculation} = ${result}`);
+                currentInput = '0';
+            }
+            
+            // Factorial function
+            function factorial(n) {
+                if (n === 0 || n === 1) return 1;
+                let result = 1;
+                for (let i = 2; i <= n; i++) {
+                    result *= i;
+                }
+                return result;
+            }
+            
+            // Check if a character is an operator
+            function isOperator(char) {
+                return ['+', '-', '*', '/', '%'].includes(char);
+            }
+            
+            // Handle actions (clear, delete, calculate)
+            function handleAction(action) {
+                switch(action) {
+                    case 'clear':
+                        currentInput = '0';
+                        calculation = '';
+                        result = '';
+                        break;
+                    case 'delete':
+                        if (currentInput.length > 1) {
+                            currentInput = currentInput.slice(0, -1);
+                        } else {
+                            currentInput = '0';
+                        }
+                        break;
+                    case 'calculate':
+                        calculateResult();
+                        break;
+                }
+            }
+            
+            // Calculate the result
+            function calculateResult() {
+                if (calculation === '' && result === '') return;
+                
+                if (result === '') {
+                    let expression = calculation + currentInput;
+                    
+                    // Replace visual operators with JavaScript operators
+                    expression = expression.replace(/×/g, '*').replace(/÷/g, '/').replace(/−/g, '-');
+                    
+                    // Handle power operation
+                    expression = expression.replace(/\^/g, '**');
+                    
+                    // Handle modulus operation
+                    expression = expression.replace(/mod/g, '%');
+                    
+                    try {
+                        result = eval(expression).toString();
+                        addToHistory(`${expression} = ${result}`);
+                    } catch (error) {
+                        result = 'Error';
+                    }
+                } else {
+                    currentInput = result;
+                    result = '';
+                }
+            }
+            
+            // Add calculation to history
+            function addToHistory(historyItem) {
+                calculationHistory.unshift(historyItem);
+                if (calculationHistory.length > 5) {
+                    calculationHistory.pop();
+                }
+                
+                historyContainer.innerHTML = '';
+                calculationHistory.forEach(item => {
+                    const historyElement = document.createElement('div');
+                    historyElement.classList.add('history-item');
+                    historyElement.textContent = item;
+                    historyContainer.appendChild(historyElement);
+                });
+            }
+            
+            // Update the display
+            function updateDisplay() {
+                resultElement.textContent = currentInput;
+                calculationElement.textContent = calculation;
+                
+                if (result !== '') {
+                    resultElement.textContent = result;
+                }
+            }
+        });
+    </script>
+</body>
+</html>
