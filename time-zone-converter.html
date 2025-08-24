@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time Zone Converter | Multi-Tool Website</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #0074e4, #00a2ff);
+            color: #333;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            width: 100%;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: #0074e4;
+            color: white;
+            padding: 25px 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 5px;
+        }
+        
+        .header p {
+            opacity: 0.9;
+        }
+        
+        .content {
+            padding: 30px;
+        }
+        
+        .converter-card {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+        
+        .time-input-section, .timezone-select-section, .result-section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: space-between;
+        }
+        
+        .input-group {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #0074e4;
+        }
+        
+        .input-group input, .input-group select {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .input-group input:focus, .input-group select:focus {
+            border-color: #0074e4;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(0, 116, 228, 0.2);
+        }
+        
+        .input-group input {
+            padding-left: 45px;
+        }
+        
+        .input-wrapper {
+            position: relative;
+        }
+        
+        .input-wrapper i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #0074e4;
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        button {
+            padding: 15px 25px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .convert-btn {
+            background: #0074e4;
+            color: white;
+            flex: 2;
+        }
+        
+        .convert-btn:hover {
+            background: #0060b9;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 116, 228, 0.3);
+        }
+        
+        .reset-btn {
+            background: #f0f8ff;
+            color: #0074e4;
+            flex: 1;
+        }
+        
+        .reset-btn:hover {
+            background: #e1f1ff;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 116, 228, 0.2);
+        }
+        
+        .result-section {
+            background: #f0f8ff;
+            padding: 25px;
+            border-radius: 15px;
+            margin-top: 10px;
+            align-items: center;
+            display: none;
+        }
+        
+        .result-section.active {
+            display: flex;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .result-label {
+            font-weight: 600;
+            color: #0074e4;
+        }
+        
+        .result-time {
+            font-size: 24px;
+            font-weight: 700;
+            color: #0060b9;
+        }
+        
+        .popular-timezones {
+            margin-top: 30px;
+        }
+        
+        .popular-timezones h3 {
+            color: #0074e4;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .timezone-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+        
+        .timezone-btn {
+            background: #e6f3ff;
+            color: #0074e4;
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-size: 14px;
+            border: 1px solid #cce5ff;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .timezone-btn:hover {
+            background: #cce5ff;
+            transform: translateY(-2px);
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: #7c7c7c;
+            font-size: 14px;
+            border-top: 1px solid #e0e0e0;
+            margin-top: 20px;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @media (max-width: 768px) {
+            .time-input-section, .timezone-select-section {
+                flex-direction: column;
+            }
+            
+            .input-group {
+                width: 100%;
+            }
+            
+            .button-group {
+                flex-direction: column;
+            }
+            
+            .result-section {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 24px;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+            
+            button {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1><i class="fas fa-globe-americas"></i> Time Zone Converter</h1>
+            <p>Convert between time zones instantly</p>
+        </div>
+        
+        <div class="content">
+            <div class="converter-card">
+                <div class="time-input-section">
+                    <div class="input-group">
+                        <label for="time-input">Enter Time</label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-clock"></i>
+                            <input type="time" id="time-input" value="12:00">
+                        </div>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="date-input">Enter Date</label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-calendar"></i>
+                            <input type="date" id="date-input">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="timezone-select-section">
+                    <div class="input-group">
+                        <label for="from-timezone">From Time Zone</label>
+                        <select id="from-timezone">
+                            <option value="UTC">UTC (Coordinated Universal Time)</option>
+                            <option value="EST">EST (Eastern Standard Time)</option>
+                            <option value="PST">PST (Pacific Standard Time)</option>
+                            <option value="CST">CST (Central Standard Time)</option>
+                            <option value="MST">MST (Mountain Standard Time)</option>
+                            <option value="GMT">GMT (Greenwich Mean Time)</option>
+                            <option value="CET" selected>CET (Central European Time)</option>
+                            <option value="IST">IST (Indian Standard Time)</option>
+                            <option value="AEST">AEST (Australian Eastern Time)</option>
+                            <option value="JST">JST (Japan Standard Time)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="to-timezone">To Time Zone</label>
+                        <select id="to-timezone">
+                            <option value="UTC">UTC (Coordinated Universal Time)</option>
+                            <option value="EST" selected>EST (Eastern Standard Time)</option>
+                            <option value="PST">PST (Pacific Standard Time)</option>
+                            <option value="CST">CST (Central Standard Time)</option>
+                            <option value="MST">MST (Mountain Standard Time)</option>
+                            <option value="GMT">GMT (Greenwich Mean Time)</option>
+                            <option value="CET">CET (Central European Time)</option>
+                            <option value="IST">IST (Indian Standard Time)</option>
+                            <option value="AEST">AEST (Australian Eastern Time)</option>
+                            <option value="JST">JST (Japan Standard Time)</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="button-group">
+                    <button class="convert-btn" id="convert-btn">
+                        <i class="fas fa-exchange-alt"></i> Convert Time
+                    </button>
+                    <button class="reset-btn" id="reset-btn">
+                        <i class="fas fa-redo"></i> Reset
+                    </button>
+                </div>
+                
+                <div class="result-section" id="result-section">
+                    <div class="result-label">Converted Time:</div>
+                    <div class="result-time" id="result-time">12:00 PM</div>
+                    <div class="result-date" id="result-date">Monday, January 1, 2023</div>
+                </div>
+            </div>
+            
+            <div class="popular-timezones">
+                <h3>Popular Time Zones</h3>
+                <div class="timezone-buttons">
+                    <button class="timezone-btn" data-from="EST" data-to="PST">EST to PST</button>
+                    <button class="timezone-btn" data-from="GMT" data-to="EST">GMT to EST</button>
+                    <button class="timezone-btn" data-from="UTC" data-to="CET">UTC to CET</button>
+                    <button class="timezone-btn" data-from="PST" data-to="IST">PST to IST</button>
+                    <button class="timezone-btn" data-from="CET" data-to="AEST">CET to AEST</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>Part of Multi-Tool Website • © 2023</p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set default date to today
+            const today = new Date();
+            const formattedDate = today.toISOString().substr(0, 10);
+            document.getElementById('date-input').value = formattedDate;
+            
+            // Get DOM elements
+            const timeInput = document.getElementById('time-input');
+            const dateInput = document.getElementById('date-input');
+            const fromTimezone = document.getElementById('from-timezone');
+            const toTimezone = document.getElementById('to-timezone');
+            const convertBtn = document.getElementById('convert-btn');
+            const resetBtn = document.getElementById('reset-btn');
+            const resultSection = document.getElementById('result-section');
+            const resultTime = document.getElementById('result-time');
+            const resultDate = document.getElementById('result-date');
+            const timezoneButtons = document.querySelectorAll('.timezone-btn');
+            
+            // Timezone offsets in hours (simplified for demo)
+            const timezoneOffsets = {
+                'UTC': 0,
+                'EST': -5,
+                'PST': -8,
+                'CST': -6,
+                'MST': -7,
+                'GMT': 0,
+                'CET': 1,
+                'IST': 5.5,
+                'AEST': 10,
+                'JST': 9
+            };
+            
+            // Convert time function
+            function convertTime() {
+                const time = timeInput.value;
+                const date = dateInput.value;
+                const fromTz = fromTimezone.value;
+                const toTz = toTimezone.value;
+                
+                if (!time || !date) {
+                    alert('Please enter both time and date');
+                    return;
+                }
+                
+                // Parse input time and date
+                const [hours, minutes] = time.split(':').map(Number);
+                const [year, month, day] = date.split('-').map(Number);
+                
+                // Create date object in the source timezone
+                const sourceDate = new Date(Date.UTC(year, month - 1, day, hours, minutes));
+                
+                // Adjust for source timezone offset
+                const fromOffset = timezoneOffsets[fromTz];
+                sourceDate.setHours(sourceDate.getHours() - fromOffset);
+                
+                // Adjust for target timezone offset
+                const toOffset = timezoneOffsets[toTz];
+                sourceDate.setHours(sourceDate.getHours() + toOffset);
+                
+                // Format the result
+                const options = { 
+                    hour: 'numeric', 
+                    minute: 'numeric', 
+                    hour12: true,
+                    timeZone: 'UTC'
+                };
+                
+                const dateOptions = {
+                    weekday: 'long',
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                    timeZone: 'UTC'
+                };
+                
+                resultTime.textContent = sourceDate.toLocaleTimeString('en-US', options);
+                resultDate.textContent = sourceDate.toLocaleDateString('en-US', dateOptions);
+                
+                // Show result section
+                resultSection.classList.add('active');
+            }
+            
+            // Reset form function
+            function resetForm() {
+                timeInput.value = '12:00';
+                dateInput.value = formattedDate;
+                fromTimezone.value = 'CET';
+                toTimezone.value = 'EST';
+                resultSection.classList.remove('active');
+            }
+            
+            // Set popular timezone pairs
+            function setTimezonePair(from, to) {
+                fromTimezone.value = from;
+                toTimezone.value = to;
+            }
+            
+            // Event listeners
+            convertBtn.addEventListener('click', convertTime);
+            
+            resetBtn.addEventListener('click', resetForm);
+            
+            timezoneButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    setTimezonePair(this.dataset.from, this.dataset.to);
+                });
+            });
+            
+            // Allow conversion on Enter key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') {
+                    convertTime();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
