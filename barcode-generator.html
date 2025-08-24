@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barcode Generator | Multi-Tool Website</title>
+    <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
+    <style>
+        :root {
+            --primary-blue: #1976d2;
+            --light-blue: #2196f3;
+            --dark-blue: #0d47a1;
+            --white: #ffffff;
+            --light-gray: #f5f5f5;
+            --text-dark: #333333;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--light-blue) 0%, var(--primary-blue) 100%);
+            color: var(--text-dark);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1000px;
+            background-color: var(--white);
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            margin: 20px 0;
+        }
+
+        header {
+            background-color: var(--primary-blue);
+            color: var(--white);
+            padding: 25px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .tool-container {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 20px;
+        }
+
+        .input-section {
+            flex: 1;
+            min-width: 300px;
+            padding: 20px;
+        }
+
+        .output-section {
+            flex: 1;
+            min-width: 300px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark-blue);
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        input:focus, select:focus {
+            border-color: var(--primary-blue);
+            outline: none;
+        }
+
+        .btn {
+            background-color: var(--primary-blue);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: background-color 0.3s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn:hover {
+            background-color: var(--dark-blue);
+        }
+
+        .btn i {
+            margin-right: 8px;
+        }
+
+        .btn-generate {
+            background-color: var(--primary-blue);
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .btn-download {
+            background-color: #4caf50;
+            margin-top: 15px;
+        }
+
+        .barcode-preview {
+            width: 100%;
+            min-height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--light-gray);
+            border-radius: 8px;
+            margin-bottom: 20px;
+            padding: 20px;
+            border: 2px dashed #ccc;
+        }
+
+        #barcode {
+            max-width: 100%;
+        }
+
+        .download-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            width: 100%;
+        }
+
+        .size-options {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+
+        .size-btn {
+            padding: 8px 15px;
+            background-color: #e0e0e0;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .size-btn.active {
+            background-color: var(--primary-blue);
+            color: white;
+        }
+
+        .color-picker {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        #colorInput {
+            width: 60px;
+            height: 40px;
+            padding: 0;
+            border: none;
+            cursor: pointer;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: var(--white);
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            .tool-container {
+                flex-direction: column;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+        }
+
+        /* Custom styling for range input */
+        input[type="range"] {
+            height: 8px;
+            -webkit-appearance: none;
+            appearance: none;
+            background: #ddd;
+            border-radius: 4px;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--primary-blue);
+            cursor: pointer;
+        }
+
+        /* Animation for barcode generation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .barcode-generated {
+            animation: fadeIn 0.5s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Barcode Generator</h1>
+            <p class="subtitle">Create custom barcodes in seconds</p>
+        </header>
+        
+        <div class="tool-container">
+            <div class="input-section">
+                <div class="form-group">
+                    <label for="barcodeInput">Enter Text or Numbers</label>
+                    <input type="text" id="barcodeInput" placeholder="Enter text or numbers to encode" value="123456789012">
+                </div>
+                
+                <div class="form-group">
+                    <label for="barcodeType">Barcode Type</label>
+                    <select id="barcodeType">
+                        <option value="CODE128">CODE128</option>
+                        <option value="EAN13">EAN-13</option>
+                        <option value="UPCA">UPC-A</option>
+                        <option value="CODE39">CODE39</option>
+                        <option value="ITF">ITF</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="widthRange">Barcode Width</label>
+                    <input type="range" id="widthRange" min="1" max="4" step="1" value="2">
+                    <div class="size-options">
+                        <button class="size-btn" data-size="1">Small</button>
+                        <button class="size-btn active" data-size="2">Medium</button>
+                        <button class="size-btn" data-size="3">Large</button>
+                        <button class="size-btn" data-size="4">X-Large</button>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="colorInput">Barcode Color</label>
+                    <div class="color-picker">
+                        <input type="color" id="colorInput" value="#000000">
+                        <span>Click to choose a color</span>
+                    </div>
+                </div>
+                
+                <button id="generateBtn" class="btn btn-generate">Generate Barcode</button>
+            </div>
+            
+            <div class="output-section">
+                <div class="barcode-preview">
+                    <svg id="barcode"></svg>
+                </div>
+                
+                <div class="download-options">
+                    <select id="formatSelect" class="form-control">
+                        <option value="SVG">SVG</option>
+                        <option value="PNG">PNG</option>
+                        <option value="JPEG">JPEG</option>
+                    </select>
+                    <button id="downloadBtn" class="btn btn-download">Download Barcode</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>© 2023 Multi-Tool Website | Barcode Generator Tool</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // DOM Elements
+            const barcodeInput = document.getElementById('barcodeInput');
+            const barcodeType = document.getElementById('barcodeType');
+            const widthRange = document.getElementById('widthRange');
+            const colorInput = document.getElementById('colorInput');
+            const generateBtn = document.getElementById('generateBtn');
+            const barcodeElement = document.getElementById('barcode');
+            const formatSelect = document.getElementById('formatSelect');
+            const downloadBtn = document.getElementById('downloadBtn');
+            const sizeButtons = document.querySelectorAll('.size-btn');
+            
+            // Set initial barcode
+            generateBarcode();
+            
+            // Event Listeners
+            generateBtn.addEventListener('click', generateBarcode);
+            
+            downloadBtn.addEventListener('click', function() {
+                downloadBarcode();
+            });
+            
+            sizeButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    sizeButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    widthRange.value = this.dataset.size;
+                    generateBarcode();
+                });
+            });
+            
+            // Generate Barcode function
+            function generateBarcode() {
+                const value = barcodeInput.value.trim();
+                const type = barcodeType.value;
+                const width = widthRange.value;
+                const color = colorInput.value;
+                
+                if (!value) {
+                    alert('Please enter some text or numbers to generate a barcode');
+                    return;
+                }
+                
+                try {
+                    // Clear previous barcode
+                    barcodeElement.innerHTML = '';
+                    
+                    // Generate new barcode
+                    JsBarcode(barcodeElement, value, {
+                        format: type,
+                        width: width,
+                        height: 60,
+                        displayValue: true,
+                        fontOptions: 'bold',
+                        font: 'monospace',
+                        textMargin: 8,
+                        fontSize: 16,
+                        lineColor: color,
+                        background: 'transparent'
+                    });
+                    
+                    // Add animation class
+                    barcodeElement.classList.add('barcode-generated');
+                    
+                    // Remove animation class after animation completes
+                    setTimeout(() => {
+                        barcodeElement.classList.remove('barcode-generated');
+                    }, 500);
+                    
+                } catch (error) {
+                    alert('Error generating barcode: ' + error.message);
+                    console.error(error);
+                }
+            }
+            
+            // Download Barcode function
+            function downloadBarcode() {
+                const format = formatSelect.value;
+                const value = barcodeInput.value.trim() || 'barcode';
+                
+                if (barcodeElement.children.length === 0) {
+                    alert('Please generate a barcode first');
+                    return;
+                }
+                
+                try {
+                    if (format === 'SVG') {
+                        // Create a blob from the SVG
+                        const svgData = new XMLSerializer().serializeToString(barcodeElement);
+                        const blob = new Blob([svgData], { type: 'image/svg+xml' });
+                        const url = URL.createObjectURL(blob);
+                        
+                        // Create download link
+                        const a = document.createElement('a');
+                        a.href = url;
+                        a.download = `${value}.svg`;
+                        document.body.appendChild(a);
+                        a.click();
+                        document.body.removeChild(a);
+                        
+                        // Clean up
+                        URL.revokeObjectURL(url);
+                    } else {
+                        // For PNG and JPEG, we need to convert SVG to canvas
+                        const canvas = document.createElement('canvas');
+                        const ctx = canvas.getContext('2d');
+                        const img = new Image();
+                        
+                        const svgData = new XMLSerializer().serializeToString(barcodeElement);
+                        const svgBlob = new Blob([svgData], { type: 'image/svg+xml' });
+                        const url = URL.createObjectURL(svgBlob);
+                        
+                        img.onload = function() {
+                            canvas.width = img.width;
+                            canvas.height = img.height;
+                            ctx.drawImage(img, 0, 0);
+                            
+                            const dataURL = canvas.toDataURL(`image/${format.toLowerCase()}`);
+                            
+                            const a = document.createElement('a');
+                            a.href = dataURL;
+                            a.download = `${value}.${format.toLowerCase()}`;
+                            document.body.appendChild(a);
+                            a.click();
+                            document.body.removeChild(a);
+                            
+                            URL.revokeObjectURL(url);
+                        };
+                        
+                        img.src = url;
+                    }
+                } catch (error) {
+                    alert('Error downloading barcode: ' + error.message);
+                    console.error(error);
+                }
+            }
+        });
+    </script>
+</body>
+</html>
