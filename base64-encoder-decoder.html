@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Base64 Encoder/Decoder | Multi-Tool Website</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #0077ff 0%, #60a0ff 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 800px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 60, 150, 0.3);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: #0077ff;
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+        
+        .tool-container {
+            padding: 30px;
+        }
+        
+        .input-group, .output-group {
+            margin-bottom: 25px;
+        }
+        
+        .input-group label, .output-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: #0077ff;
+            font-size: 1.1rem;
+        }
+        
+        textarea {
+            width: 100%;
+            height: 150px;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            resize: vertical;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        
+        textarea:focus {
+            outline: none;
+            border-color: #0077ff;
+            box-shadow: 0 0 0 3px rgba(0, 119, 255, 0.2);
+        }
+        
+        .buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+        
+        button {
+            flex: 1;
+            min-width: 150px;
+            padding: 14px 20px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .encode-btn {
+            background: #0077ff;
+            color: white;
+        }
+        
+        .encode-btn:hover {
+            background: #0066dd;
+            transform: translateY(-2px);
+        }
+        
+        .decode-btn {
+            background: #00aaff;
+            color: white;
+        }
+        
+        .decode-btn:hover {
+            background: #0099dd;
+            transform: translateY(-2px);
+        }
+        
+        .clear-btn {
+            background: #ff5500;
+            color: white;
+        }
+        
+        .clear-btn:hover {
+            background: #dd4400;
+            transform: translateY(-2px);
+        }
+        
+        .copy-btn {
+            background: #00cc88;
+            color: white;
+        }
+        
+        .copy-btn:hover {
+            background: #00bb77;
+            transform: translateY(-2px);
+        }
+        
+        .output-group {
+            position: relative;
+        }
+        
+        .copy-notification {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(0, 204, 136, 0.9);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-size: 14px;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: all 0.3s;
+            pointer-events: none;
+        }
+        
+        .copy-notification.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background: #f0f8ff;
+            color: #0077ff;
+            font-weight: 500;
+        }
+        
+        @media (max-width: 600px) {
+            .header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .header p {
+                font-size: 1rem;
+            }
+            
+            .tool-container {
+                padding: 20px;
+            }
+            
+            button {
+                min-width: 100%;
+            }
+            
+            textarea {
+                height: 120px;
+            }
+        }
+        
+        .character-count {
+            text-align: right;
+            font-size: 14px;
+            color: #777;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1><i class="fas fa-lock"></i> Base64 Encoder/Decoder</h1>
+            <p>Securely encode text to Base64 or decode Base64 to text</p>
+        </div>
+        
+        <div class="tool-container">
+            <div class="input-group">
+                <label for="input"><i class="fas fa-pen"></i> Input Text</label>
+                <textarea id="input" placeholder="Enter text to encode or Base64 to decode..." autofocus></textarea>
+                <div class="character-count">Characters: <span id="input-count">0</span></div>
+            </div>
+            
+            <div class="buttons">
+                <button class="encode-btn" id="encode">
+                    <i class="fas fa-lock"></i> Encode
+                </button>
+                <button class="decode-btn" id="decode">
+                    <i class="fas fa-lock-open"></i> Decode
+                </button>
+                <button class="clear-btn" id="clear">
+                    <i class="fas fa-broom"></i> Clear
+                </button>
+                <button class="copy-btn" id="copy">
+                    <i class="fas fa-copy"></i> Copy Output
+                </button>
+            </div>
+            
+            <div class="output-group">
+                <label for="output"><i class="fas fa-result"></i> Output Text</label>
+                <textarea id="output" placeholder="Result will appear here..." readonly></textarea>
+                <div class="character-count">Characters: <span id="output-count">0</span></div>
+                <div class="copy-notification" id="copy-notification">Copied to clipboard!</div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>Part of Multi-Tool Website • Made with <i class="fas fa-heart" style="color: #ff5500;"></i></p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const inputTextarea = document.getElementById('input');
+            const outputTextarea = document.getElementById('output');
+            const encodeBtn = document.getElementById('encode');
+            const decodeBtn = document.getElementById('decode');
+            const clearBtn = document.getElementById('clear');
+            const copyBtn = document.getElementById('copy');
+            const copyNotification = document.getElementById('copy-notification');
+            const inputCount = document.getElementById('input-count');
+            const outputCount = document.getElementById('output-count');
+            
+            // Update character count
+            inputTextarea.addEventListener('input', function() {
+                inputCount.textContent = inputTextarea.value.length;
+            });
+            
+            // Encode to Base64
+            encodeBtn.addEventListener('click', function() {
+                try {
+                    const input = inputTextarea.value;
+                    const encoded = btoa(unescape(encodeURIComponent(input)));
+                    outputTextarea.value = encoded;
+                    outputCount.textContent = encoded.length;
+                } catch (error) {
+                    outputTextarea.value = "Error: Could not encode the input. Please check if it contains valid characters.";
+                    outputCount.textContent = "0";
+                }
+            });
+            
+            // Decode from Base64
+            decodeBtn.addEventListener('click', function() {
+                try {
+                    const input = inputTextarea.value;
+                    const decoded = decodeURIComponent(escape(atob(input)));
+                    outputTextarea.value = decoded;
+                    outputCount.textContent = decoded.length;
+                } catch (error) {
+                    outputTextarea.value = "Error: Invalid Base64 input. Please check your input and try again.";
+                    outputCount.textContent = "0";
+                }
+            });
+            
+            // Clear both textareas
+            clearBtn.addEventListener('click', function() {
+                inputTextarea.value = "";
+                outputTextarea.value = "";
+                inputCount.textContent = "0";
+                outputCount.textContent = "0";
+                inputTextarea.focus();
+            });
+            
+            // Copy output to clipboard
+            copyBtn.addEventListener('click', function() {
+                if (outputTextarea.value) {
+                    outputTextarea.select();
+                    document.execCommand('copy');
+                    
+                    // Show notification
+                    copyNotification.classList.add('show');
+                    setTimeout(() => {
+                        copyNotification.classList.remove('show');
+                    }, 2000);
+                }
+            });
+            
+            // Real-time processing toggle (for future enhancement)
+            inputTextarea.addEventListener('input', function() {
+                // This could be enhanced for real-time processing if needed
+            });
+        });
+    </script>
+</body>
+</html>
