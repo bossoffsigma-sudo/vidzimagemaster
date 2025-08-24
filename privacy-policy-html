@@ -1,0 +1,84 @@
+  
+  
+  <!-- privacy-policy.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Privacy Policy</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; line-height: 1.6; }
+    h1 { color: #333; }
+  </style>
+</head>
+<body>
+  <h1>Privacy Policy</h1>
+  <p>1. Introduction
+
+Welcome to VidzImageMaster ("we," "our," or "us"). We operate the website https://bossoffsigma-sudo.github.io/vidzimagemaster/ (the "Service").
+
+This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our Service. We respect your privacy and are committed to protecting it through our compliance with this policy.
+
+By using our Service, you consent to the data practices described in this Privacy Policy.
+
+2. Information We Do Not Collect
+
+We want to be perfectly clear: Our Service is a client-side application. This means all processing (e.g., video compression, image conversion) happens directly within your own web browser on your device. We do not have servers that receive or store your media files.
+
+We do not upload, store, or have any access to your original files, converted files, or any of the data contained within them.
+
+We do not require you to create an account or provide any personal identification to use our tools.
+
+3. Information We May Collect
+
+While we do not handle your files, we may collect minimal information to improve the service:
+
+Usage Data: We may use third-party analytics services (like Google Analytics) to collect anonymous information about how you interact with our website. This may include your browser type, operating system, pages visited, time spent on pages, and other general usage data. This data is aggregated and cannot be used to identify you personally.
+
+Log Data: Like most site operators, our hosting platform (GitHub Pages) may collect information that your browser sends whenever you visit our Service ("Log Data"). This Log Data may include information such as your computer's Internet Protocol ("IP") address, browser type, browser version, the pages of our Service that you visit, the time and date of your visit, the time spent on those pages, and other statistics. This is standard practice for most websites.
+
+Contact Information: If you choose to contact us via the contact form or email, we will collect the information you provide, such as your name and email address. We will use this solely to respond to your inquiry.
+
+4. Use of Your Information
+
+We may use the limited information we collect to:
+
+Operate, maintain, and improve the Service.
+
+Analyze trends and user interactions to enhance user experience.
+
+Respond to your comments and questions.
+
+Communicate with you about the Service.
+
+5. Cookies and Tracking Technologies
+
+We may use cookies and similar tracking technologies to track activity on our Service and hold certain information. Cookies are files with a small amount of data which may include an anonymous unique identifier. You can instruct your browser to refuse all cookies or to indicate when a cookie is being sent.
+
+6. Third-Party Services
+
+Our Service may contain links to third-party websites or services that are not operated by us (e.g., links to social media). We have no control over, and assume no responsibility for, the content, privacy policies, or practices of any third-party sites or services. We strongly advise you to review the Privacy Policy of every site you visit.
+
+7. Data Security
+
+The security of your data is important to us. Because all file processing happens on your local device, your files never leave your computer to be stored on our servers, making them inherently secure from interception by us. However, remember that no method of transmission over the Internet or method of electronic storage is 100% secure.
+
+8. Children's Privacy
+
+Our Service does not address anyone under the age of 13. We do not knowingly collect personally identifiable information from children under 13. If you are a parent or guardian and you are aware that your child has provided us with personal information, please contact us.
+
+9. Changes to This Privacy Policy
+
+We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the "Last Updated" date. You are advised to review this Privacy Policy periodically for any changes.
+
+10. Contact Us
+
+If you have any questions about this Privacy Policy, please contact us at:
+
+Via our contact form: bossoffsigma@gmail.com.</p>
+</body>
+</html>
+
+  
+    
