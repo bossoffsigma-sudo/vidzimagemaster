@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>QR Code Generator — Bright Blue & White</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- QRCode.js (lightweight, 10kb) -->
+  <script src="https://cdn.jsdelivr.net/gh/davidshimjs/qrcodejs/qrcode.min.js"></script>
+  <style>
+    :root{
+      --blue-600:#1877FF; /* bright primary */
+      --blue-500:#2B87FF;
+      --blue-400:#4EA3FF;
+      --blue-50:#F2F8FF;
+      --text-900:#0B1220;
+      --text-700:#1E293B;
+      --muted:#64748B;
+      --white:#FFFFFF;
+      --card:#FFFFFF;
+      --shadow:0 10px 30px rgba(24,119,255,0.15);
+      --radius-xl:24px;
+      --radius-lg:16px;
+    }
+    *{box-sizing:border-box}
+    html,body{
+      margin:0; padding:0; background:linear-gradient(180deg,var(--blue-50),#fff); color:var(--text-900);
+      font-family:Inter,system-ui,Segoe UI,Roboto,Arial,Helvetica,sans-serif;
+    }
+    .wrapper{
+      max-width:1100px; margin:0 auto; padding:24px;
+      display:grid; gap:24px;
+    }
+    header{
+      display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;
+      background:var(--card); border-radius:var(--radius-xl); padding:20px 24px; box-shadow:var(--shadow);
+    }
+    .brand{
+      display:flex; align-items:center; gap:14px;
+    }
+    .logo{
+      width:40px; height:40px; border-radius:12px; background:linear-gradient(135deg,var(--blue-600),var(--blue-400));
+      display:grid; place-items:center; color:var(--white); font-weight:800;
+      box-shadow:0 8px 20px rgba(24,119,255,0.35);
+    }
+    h1{font-size:clamp(20px,2.6vw,28px); margin:0; letter-spacing:0.2px}
+    .tag{font-size:12px; color:var(--muted)}
+
+    .grid{
+      display:grid; grid-template-columns:1.1fr 1fr; gap:24px;
+    }
+    @media (max-width: 900px){
+      .grid{grid-template-columns:1fr}
+    }
+
+    .card{
+      background:var(--card); border-radius:var(--radius-xl); box-shadow:var(--shadow); overflow:hidden;
+    }
+    .card .head{
+      padding:18px 22px; border-bottom:1px solid #eaf2ff; display:flex; align-items:center; justify-content:space-between;
+      background:linear-gradient(180deg,#fff, #f7fbff);
+    }
+    .card .body{ padding:22px; }
+
+    /* Controls */
+    .controls{ display:grid; gap:16px; grid-template-columns:1fr; }
+    .row{ display:grid; gap:12px; }
+
+    label{font-size:14px; font-weight:600; color:var(--text-700)}
+    input[type="text"], textarea, select{
+      width:100%; border:1.6px solid #e0edff; border-radius:14px; padding:14px 14px; font-size:15px;
+      background:#fff; outline:none; transition:border .2s, box-shadow .2s;
+    }
+    textarea{min-height:96px; resize:vertical}
+    input[type="text"]:focus, textarea:focus, select:focus{
+      border-color:var(--blue-500); box-shadow:0 0 0 6px rgba(43,135,255,0.12);
+    }
+
+    .inline{ display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+    @media (max-width:600px){ .inline{ grid-template-columns:1fr; } }
+
+    .range-wrap{ display:grid; align-items:center; gap:8px; }
+    .range-meta{ display:flex; align-items:center; justify-content:space-between; font-size:12px; color:var(--muted); }
+    input[type="range"]{ width:100% }
+
+    .btns{ display:flex; gap:12px; flex-wrap:wrap; }
+    .btn{
+      appearance:none; border:0; border-radius:14px; padding:12px 16px; font-weight:700; cursor:pointer;
+      background:var(--blue-600); color:#fff; box-shadow:0 10px 22px rgba(24,119,255,0.28); transition:transform .06s ease, box-shadow .2s;
+    }
+    .btn.secondary{ background:#ECF4FF; color:var(--blue-600); box-shadow:none; font-weight:700; }
+    .btn:hover{ transform:translateY(-1px); box-shadow:0 14px 28px rgba(24,119,255,0.32); }
+    .btn:active{ transform:translateY(0); box-shadow:0 10px 22px rgba(24,119,255,0.28); }
+
+    /* Preview side */
+    .preview{
+      display:grid; gap:12px; place-items:center; text-align:center;
+    }
+    .qr-stage{
+      width:100%; display:grid; place-items:center; padding:28px; background:linear-gradient(180deg,#fff, #f7fbff);
+      border-radius:var(--radius-xl); border:1px solid #eaf2ff; min-height:320px;
+    }
+    .qr-box{
+      width: min(100%, 420px);
+      display:grid; place-items:center; background:#fff; border-radius:20px; padding:18px; border:1px solid #eef3ff;
+      box-shadow:0 10px 30px rgba(12, 32, 82, 0.06);
+    }
+    .qr-box canvas{ width:100% !important; height:auto !important; image-rendering:pixelated; }
+    .qr-box img{ width:100% !important; height:auto !important; }
+    .meta{ font-size:12px; color:var(--muted); }
+
+    .dl-row{ display:grid; grid-template-columns:1fr auto; gap:12px; width:100%; }
+    @media (max-width:600px){ .dl-row{ grid-template-columns:1fr; } }
+
+    .pill{
+      display:inline-flex; align-items:center; gap:8px; background:#ECF4FF; color:var(--blue-600);
+      padding:8px 12px; border-radius:999px; font-size:12px; font-weight:700;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <header>
+      <div class="brand">
+        <div class="logo">QR</div>
+        <div>
+          <h1>QR Code Generator</h1>
+          <div class="tag">Bright blue & white • Clean • Mobile‑friendly</div>
+        </div>
+      </div>
+      <div class="pill" title="Black QR only, as requested">⚫ Black QR • High Contrast</div>
+    </header>
+
+    <div class="grid">
+      <!-- Left: Controls -->
+      <section class="card">
+        <div class="head"><strong>Enter Text / URL</strong><span style="color:var(--muted); font-size:12px">Instantly generates as you type</span></div>
+        <div class="body">
+          <div class="controls">
+            <div class="row">
+              <label for="qr-input">Content</label>
+              <textarea id="qr-input" placeholder="Paste your URL or type any text… (e.g., https://example.com)"></textarea>
+            </div>
+
+            <div class="inline">
+              <div class="row">
+                <label for="ecl">Error Correction</label>
+                <select id="ecl">
+                  <option value="M" selected>M — Standard (15%)</option>
+                  <option value="L">L — Light (7%)</option>
+                  <option value="Q">Q — High (25%)</option>
+                  <option value="H">H — Max (30%)</option>
+                </select>
+              </div>
+              <div class="row">
+                <label for="size">Preview Size <span class="meta">(px)</span></label>
+                <div class="range-wrap">
+                  <input id="size" type="range" min="128" max="720" step="16" value="320" />
+                  <div class="range-meta"><span>128</span><span id="sizeVal">320</span><span>720</span></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="btns">
+              <button class="btn" id="clearBtn" type="button">Clear</button>
+              <button class="btn secondary" id="sampleBtn" type="button">Try Sample</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Right: Preview & Download -->
+      <section class="card preview">
+        <div class="head" style="width:100%"><strong>Preview</strong><span style="color:var(--muted); font-size:12px">Black QR on white background</span></div>
+        <div class="body" style="width:100%">
+          <div class="qr-stage">
+            <div class="qr-box">
+              <div id="qrcode" aria-live="polite"></div>
+            </div>
+          </div>
+
+          <div class="dl-row">
+            <select id="downloadSize">
+              <option value="256">Download @ 256px</option>
+              <option value="384">Download @ 384px</option>
+              <option value="512" selected>Download @ 512px</option>
+              <option value="768">Download @ 768px</option>
+              <option value="1024">Download @ 1024px</option>
+            </select>
+            <button class="btn" id="downloadBtn" type="button">Download PNG</button>
+          </div>
+          <div class="meta">Pro tip: Higher error correction = more robust codes but denser modules.</div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <script>
+    // Utilities
+    const $ = (sel) => document.querySelector(sel);
+    const inputEl = $('#qr-input');
+    const eclEl = $('#ecl');
+    const sizeEl = $('#size');
+    const sizeValEl = $('#sizeVal');
+    const qrWrap = $('#qrcode');
+    const clearBtn = $('#clearBtn');
+    const sampleBtn = $('#sampleBtn');
+    const downloadBtn = $('#downloadBtn');
+    const downloadSizeEl = $('#downloadSize');
+
+    // Map ECL to library constants
+    const ECL = { L: QRCode.CorrectLevel.L, M: QRCode.CorrectLevel.M, Q: QRCode.CorrectLevel.Q, H: QRCode.CorrectLevel.H };
+
+    // State
+    let qr;
+
+    function makeQRCode(text, size, ecl) {
+      qrWrap.innerHTML = '';
+      const opts = {
+        text: text || 'Type something to generate your QR…',
+        width: size,
+        height: size,
+        colorDark: '#000000', // black QR as requested
+        colorLight: '#ffffff',
+        correctLevel: ECL[ecl] || QRCode.CorrectLevel.M,
+      };
+      qr = new QRCode(qrWrap, opts);
+    }
+
+    function regenerate() {
+      const text = inputEl.value.trim();
+      const size = Number(sizeEl.value);
+      const ecl = eclEl.value;
+      sizeValEl.textContent = size;
+      makeQRCode(text || ' ', size, ecl);
+    }
+
+    // Debounce input for instant UX without jank
+    function debounce(fn, delay=250){
+      let t; return (...args)=>{ clearTimeout(t); t=setTimeout(()=>fn.apply(null,args), delay); };
+    }
+
+    const handleInput = debounce(regenerate, 200);
+
+    // Download at a chosen size by regenerating off-DOM for pixel-perfect output
+    function downloadPNG(){
+      const text = inputEl.value.trim() || ' ';
+      const targetSize = Number(downloadSizeEl.value);
+      const ecl = eclEl.value;
+
+      // Create a hidden container to generate a fresh canvas at target size
+      const tmp = document.createElement('div');
+      tmp.style.position='fixed'; tmp.style.left='-9999px'; tmp.style.top='-9999px';
+      document.body.appendChild(tmp);
+
+      const tmpQR = new QRCode(tmp, {
+        text, width: targetSize, height: targetSize, colorDark:'#000000', colorLight:'#ffffff', correctLevel:ECL[ecl]
+      });
+
+      // Find the produced canvas or image and download it
+      setTimeout(()=>{
+        let canvas = tmp.querySelector('canvas');
+        if(!canvas){
+          // Some environments render as <img>; convert to canvas
+          const img = tmp.querySelector('img');
+          canvas = document.createElement('canvas');
+          canvas.width = targetSize; canvas.height = targetSize;
+          const ctx = canvas.getContext('2d');
+          ctx.fillStyle = '#ffffff'; ctx.fillRect(0,0,targetSize,targetSize);
+          ctx.drawImage(img, 0, 0, targetSize, targetSize);
+        }
+        const dataURL = canvas.toDataURL('image/png');
+        const a = document.createElement('a');
+        a.href = dataURL;
+        const safeName = (text.length ? text.slice(0,40) : 'qr').replace(/[^a-z0-9-_]+/gi,'_');
+        a.download = `${safeName || 'qr'}_${targetSize}px.png`;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        tmp.remove();
+      }, 50);
+    }
+
+    // Buttons
+    clearBtn.addEventListener('click', ()=>{ inputEl.value=''; regenerate(); inputEl.focus(); });
+    sampleBtn.addEventListener('click', ()=>{ inputEl.value='https://your-multi-tool-site.example/qr'; regenerate(); });
+    downloadBtn.addEventListener('click', downloadPNG);
+
+    // Live updates
+    inputEl.addEventListener('input', handleInput);
+    eclEl.addEventListener('change', regenerate);
+    sizeEl.addEventListener('input', regenerate);
+
+    // Initial render
+    window.addEventListener('DOMContentLoaded', ()=>{
+      inputEl.value = '';
+      regenerate();
+    });
+  </script>
+</body>
+</html>
