@@ -1,84 +1,153 @@
-  
-  
-  <!-- privacy-policy.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Privacy Policy</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    body { font-family: Arial, sans-serif; padding: 20px; line-height: 1.6; }
-    h1 { color: #333; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - vidzimage master</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f8fafc;
+            color: #1f2937;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 15px 0;
+            text-align: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #2563eb;
+            text-decoration: none;
+        }
+        
+        .policy-content {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            margin: 30px 0;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            color: #2563eb;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        h2 {
+            color: #2563eb;
+            margin: 25px 0 15px 0;
+        }
+        
+        p {
+            margin-bottom: 15px;
+            color: #4b5563;
+        }
+        
+        ul {
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+        }
+        
+        .last-updated {
+            text-align: center;
+            color: #6b7280;
+            font-style: italic;
+            margin-bottom: 30px;
+        }
+        
+        footer {
+            background: #1f2937;
+            color: white;
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 50px;
+        }
+    </style>
 </head>
 <body>
-  <h1>Privacy Policy</h1>
-  <p>1. Introduction
+    <header>
+        <div class="container">
+            <a href="index.html" class="logo">vidzimage master</a>
+        </div>
+    </header>
 
-Welcome to VidzImageMaster ("we," "our," or "us"). We operate the website https://bossoffsigma-sudo.github.io/vidzimagemaster/ (the "Service").
+    <div class="container">
+        <div class="policy-content">
+            <h1>Privacy Policy</h1>
+            <p class="last-updated">Last Updated: January 30, 2024</p>
+            
+            <p>At vidzimage master, we take your privacy seriously. This Privacy Policy describes how we collect, use, and protect your information.</p>
+            
+            <h2>1. Information We Collect</h2>
+            <p>We collect the following types of information:</p>
+            <ul>
+                <li><strong>Personal Information:</strong> When you contact us, we collect your name and email address.</li>
+                <li><strong>Usage Data:</strong> Information about how you use our website and tools.</li>
+                <li><strong>Technical Data:</strong> IP address, browser type, and device information.</li>
+            </ul>
+            
+            <h2>2. How We Use Your Information</h2>
+            <p>We use your information to:</p>
+            <ul>
+                <li>Provide and maintain our services</li>
+                <li>Respond to your inquiries and support requests</li>
+                <li>Improve our website and tools</li>
+                <li>Send important updates and notifications</li>
+            </ul>
+            
+            <h2>3. Data Protection</h2>
+            <p>We implement security measures to protect your data:</p>
+            <ul>
+                <li>SSL encryption for all data transmissions</li>
+                <li>Regular security assessments</li>
+                <li>Limited access to personal information</li>
+            </ul>
+            
+            <h2>4. Third-Party Services</h2>
+            <p>We may use third-party services that collect information to help us analyze how our website is used.</p>
+            
+            <h2>5. Your Rights</h2>
+            <p>You have the right to:</p>
+            <ul>
+                <li>Access your personal information</li>
+                <li>Correct inaccurate data</li>
+                <li>Request deletion of your data</li>
+                <li>Opt-out of communications</li>
+            </ul>
+            
+            <h2>6. Contact Us</h2>
+            <p>If you have any questions about this Privacy Policy, contact us at:</p>
+            <p>Email: bossoffsigma@gmail.com</p>
+        </div>
+    </div>
 
-This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our Service. We respect your privacy and are committed to protecting it through our compliance with this policy.
-
-By using our Service, you consent to the data practices described in this Privacy Policy.
-
-2. Information We Do Not Collect
-
-We want to be perfectly clear: Our Service is a client-side application. This means all processing (e.g., video compression, image conversion) happens directly within your own web browser on your device. We do not have servers that receive or store your media files.
-
-We do not upload, store, or have any access to your original files, converted files, or any of the data contained within them.
-
-We do not require you to create an account or provide any personal identification to use our tools.
-
-3. Information We May Collect
-
-While we do not handle your files, we may collect minimal information to improve the service:
-
-Usage Data: We may use third-party analytics services (like Google Analytics) to collect anonymous information about how you interact with our website. This may include your browser type, operating system, pages visited, time spent on pages, and other general usage data. This data is aggregated and cannot be used to identify you personally.
-
-Log Data: Like most site operators, our hosting platform (GitHub Pages) may collect information that your browser sends whenever you visit our Service ("Log Data"). This Log Data may include information such as your computer's Internet Protocol ("IP") address, browser type, browser version, the pages of our Service that you visit, the time and date of your visit, the time spent on those pages, and other statistics. This is standard practice for most websites.
-
-Contact Information: If you choose to contact us via the contact form or email, we will collect the information you provide, such as your name and email address. We will use this solely to respond to your inquiry.
-
-4. Use of Your Information
-
-We may use the limited information we collect to:
-
-Operate, maintain, and improve the Service.
-
-Analyze trends and user interactions to enhance user experience.
-
-Respond to your comments and questions.
-
-Communicate with you about the Service.
-
-5. Cookies and Tracking Technologies
-
-We may use cookies and similar tracking technologies to track activity on our Service and hold certain information. Cookies are files with a small amount of data which may include an anonymous unique identifier. You can instruct your browser to refuse all cookies or to indicate when a cookie is being sent.
-
-6. Third-Party Services
-
-Our Service may contain links to third-party websites or services that are not operated by us (e.g., links to social media). We have no control over, and assume no responsibility for, the content, privacy policies, or practices of any third-party sites or services. We strongly advise you to review the Privacy Policy of every site you visit.
-
-7. Data Security
-
-The security of your data is important to us. Because all file processing happens on your local device, your files never leave your computer to be stored on our servers, making them inherently secure from interception by us. However, remember that no method of transmission over the Internet or method of electronic storage is 100% secure.
-
-8. Children's Privacy
-
-Our Service does not address anyone under the age of 13. We do not knowingly collect personally identifiable information from children under 13. If you are a parent or guardian and you are aware that your child has provided us with personal information, please contact us.
-
-9. Changes to This Privacy Policy
-
-We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the "Last Updated" date. You are advised to review this Privacy Policy periodically for any changes.
-
-10. Contact Us
-
-If you have any questions about this Privacy Policy, please contact us at:
-
-Via our contact form: bossoffsigma@gmail.com</p>
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 vidzimage master. All rights reserved.</p>
+        </div>
+    </footer>
 </body>
 </html>
-
-  
-    
