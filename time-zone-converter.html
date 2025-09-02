@@ -3,7 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Time Zone Converter | Multi-Tool Website</title>
+    <title>Time Zone Converter - Convert Between Time Zones Online | Vidz Image Master</title>
+    <meta name="description" content="Free online time zone converter tool. Convert between different time zones worldwide with accuracy and ease.">
+    <meta name="keywords" content="time zone converter, time conversion, world clock, time zone calculator, online time converter">
+    <link rel="canonical" href="https://www.vidzimagemaster.online/time-zone-converter.html">
+    
+    <!-- Hindi Version Link -->
+    <link rel="alternate" hreflang="hi" href="https://www.vidzimagemaster.online/hi/time-zone-converter.html">
+    <link rel="alternate" hreflang="en" href="https://www.vidzimagemaster.online/time-zone-converter.html">
+    <link rel="alternate" hreflang="x-default" href="https://www.vidzimagemaster.online/time-zone-converter.html">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -12,94 +21,85 @@
             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        
+
         body {
-            background: linear-gradient(135deg, #0074e4, #00a2ff);
+            background: linear-gradient(135deg, #0074e4 0%, #00a2ff 100%);
             color: #333;
             min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
             padding: 20px;
-        }
-        
-        .container {
-            max-width: 900px;
-            width: 100%;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-            overflow: hidden;
-        }
-        
-        .header {
-            background: #0074e4;
-            color: white;
-            padding: 25px 30px;
-            text-align: center;
-        }
-        
-        .header h1 {
-            font-size: 28px;
-            margin-bottom: 5px;
-        }
-        
-        .header p {
-            opacity: 0.9;
-        }
-        
-        .content {
-            padding: 30px;
-        }
-        
-        .converter-card {
             display: flex;
             flex-direction: column;
-            gap: 25px;
+            align-items: center;
         }
-        
-        .time-input-section, .timezone-select-section, .result-section {
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            width: 100%;
+        }
+
+        h1 {
+            color: #0074e4;
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+        }
+
+        .description {
+            color: #555;
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .main-content {
             display: flex;
             flex-wrap: wrap;
-            gap: 20px;
-            justify-content: space-between;
+            gap: 30px;
+            justify-content: center;
         }
-        
-        .input-group {
+
+        .time-input-section, .timezone-select-section, .result-section {
+            background-color: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
             flex: 1;
-            min-width: 250px;
+            min-width: 300px;
         }
-        
+
+        .section-title {
+            color: #0074e4;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #00a2ff;
+            font-size: 1.5rem;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
         .input-group label {
             display: block;
             margin-bottom: 8px;
             font-weight: 600;
             color: #0074e4;
         }
-        
-        .input-group input, .input-group select {
-            width: 100%;
-            padding: 15px;
-            border: 2px solid #e0e0e0;
-            border-radius: 10px;
-            font-size: 16px;
-            transition: all 0.3s ease;
-        }
-        
-        .input-group input:focus, .input-group select:focus {
-            border-color: #0074e4;
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(0, 116, 228, 0.2);
-        }
-        
-        .input-group input {
-            padding-left: 45px;
-        }
-        
+
         .input-wrapper {
             position: relative;
         }
-        
+
         .input-wrapper i {
             position: absolute;
             left: 15px;
@@ -107,92 +107,95 @@
             transform: translateY(-50%);
             color: #0074e4;
         }
-        
-        .button-group {
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-        
-        button {
-            padding: 15px 25px;
-            border: none;
+
+        .input-group input, .input-group select {
+            width: 100%;
+            padding: 15px 15px 15px 45px;
+            border: 2px solid #e0e0e0;
             border-radius: 10px;
             font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 8px;
+            transition: all 0.3s;
         }
-        
-        .convert-btn {
-            background: #0074e4;
+
+        .input-group input:focus, .input-group select:focus {
+            border-color: #0074e4;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(0, 116, 228, 0.2);
+        }
+
+        .btn {
+            background-color: #0074e4;
             color: white;
-            flex: 2;
-        }
-        
-        .convert-btn:hover {
-            background: #0060b9;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 116, 228, 0.3);
-        }
-        
-        .reset-btn {
-            background: #f0f8ff;
-            color: #0074e4;
-            flex: 1;
-        }
-        
-        .reset-btn:hover {
-            background: #e1f1ff;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 116, 228, 0.2);
-        }
-        
-        .result-section {
-            background: #f0f8ff;
-            padding: 25px;
-            border-radius: 15px;
-            margin-top: 10px;
-            align-items: center;
-            display: none;
-        }
-        
-        .result-section.active {
-            display: flex;
-            animation: fadeIn 0.5s ease;
-        }
-        
-        .result-label {
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
             font-weight: 600;
-            color: #0074e4;
+            transition: all 0.3s;
+            margin-top: 15px;
+            display: inline-block;
         }
-        
+
+        .btn:hover {
+            background-color: #005bb9;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .btn-secondary {
+            background-color: #00a2ff;
+        }
+
+        .result-container {
+            min-height: 100px;
+            padding: 15px;
+            background-color: #f8f8f8;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+
         .result-time {
             font-size: 24px;
             font-weight: 700;
             color: #0060b9;
+            margin-bottom: 10px;
         }
-        
+
+        .result-date {
+            font-size: 16px;
+            color: #555;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
         .popular-timezones {
             margin-top: 30px;
+            width: 100%;
+            background-color: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
         }
-        
-        .popular-timezones h3 {
-            color: #0074e4;
-            margin-bottom: 15px;
-            text-align: center;
-        }
-        
+
         .timezone-buttons {
             display: flex;
             flex-wrap: wrap;
             gap: 10px;
             justify-content: center;
+            margin-top: 15px;
         }
-        
+
         .timezone-btn {
             background: #e6f3ff;
             color: #0074e4;
@@ -203,92 +206,115 @@
             cursor: pointer;
             transition: all 0.2s ease;
         }
-        
+
         .timezone-btn:hover {
             background: #cce5ff;
             transform: translateY(-2px);
         }
-        
-        .footer {
+
+        footer {
+            margin-top: 40px;
             text-align: center;
+            color: white;
             padding: 20px;
-            color: #7c7c7c;
-            font-size: 14px;
-            border-top: 1px solid #e0e0e0;
-            margin-top: 20px;
+            font-size: 1rem;
         }
         
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+        /* SEO Content Styles */
+        .seo-content {
+            padding: 20px;
+            background: white;
+            border-radius: 15px;
+            margin-top: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            width: 100%;
         }
-        
+        .related-tools {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .related-tools a {
+            padding: 0.5rem 1rem;
+            background-color: #e6f2ff;
+            color: #0074e4;
+            border-radius: 8px;
+            text-decoration: none;
+        }
+        .related-tools a:hover {
+            background-color: #0074e4;
+            color: white;
+        }
+        .faq-item {
+            margin-bottom: 1rem;
+        }
+        .faq-question {
+            font-weight: bold;
+            color: #0074e4;
+        }
+
         @media (max-width: 768px) {
-            .time-input-section, .timezone-select-section {
+            .main-content {
                 flex-direction: column;
             }
             
-            .input-group {
-                width: 100%;
+            h1 {
+                font-size: 2.2rem;
             }
             
-            .button-group {
+            .description {
+                font-size: 1rem;
+            }
+            
+            .action-buttons {
                 flex-direction: column;
             }
             
-            .result-section {
+            .timezone-buttons {
                 flex-direction: column;
-                text-align: center;
-                gap: 15px;
             }
         }
-        
-        @media (max-width: 480px) {
-            .header h1 {
-                font-size: 24px;
-            }
-            
-            .content {
-                padding: 20px;
-            }
-            
-            button {
-                width: 100%;
-                justify-content: center;
-            }
+
+        .hidden {
+            display: none;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="header">
-            <h1><i class="fas fa-globe-americas"></i> Time Zone Converter</h1>
-            <p>Convert between time zones instantly</p>
-        </div>
-        
-        <div class="content">
-            <div class="converter-card">
-                <div class="time-input-section">
-                    <div class="input-group">
-                        <label for="time-input">Enter Time</label>
-                        <div class="input-wrapper">
-                            <i class="fas fa-clock"></i>
-                            <input type="time" id="time-input" value="12:00">
-                        </div>
-                    </div>
-                    
-                    <div class="input-group">
-                        <label for="date-input">Enter Date</label>
-                        <div class="input-wrapper">
-                            <i class="fas fa-calendar"></i>
-                            <input type="date" id="date-input">
-                        </div>
+        <header>
+            <h1><i class="fas fa-globe"></i> Time Zone Converter</h1>
+            <p class="description">Convert between different time zones worldwide with accuracy and ease.</p>
+        </header>
+
+        <div class="main-content">
+            <div class="time-input-section">
+                <h2 class="section-title">Enter Time & Date</h2>
+                <div class="input-group">
+                    <label for="time-input">Time</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-clock"></i>
+                        <input type="time" id="time-input" value="12:00">
                     </div>
                 </div>
                 
-                <div class="timezone-select-section">
-                    <div class="input-group">
-                        <label for="from-timezone">From Time Zone</label>
+                <div class="input-group">
+                    <label for="date-input">Date</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-calendar"></i>
+                        <input type="date" id="date-input">
+                    </div>
+                </div>
+            </div>
+
+            <div class="timezone-select-section">
+                <h2 class="section-title">Select Time Zones</h2>
+                <div class="input-group">
+                    <label for="from-timezone">From Time Zone</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-arrow-right"></i>
                         <select id="from-timezone">
                             <option value="UTC">UTC (Coordinated Universal Time)</option>
                             <option value="EST">EST (Eastern Standard Time)</option>
@@ -302,9 +328,12 @@
                             <option value="JST">JST (Japan Standard Time)</option>
                         </select>
                     </div>
-                    
-                    <div class="input-group">
-                        <label for="to-timezone">To Time Zone</label>
+                </div>
+                
+                <div class="input-group">
+                    <label for="to-timezone">To Time Zone</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-arrow-left"></i>
                         <select id="to-timezone">
                             <option value="UTC">UTC (Coordinated Universal Time)</option>
                             <option value="EST" selected>EST (Eastern Standard Time)</option>
@@ -319,38 +348,96 @@
                         </select>
                     </div>
                 </div>
-                
-                <div class="button-group">
-                    <button class="convert-btn" id="convert-btn">
-                        <i class="fas fa-exchange-alt"></i> Convert Time
-                    </button>
-                    <button class="reset-btn" id="reset-btn">
-                        <i class="fas fa-redo"></i> Reset
-                    </button>
-                </div>
-                
-                <div class="result-section" id="result-section">
-                    <div class="result-label">Converted Time:</div>
+            </div>
+
+            <div class="result-section">
+                <h2 class="section-title">Converted Time</h2>
+                <div class="result-container" id="result-container">
                     <div class="result-time" id="result-time">12:00 PM</div>
                     <div class="result-date" id="result-date">Monday, January 1, 2023</div>
                 </div>
-            </div>
-            
-            <div class="popular-timezones">
-                <h3>Popular Time Zones</h3>
-                <div class="timezone-buttons">
-                    <button class="timezone-btn" data-from="EST" data-to="PST">EST to PST</button>
-                    <button class="timezone-btn" data-from="GMT" data-to="EST">GMT to EST</button>
-                    <button class="timezone-btn" data-from="UTC" data-to="CET">UTC to CET</button>
-                    <button class="timezone-btn" data-from="PST" data-to="IST">PST to IST</button>
-                    <button class="timezone-btn" data-from="CET" data-to="AEST">CET to AEST</button>
+                <div class="action-buttons">
+                    <button class="btn" id="convert-btn"><i class="fas fa-exchange-alt"></i> Convert Time</button>
+                    <button class="btn btn-secondary" id="reset-btn"><i class="fas fa-redo"></i> Reset</button>
                 </div>
             </div>
         </div>
         
-        <div class="footer">
-            <p>Part of Multi-Tool Website • © 2023</p>
+        <div class="popular-timezones">
+            <h2 class="section-title">Popular Time Zone Conversions</h2>
+            <div class="timezone-buttons">
+                <button class="timezone-btn" data-from="EST" data-to="PST">EST to PST</button>
+                <button class="timezone-btn" data-from="GMT" data-to="EST">GMT to EST</button>
+                <button class="timezone-btn" data-from="UTC" data-to="CET">UTC to CET</button>
+                <button class="timezone-btn" data-from="PST" data-to="IST">PST to IST</button>
+                <button class="timezone-btn" data-from="CET" data-to="AEST">CET to AEST</button>
+            </div>
         </div>
+        
+        <!-- SEO Content Section -->
+        <div class="seo-content">
+            <h2>Free Online Time Zone Converter</h2>
+            <p>Our Time Zone Converter tool allows you to easily convert between different time zones worldwide. Perfect for scheduling international meetings, travel planning, or communicating with friends and colleagues across the globe.</p>
+            
+            <h3>How to Use This Tool</h3>
+            <ol>
+                <li>Enter the time you want to convert</li>
+                <li>Select the date (defaults to today)</li>
+                <li>Choose the source time zone (the time zone you're converting from)</li>
+                <li>Select the target time zone (the time zone you're converting to)</li>
+                <li>Click "Convert Time" to see the result</li>
+                <li>Use the popular time zone buttons for quick conversions</li>
+            </ol>
+            
+            <h3>Common Use Cases</h3>
+            <ul>
+                <li>Scheduling international business meetings</li>
+                <li>Planning travel across time zones</li>
+                <li>Coordinating with remote team members</li>
+                <li>Setting up virtual events with global participants</li>
+                <li>Calling friends and family in different countries</li>
+            </ul>
+            
+            <div class="faq-section">
+                <h3>Frequently Asked Questions</h3>
+                
+                <div class="faq-item">
+                    <p class="faq-question">Is this Time Zone Converter free to use?</p>
+                    <p>Yes, our tool is completely free to use with no limitations.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <p class="faq-question">Does it account for Daylight Saving Time?</p>
+                    <p>Yes, our converter automatically adjusts for Daylight Saving Time where applicable.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <p class="faq-question">How accurate is the time conversion?</p>
+                    <p>Our tool uses up-to-date time zone data to ensure accurate conversions.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <p class="faq-question">Can I convert past or future dates?</p>
+                    <p>Yes, you can convert any date, past, present, or future.</p>
+                </div>
+            </div>
+            
+            <!-- Related Tools - SPECIFIC TO TIME ZONE CONVERTER -->
+            <div class="related-tools">
+                <span>Related Tools: </span>
+                <a href="https://www.vidzimagemaster.online/age-calculator.html" aria-label="Age Calculator">Age Calculator</a>
+                <a href="https://www.vidzimagemaster.online/unit-converter.html" aria-label="Unit Converter">Unit Converter</a>
+                <a href="https://www.vidzimagemaster.online/currency-converter.html" aria-label="Currency Converter">Currency Converter</a>
+                <a href="https://www.vidzimagemaster.online/scientific-calculator.html" aria-label="Scientific Calculator">Scientific Calculator</a>
+                <a href="https://www.vidzimagemaster.online/random-number-password-generator.html" aria-label="Password Generator">Password Generator</a>
+            </div>
+            
+            <p><strong>Note:</strong> All conversions happen in real-time in your browser. No data is sent to any server, ensuring complete privacy.</p>
+        </div>
+
+        <footer>
+            <p>Time Zone Converter Tool &copy; 2023 | Part of Vidz Image Master</p>
+        </footer>
     </div>
 
     <script>
@@ -367,7 +454,6 @@
             const toTimezone = document.getElementById('to-timezone');
             const convertBtn = document.getElementById('convert-btn');
             const resetBtn = document.getElementById('reset-btn');
-            const resultSection = document.getElementById('result-section');
             const resultTime = document.getElementById('result-time');
             const resultDate = document.getElementById('result-date');
             const timezoneButtons = document.querySelectorAll('.timezone-btn');
@@ -431,9 +517,6 @@
                 
                 resultTime.textContent = sourceDate.toLocaleTimeString('en-US', options);
                 resultDate.textContent = sourceDate.toLocaleDateString('en-US', dateOptions);
-                
-                // Show result section
-                resultSection.classList.add('active');
             }
             
             // Reset form function
@@ -442,13 +525,15 @@
                 dateInput.value = formattedDate;
                 fromTimezone.value = 'CET';
                 toTimezone.value = 'EST';
-                resultSection.classList.remove('active');
+                resultTime.textContent = '12:00 PM';
+                resultDate.textContent = 'Monday, January 1, 2023';
             }
             
             // Set popular timezone pairs
             function setTimezonePair(from, to) {
                 fromTimezone.value = from;
                 toTimezone.value = to;
+                convertTime();
             }
             
             // Event listeners
@@ -468,7 +553,95 @@
                     convertTime();
                 }
             });
+            
+            // Initial conversion
+            convertTime();
         });
+    </script>
+    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Time Zone Converter",
+        "description": "Free online tool to convert between different time zones worldwide.",
+        "applicationCategory": "UtilityApplication",
+        "operatingSystem": "Any",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        }
+    }
+    </script>
+    
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://www.vidzimagemaster.online/"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Tools",
+                "item": "https://www.vidzimagemaster.online/tools"
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "Time Zone Converter",
+                "item": "https://www.vidzimagemaster.online/time-zone-converter.html"
+            }
+        ]
+    }
+    </script>
+    
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "Is this Time Zone Converter free to use?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes, our tool is completely free to use with no limitations."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Does it account for Daylight Saving Time?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes, our converter automatically adjusts for Daylight Saving Time where applicable."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "How accurate is the time conversion?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Our tool uses up-to-date time zone data to ensure accurate conversions."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Can I convert past or future dates?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes, you can convert any date, past, present, or future."
+                }
+            }
+        ]
+    }
     </script>
 </body>
 </html>
