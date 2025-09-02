@@ -3,7 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Image Rotator & Flipper Tool</title>
+    <title>Image Rotator & Flipper Tool | Rotate, Flip and Transform Images Online | Vidz Image Master</title>
+    <meta name="description" content="Free online tool to rotate, flip and transform your images. Easily adjust orientation and download the modified images instantly.">
+    <meta name="keywords" content="image rotator, image flipper, rotate image, flip image, image transformation, online image editor">
+    <link rel="canonical" href="https://www.vidzimagemaster.online/image-rotator-flipper.html">
+    
+    <!-- Hindi Version Link -->
+    <link rel="alternate" hreflang="hi" href="https://www.vidzimagemaster.online/hi/image-rotator-flipper.html">
+    <link rel="alternate" hreflang="en" href="https://www.vidzimagemaster.online/image-rotator-flipper.html">
+    <link rel="alternate" hreflang="x-default" href="https://www.vidzimagemaster.online/image-rotator-flipper.html">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
@@ -11,125 +21,122 @@
             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        
+
         body {
-            background: linear-gradient(135deg, #0074e4 0%, #0053b3 100%);
-            color: white;
+            background: linear-gradient(135deg, #0074e4 0%, #00a2ff 100%);
+            color: #333;
             min-height: 100vh;
             padding: 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
         }
-        
+
         .container {
             width: 100%;
-            max-width: 1000px;
-            background-color: rgba(255, 255, 255, 0.95);
-            border-radius: 15px;
-            padding: 25px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            margin-top: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
         }
-        
-        h1 {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            color: white;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-        }
-        
-        .subtitle {
+
+        header {
             text-align: center;
             margin-bottom: 30px;
-            color: #e0f0ff;
-            font-size: 1.1rem;
+            padding: 20px;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            width: 100%;
         }
-        
-        .tool-container {
+
+        h1 {
+            color: #0074e4;
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+        }
+
+        .description {
+            color: #555;
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .main-content {
             display: flex;
-            flex-direction: column;
-            gap: 25px;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
         }
-        
-        .upload-section {
-            text-align: center;
-            padding: 30px;
+
+        .upload-section, .preview-section, .controls-section {
+            background-color: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .section-title {
+            color: #0074e4;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #00a2ff;
+            font-size: 1.5rem;
+        }
+
+        .upload-area {
             border: 3px dashed #0074e4;
             border-radius: 12px;
-            background-color: #e6f2ff;
+            padding: 40px 20px;
+            text-align: center;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.3s;
+            background-color: #f0f8ff;
+        }
+
+        .upload-area:hover {
+            background-color: #e0f0ff;
+            transform: translateY(-5px);
         }
         
-        .upload-section:hover {
-            background-color: #d4e7ff;
-            border-color: #0053b3;
-        }
-        
-        .upload-section.drag-over {
+        .upload-area.drag-over {
             background-color: #cce4ff;
             border-color: #003d80;
         }
-        
+
         .upload-icon {
-            font-size: 3.5rem;
+            font-size: 60px;
             color: #0074e4;
             margin-bottom: 15px;
         }
-        
-        .upload-text {
-            color: #0074e4;
-            font-size: 1.2rem;
-            margin-bottom: 15px;
-        }
-        
+
         .btn {
             background-color: #0074e4;
             color: white;
             border: none;
             padding: 12px 25px;
-            border-radius: 50px;
-            font-size: 1rem;
+            border-radius: 8px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            font-size: 1rem;
             font-weight: 600;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+            margin-top: 15px;
+            display: inline-block;
         }
-        
+
         .btn:hover {
-            background-color: #0053b3;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            background-color: #005bb9;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
-        
+
         .btn:active {
             transform: translateY(0);
         }
-        
+
         .btn-secondary {
-            background-color: #66b3ff;
-        }
-        
-        .controls-section {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-        }
-        
-        .control-group {
-            background-color: #f0f8ff;
-            padding: 20px;
-            border-radius: 12px;
-            text-align: center;
-        }
-        
-        .control-title {
-            color: #0074e4;
-            margin-bottom: 15px;
-            font-weight: 600;
-            font-size: 1.1rem;
+            background-color: #00a2ff;
         }
         
         .btn-group {
@@ -137,46 +144,38 @@
             flex-wrap: wrap;
             gap: 10px;
             justify-content: center;
+            margin-bottom: 15px;
         }
         
         .control-btn {
             flex: 1;
             min-width: 120px;
-            padding: 10px 15px;
         }
-        
-        .preview-section {
-            text-align: center;
-        }
-        
-        .image-container {
-            width: 100%;
-            min-height: 300px;
-            border: 2px solid #0074e4;
-            border-radius: 12px;
-            background-color: #e6f2ff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+
+        .preview-container {
+            position: relative;
             overflow: hidden;
             margin-bottom: 20px;
+            min-height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f8f8f8;
+            border-radius: 8px;
+            border: 2px solid #0074e4;
         }
-        
+
         #preview-image {
             max-width: 100%;
-            max-height: 400px;
+            max-height: 300px;
             transition: transform 0.3s ease;
         }
-        
+
         .action-buttons {
             display: flex;
-            justify-content: center;
             gap: 15px;
             flex-wrap: wrap;
-        }
-        
-        .hidden {
-            display: none;
+            justify-content: center;
         }
         
         .reset-btn {
@@ -194,101 +193,228 @@
         .download-btn:hover {
             background-color: #00a843;
         }
-        
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2rem;
-            }
-            
-            .container {
-                padding: 15px;
-            }
-            
-            .controls-section {
-                grid-template-columns: 1fr;
-            }
-            
-            .btn {
-                padding: 10px 20px;
-                font-size: 0.9rem;
-            }
+
+        footer {
+            margin-top: 40px;
+            text-align: center;
+            color: white;
+            padding: 20px;
+            font-size: 1rem;
         }
         
-        @media (max-width: 480px) {
-            h1 {
-                font-size: 1.8rem;
+        /* SEO Content Styles */
+        .seo-content {
+            padding: 20px;
+            background: white;
+            border-radius: 15px;
+            margin-top: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            width: 100%;
+        }
+        
+        .seo-content h2, .seo-content h3 {
+            color: #0074e4;
+            margin: 20px 0 15px;
+        }
+        
+        .seo-content p, .seo-content li {
+            color: #333;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+        
+        .seo-content ol, .seo-content ul {
+            padding-left: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .related-tools {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .related-tools a {
+            padding: 0.5rem 1rem;
+            background-color: #e6f2ff;
+            color: #0074e4;
+            border-radius: 8px;
+            text-decoration: none;
+        }
+        
+        .related-tools a:hover {
+            background-color: #0074e4;
+            color: white;
+        }
+        
+        .faq-item {
+            margin-bottom: 1rem;
+            padding: 15px;
+            background-color: #f8f8f8;
+            border-radius: 8px;
+        }
+        
+        .faq-question {
+            font-weight: bold;
+            color: #000; /* Black color as requested */
+            margin-bottom: 8px;
+        }
+        
+        .faq-answer {
+            color: #333;
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                flex-direction: column;
             }
             
-            .upload-text {
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .description {
                 font-size: 1rem;
             }
             
-            .btn {
-                width: 100%;
-            }
-            
-            .action-buttons {
+            .action-buttons, .btn-group {
                 flex-direction: column;
             }
+            
+            .control-btn {
+                width: 100%;
+            }
         }
-        
-        .instructions {
-            color: #0074e4;
-            text-align: center;
-            margin-top: 20px;
-            font-size: 0.9rem;
-            line-height: 1.5;
+
+        .hidden {
+            display: none;
         }
     </style>
 </head>
 <body>
-    <h1>Image Rotator & Flipper</h1>
-    <p class="subtitle">Upload, rotate, flip, and download your images with ease</p>
-    
     <div class="container">
-        <div class="tool-container">
-            <div class="upload-section" id="upload-area">
-                <div class="upload-icon">📁</div>
-                <p class="upload-text">Drag & drop your image here or click to browse</p>
-                <button class="btn" id="browse-btn">Browse Files</button>
-                <input type="file" id="file-input" class="hidden" accept="image/*">
+        <header>
+            <h1><i class="fas fa-sync-alt"></i> Image Rotator & Flipper Tool</h1>
+            <p class="description">Upload an image, rotate or flip it as needed, and download the transformed image instantly.</p>
+        </header>
+
+        <div class="main-content">
+            <div class="upload-section">
+                <h2 class="section-title">Upload Image</h2>
+                <div class="upload-area" id="upload-area">
+                    <i class="fas fa-cloud-upload-alt upload-icon"></i>
+                    <p>Drag & drop your image here or click to browse</p>
+                    <input type="file" id="file-input" accept="image/*" hidden aria-label="Select image file">
+                    <button class="btn" id="browse-btn">Browse Files</button>
+                </div>
+                <p class="crop-info">After uploading, use the controls to rotate or flip your image.</p>
             </div>
-            
+
             <div class="controls-section">
+                <h2 class="section-title">Transformation Controls</h2>
+                
                 <div class="control-group">
-                    <h3 class="control-title">Rotation</h3>
+                    <h3 class="section-title" style="font-size: 1.2rem;">Rotation</h3>
                     <div class="btn-group">
-                        <button class="btn btn-secondary control-btn" id="rotate-left">Rotate Left</button>
-                        <button class="btn btn-secondary control-btn" id="rotate-right">Rotate Right</button>
+                        <button class="btn btn-secondary control-btn" id="rotate-left"><i class="fas fa-undo"></i> Rotate Left</button>
+                        <button class="btn btn-secondary control-btn" id="rotate-right"><i class="fas fa-redo"></i> Rotate Right</button>
                     </div>
                 </div>
                 
                 <div class="control-group">
-                    <h3 class="control-title">Flip</h3>
+                    <h3 class="section-title" style="font-size: 1.2rem;">Flip</h3>
                     <div class="btn-group">
-                        <button class="btn btn-secondary control-btn" id="flip-horizontal">Horizontal</button>
-                        <button class="btn btn-secondary control-btn" id="flip-vertical">Vertical</button>
+                        <button class="btn btn-secondary control-btn" id="flip-horizontal"><i class="fas fa-arrows-alt-h"></i> Horizontal</button>
+                        <button class="btn btn-secondary control-btn" id="flip-vertical"><i class="fas fa-arrows-alt-v"></i> Vertical</button>
                     </div>
-                </div>
-            </div>
-            
-            <div class="preview-section">
-                <div class="image-container">
-                    <img id="preview-image" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23e6f2ff'/%3E%3Cpath d='M150,100 L250,100 L250,200 L150,200 Z' fill='%23b3d9ff' stroke='%230074e4' stroke-width='2'/%3E%3Ccircle cx='200' cy='150' r='30' fill='%230074e4'/%3E%3Cpath d='M180,120 L220,120 L220,180 L180,180 Z' fill='%2366b3ff'/%3E%3C/svg%3E" alt="Preview">
                 </div>
                 
                 <div class="action-buttons">
-                    <button class="btn reset-btn" id="reset-btn">Reset Image</button>
-                    <button class="btn download-btn" id="download-btn">Download Image</button>
+                    <button class="btn reset-btn" id="reset-btn"><i class="fas fa-redo"></i> Reset Image</button>
+                    <button class="btn download-btn" id="download-btn"><i class="fas fa-download"></i> Download Image</button>
                 </div>
-                
-                <p class="instructions">
-                    Upload an image using the button above or by dragging and dropping.<br>
-                    Use the rotation and flip buttons to transform your image as needed.<br>
-                    Click "Download Image" to save your modified image.
-                </p>
+            </div>
+
+            <div class="preview-section">
+                <h2 class="section-title">Image Preview</h2>
+                <div class="preview-container">
+                    <img id="preview-image" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23e6f2ff'/%3E%3Cpath d='M150,100 L250,100 L250,200 L150,200 Z' fill='%23b3d9ff' stroke='%230074e4' stroke-width='2'/%3E%3Ccircle cx='200' cy='150' r='30' fill='%230074e4'/%3E%3Cpath d='M180,120 L220,120 L220,180 L180,180 Z' fill='%2366b3ff'/%3E%3C/svg%3E" alt="Image preview">
+                </div>
+                <p class="crop-info">The transformed image will be shown here in real-time.</p>
             </div>
         </div>
+        
+        <!-- SEO Content Section -->
+        <div class="seo-content">
+            <h2>Free Online Image Rotator & Flipper Tool</h2>
+            <p>Our Image Rotator and Flipper tool allows you to easily adjust the orientation of your images. Rotate images clockwise or counterclockwise, flip them horizontally or vertically, and download the transformed images instantly.</p>
+            
+            <h3>How to Use This Tool</h3>
+            <ol>
+                <li>Upload your image using the drag & drop area or file browser</li>
+                <li>Use the rotation buttons to adjust the image orientation</li>
+                <li>Use the flip buttons to mirror your image horizontally or vertically</li>
+                <li>Preview the changes in real-time</li>
+                <li>Download the transformed image when you're satisfied with the result</li>
+                <li>Use the reset button to start over if needed</li>
+            </ol>
+            
+            <h3>Common Use Cases</h3>
+            <ul>
+                <li>Correcting images taken with the wrong orientation</li>
+                <li>Creating mirror images for design projects</li>
+                <li>Preparing images for social media with proper orientation</li>
+                <li>Fixing scanned documents that were upside down or sideways</li>
+                <li>Creating variations of the same image for collages or comparisons</li>
+            </ul>
+            
+            <div class="faq-section">
+                <h3>Frequently Asked Questions</h3>
+                
+                <div class="faq-item">
+                    <p class="faq-question">Is this image rotator and flipper tool free to use?</p>
+                    <p class="faq-answer">Yes, our tool is completely free to use with no limitations.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <p class="faq-question">What image formats are supported?</p>
+                    <p class="faq-answer">Our tool supports all common image formats including JPG, JPEG, PNG, GIF, and BMP.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <p class="faq-question">Are my images stored on your servers?</p>
+                    <p class="faq-answer">No, all processing happens directly in your browser. Your images are never uploaded to our servers.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <p class="faq-question">Is there a limit to how many times I can rotate or flip an image?</p>
+                    <p class="faq-answer">No, you can rotate and flip your image as many times as needed until you achieve the desired result.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <p class="faq-question">What is the maximum image size I can process?</p>
+                    <p class="faq-answer">The tool can handle most standard image sizes, but very large images (over 10MB) may take longer to process.</p>
+                </div>
+            </div>
+            
+            <!-- Related Tools -->
+            <div class="related-tools">
+                <span>Related Tools: </span>
+                <a href="https://www.vidzimagemaster.online/image-converter.html" aria-label="Image Converter">Image Converter</a>
+                <a href="https://www.vidzimagemaster.online/image-compressor.html" aria-label="Image Compressor">Image Compressor</a>
+                <a href="https://www.vidzimagemaster.online/image-resizer.html" aria-label="Image Resizer">Image Resizer</a>
+                <a href="https://www.vidzimagemaster.online/image-cropper.html" aria-label="Image Cropper">Image Cropper</a>
+                <a href="https://www.vidzimagemaster.online/image-to-text-(OCR).html" aria-label="Image to Text OCR">Image to Text</a>
+            </div>
+            
+            <p><strong>Privacy Note:</strong> All image processing occurs locally in your browser. Your files are never uploaded to any server, ensuring complete privacy and security.</p>
+        </div>
+
+        <footer>
+            <p>Image Rotator & Flipper Tool &copy; 2023 | Part of Vidz Image Master</p>
+        </footer>
     </div>
 
     <script>
@@ -446,6 +572,99 @@
                 link.click();
             }
         });
+    </script>
+    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Image Rotator & Flipper Tool",
+        "description": "Free online tool to rotate, flip and transform images with easy controls.",
+        "applicationCategory": "UtilityApplication",
+        "operatingSystem": "Any",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        }
+    }
+    </script>
+    
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://www.vidzimagemaster.online/"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Tools",
+                "item": "https://www.vidzimagemaster.online/tools"
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "Image Rotator & Flipper",
+                "item": "https://www.vidzimagemaster.online/image-rotator-flipper.html"
+            }
+        ]
+    }
+    </script>
+    
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "Is this image rotator and flipper tool free to use?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes, our tool is completely free to use with no limitations."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What image formats are supported?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Our tool supports all common image formats including JPG, JPEG, PNG, GIF, and BMP."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Are my images stored on your servers?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "No, all processing happens directly in your browser. Your images are never uploaded to our servers."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Is there a limit to how many times I can rotate or flip an image?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "No, you can rotate and flip your image as many times as needed until you achieve the desired result."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What is the maximum image size I can process?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "The tool can handle most standard image sizes, but very large images (over 10MB) may take longer to process."
+                }
+            }
+        ]
+    }
     </script>
 </body>
 </html>
