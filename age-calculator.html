@@ -3,7 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Age Calculator | Multi-Tool Website</title>
+    <title>Age Calculator | Vidz Image Master</title>
+    <meta name="description" content="Free online age calculator to calculate your exact age in years, months, and days. Perfect for determining ages for any purpose.">
+    <meta name="keywords" content="age calculator, birthday calculator, how old am I, date calculator, age finder">
+    <link rel="canonical" href="https://www.vidzimagemaster.online/age-calculator.html">
+    
+    <!-- Hindi Version Link -->
+    <link rel="alternate" hreflang="hi" href="https://www.vidzimagemaster.online/hi/age-calculator.html">
+    <link rel="alternate" hreflang="en" href="https://www.vidzimagemaster.online/age-calculator.html">
+    <link rel="alternate" hreflang="x-default" href="https://www.vidzimagemaster.online/age-calculator.html">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -14,42 +23,66 @@
         }
 
         body {
-            background: linear-gradient(135deg, #0077ff 0%, #60a9ff 100%);
+            background: linear-gradient(135deg, #0074e4 0%, #00a2ff 100%);
+            color: #333;
             min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
             padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .container {
             width: 100%;
-            max-width: 500px;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(0, 87, 184, 0.3);
-            overflow: hidden;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
-        .header {
-            background: #0077ff;
-            color: white;
+        header {
             text-align: center;
-            padding: 25px 20px;
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            width: 100%;
         }
 
-        .header h1 {
-            font-size: 1.8rem;
-            margin-bottom: 5px;
+        h1 {
+            color: #0074e4;
+            font-size: 2.8rem;
+            margin-bottom: 10px;
         }
 
-        .header p {
-            font-size: 1rem;
-            opacity: 0.9;
+        .description {
+            color: #555;
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
         }
 
-        .calculator {
+        .main-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+
+        .calculator-section, .result-section {
+            background-color: white;
+            border-radius: 15px;
             padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .section-title {
+            color: #0074e4;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #00a2ff;
+            font-size: 1.5rem;
         }
 
         .input-group {
@@ -60,7 +93,8 @@
             display: block;
             margin-bottom: 8px;
             font-weight: 600;
-            color: #0077ff;
+            color: #0074e4;
+            font-size: 1.1rem;
         }
 
         .date-input {
@@ -74,8 +108,32 @@
         }
 
         .date-input:focus {
-            border-color: #0077ff;
+            border-color: #0074e4;
             box-shadow: 0 0 0 3px rgba(0, 119, 255, 0.2);
+        }
+
+        .btn {
+            background-color: #0074e4;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s;
+            margin-top: 15px;
+            display: inline-block;
+        }
+
+        .btn:hover {
+            background-color: #005bb9;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn:active {
+            transform: translateY(0);
         }
 
         .results {
@@ -83,6 +141,8 @@
             justify-content: space-between;
             margin-top: 30px;
             text-align: center;
+            flex-wrap: wrap;
+            gap: 15px;
         }
 
         .result-box {
@@ -90,7 +150,7 @@
             padding: 20px 15px;
             background: #f0f8ff;
             border-radius: 10px;
-            margin: 0 5px;
+            min-width: 150px;
             box-shadow: 0 5px 15px rgba(0, 119, 255, 0.1);
             transition: transform 0.3s;
         }
@@ -101,31 +161,104 @@
 
         .result-box h3 {
             font-size: 1rem;
-            color: #0077ff;
+            color: #0074e4;
             margin-bottom: 10px;
         }
 
         .result-value {
             font-size: 2rem;
             font-weight: 700;
-            color: #0077ff;
+            color: #0074e4;
         }
 
         .icon {
             font-size: 2.5rem;
-            color: #0077ff;
+            color: #0074e4;
             margin-bottom: 15px;
         }
 
-        .footer {
-            text-align: center;
+        .additional-info {
+            margin-top: 30px;
             padding: 20px;
-            color: #666;
-            font-size: 0.9rem;
-            border-top: 1px solid #eee;
+            background: #f0f8ff;
+            border-radius: 10px;
         }
 
-        @media (max-width: 576px) {
+        .additional-info h3 {
+            color: #0074e4;
+            margin-bottom: 15px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .info-item {
+            padding: 10px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        footer {
+            margin-top: 40px;
+            text-align: center;
+            color: white;
+            padding: 20px;
+            font-size: 1rem;
+            width: 100%;
+        }
+        
+        /* SEO Content Styles */
+        .seo-content {
+            padding: 20px;
+            background: white;
+            border-radius: 15px;
+            margin-top: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            width: 100%;
+        }
+        .related-tools {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .related-tools a {
+            padding: 0.5rem 1rem;
+            background-color: #e6f2ff;
+            color: #0074e4;
+            border-radius: 8px;
+            text-decoration: none;
+        }
+        .related-tools a:hover {
+            background-color: #0074e4;
+            color: white;
+        }
+        .faq-item {
+            margin-bottom: 1rem;
+        }
+        .faq-question {
+            font-weight: bold;
+            color: #0074e4;
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                flex-direction: column;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .description {
+                font-size: 1rem;
+            }
+            
             .results {
                 flex-direction: column;
             }
@@ -133,64 +266,176 @@
             .result-box {
                 margin: 10px 0;
             }
-            
-            .header h1 {
-                font-size: 1.5rem;
-            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="header">
+        <header>
             <h1><i class="fas fa-calculator"></i> Age Calculator</h1>
-            <p>Enter your birthdate to discover your exact age</p>
+            <p class="description">Calculate your exact age in years, months, and days. Perfect for determining ages for any purpose.</p>
+        </header>
+
+        <div class="main-content">
+            <div class="calculator-section">
+                <h2 class="section-title">Calculate Your Age</h2>
+                <div class="input-group">
+                    <label for="birthdate"><i class="fas fa-calendar-alt"></i> Select Your Birthdate</label>
+                    <input type="date" id="birthdate" class="date-input" max="2023-12-31">
+                </div>
+                
+                <button class="btn" id="calculate-btn"><i class="fas fa-calculator"></i> Calculate Age</button>
+                
+                <div class="results">
+                    <div class="result-box">
+                        <div class="icon">
+                            <i class="fas fa-calendar"></i>
+                        </div>
+                        <h3>YEARS</h3>
+                        <div class="result-value" id="years">--</div>
+                    </div>
+                    
+                    <div class="result-box">
+                        <div class="icon">
+                            <i class="fas fa-calendar-minus"></i>
+                        </div>
+                        <h3>MONTHS</h3>
+                        <div class="result-value" id="months">--</div>
+                    </div>
+                    
+                    <div class="result-box">
+                        <div class="icon">
+                            <i class="fas fa-calendar-day"></i>
+                        </div>
+                        <h3>DAYS</h3>
+                        <div class="result-value" id="days">--</div>
+                    </div>
+                </div>
+                
+                <div class="additional-info">
+                    <h3>Additional Information</h3>
+                    <div class="info-grid">
+                        <div class="info-item" id="next-birthday">
+                            <strong>Next Birthday:</strong> <span id="next-bday-text">--</span>
+                        </div>
+                        <div class="info-item" id="birth-day">
+                            <strong>Born on:</strong> <span id="day-of-week">--</span>
+                        </div>
+                        <div class="info-item" id="zodiac-sign">
+                            <strong>Zodiac Sign:</strong> <span id="zodiac-text">--</span>
+                        </div>
+                        <div class="info-item" id="leap-year">
+                            <strong>Born in Leap Year:</strong> <span id="leap-text">--</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="result-section">
+                <h2 class="section-title">Age Information</h2>
+                <div class="result-container">
+                    <p>Your age calculation provides precise information about how long you've been living. This calculator shows your exact age down to the day.</p>
+                    
+                    <div class="age-details">
+                        <h3>Why know your exact age?</h3>
+                        <ul>
+                            <li>Plan milestones and celebrations</li>
+                            <li>Calculate eligibility for services</li>
+                            <li>Determine age requirements for activities</li>
+                            <li>Track personal development timelines</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="age-tips">
+                        <h3>Interesting Age Facts</h3>
+                        <p>The average person lives about 79 years, which is approximately 28,835 days or 692,040 hours.</p>
+                        <p>Your age in seconds: <span id="age-seconds">--</span></p>
+                    </div>
+                </div>
+                
+                <div class="action-buttons">
+                    <button class="btn" id="reset-btn"><i class="fas fa-redo"></i> Reset</button>
+                </div>
+            </div>
         </div>
         
-        <div class="calculator">
-            <div class="input-group">
-                <label for="birthdate"><i class="fas fa-calendar-alt"></i> Select Your Birthdate</label>
-                <input type="date" id="birthdate" class="date-input" max="2023-12-31">
+        <!-- SEO Content Section -->
+        <div class="seo-content">
+            <h2>Free Online Age Calculator</h2>
+            <p>Our Age Calculator helps you determine your exact age in years, months, and days. Whether you're checking eligibility for services, celebrating milestones, or just curious, this tool provides accurate results instantly.</p>
+            
+            <h3>How to Use This Tool</h3>
+            <ol>
+                <li>Select your birth date using the date picker</li>
+                <li>Click the "Calculate Age" button</li>
+                <li>View your exact age in years, months, and days</li>
+                <li>See additional information like your next birthday and zodiac sign</li>
+            </ol>
+            
+            <h3>Common Use Cases</h3>
+            <ul>
+                <li>Determining eligibility for age-restricted services</li>
+                <li>Calculating exact age for medical or legal purposes</li>
+                <li>Planning birthday celebrations and milestones</li>
+                <li>Checking school or employment age requirements</li>
+                <li>Calculating pet or child ages for development tracking</li>
+            </ul>
+            
+            <div class="faq-section">
+                <h3>Frequently Asked Questions</h3>
+                
+                <div class="faq-item">
+                    <p class="faq-question">How accurate is the age calculation?</p>
+                    <p>Our calculator provides exact age calculation based on the current date and your birth date, accounting for leap years and varying month lengths.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <p class="faq-question">Does the calculator work for past or future dates?</p>
+                    <p>You can calculate age for any birth date, but the calculation is based on today's date. Future dates will show a negative age.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <p class="faq-question">Can I calculate the age of my pet or relative?</p>
+                    <p>Yes, simply enter the birth date of any person, pet, or even object to calculate its age.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <p class="faq-question">Is my birth date stored anywhere?</p>
+                    <p>No, all calculations happen in your browser. We don't store any personal information.</p>
+                </div>
             </div>
             
-            <div class="results">
-                <div class="result-box">
-                    <div class="icon">
-                        <i class="fas fa-calendar"></i>
-                    </div>
-                    <h3>YEARS</h3>
-                    <div class="result-value" id="years">--</div>
-                </div>
-                
-                <div class="result-box">
-                    <div class="icon">
-                        <i class="fas fa-calendar-minus"></i>
-                    </div>
-                    <h3>MONTHS</h3>
-                    <div class="result-value" id="months">--</div>
-                </div>
-                
-                <div class="result-box">
-                    <div class="icon">
-                        <i class="fas fa-calendar-day"></i>
-                    </div>
-                    <h3>DAYS</h3>
-                    <div class="result-value" id="days">--</div>
-                </div>
+            <!-- Related Tools - SPECIFIC TO CALCULATOR TOOLS -->
+            <div class="related-tools">
+                <span>Related Tools: </span>
+                <a href="https://www.vidzimagemaster.online/bmi-calculator.html" aria-label="BMI Calculator">BMI Calculator</a>
+                <a href="https://www.vidzimagemaster.online/loan-emi-calculator.html" aria-label="Loan EMI Calculator">Loan EMI Calculator</a>
+                <a href="https://www.vidzimagemaster.online/gst-calculator.html" aria-label="GST Calculator">GST Calculator</a>
+                <a href="https://www.vidzimagemaster.online/scientific-calculator.html" aria-label="Scientific Calculator">Scientific Calculator</a>
+                <a href="https://www.vidzimagemaster.online/currency-converter.html" aria-label="Currency Converter">Currency Converter</a>
             </div>
+            
+            <p><strong>Privacy Note:</strong> All calculations occur locally in your browser. Your birth date is never transmitted to any server, ensuring complete privacy and security.</p>
         </div>
-        
-        <div class="footer">
-            <p>Part of Multi-Tool Website &copy; 2023</p>
-        </div>
+
+        <footer>
+            <p>Age Calculator &copy; 2023 | Part of Vidz Image Master</p>
+        </footer>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const birthdateInput = document.getElementById('birthdate');
+            const calculateBtn = document.getElementById('calculate-btn');
+            const resetBtn = document.getElementById('reset-btn');
             const yearsElement = document.getElementById('years');
             const monthsElement = document.getElementById('months');
             const daysElement = document.getElementById('days');
+            const nextBdayElement = document.getElementById('next-bday-text');
+            const dayOfWeekElement = document.getElementById('day-of-week');
+            const zodiacElement = document.getElementById('zodiac-text');
+            const leapYearElement = document.getElementById('leap-text');
+            const ageSecondsElement = document.getElementById('age-seconds');
             
             // Set maximum date to today
             const today = new Date();
@@ -203,9 +448,7 @@
                 
                 if (isNaN(birthdate.getTime())) {
                     // Invalid date
-                    yearsElement.textContent = '--';
-                    monthsElement.textContent = '--';
-                    daysElement.textContent = '--';
+                    alert('Please select a valid birth date');
                     return;
                 }
                 
@@ -230,16 +473,173 @@
                 yearsElement.textContent = years;
                 monthsElement.textContent = months;
                 daysElement.textContent = days;
+                
+                // Calculate additional information
+                calculateAdditionalInfo(birthdate, today, years);
             }
+            
+            // Calculate additional information
+            function calculateAdditionalInfo(birthdate, today, years) {
+                // Next birthday
+                const nextBirthday = new Date(birthdate);
+                nextBirthday.setFullYear(today.getFullYear());
+                
+                if (nextBirthday < today) {
+                    nextBirthday.setFullYear(today.getFullYear() + 1);
+                }
+                
+                const options = { year: 'numeric', month: 'long', day: 'numeric' };
+                nextBdayElement.textContent = nextBirthday.toLocaleDateString('en-US', options);
+                
+                // Day of week born
+                const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+                dayOfWeekElement.textContent = days[birthdate.getDay()];
+                
+                // Zodiac sign
+                const zodiacSign = getZodiacSign(birthdate);
+                zodiacElement.textContent = zodiacSign;
+                
+                // Leap year check
+                const isLeapYear = (birthdate.getFullYear() % 4 === 0 && birthdate.getFullYear() % 100 !== 0) || 
+                                  (birthdate.getFullYear() % 400 === 0);
+                leapYearElement.textContent = isLeapYear ? 'Yes' : 'No';
+                
+                // Age in seconds
+                const diffTime = Math.abs(today - birthdate);
+                const diffSeconds = Math.floor(diffTime / 1000);
+                ageSecondsElement.textContent = diffSeconds.toLocaleString();
+            }
+            
+            // Get zodiac sign based on birth date
+            function getZodiacSign(birthdate) {
+                const day = birthdate.getDate();
+                const month = birthdate.getMonth() + 1;
+                
+                if ((month === 1 && day >= 20) || (month === 2 && day <= 18)) return "Aquarius";
+                if ((month === 2 && day >= 19) || (month === 3 && day <= 20)) return "Pisces";
+                if ((month === 3 && day >= 21) || (month === 4 && day <= 19)) return "Aries";
+                if ((month === 4 && day >= 20) || (month === 5 && day <= 20)) return "Taurus";
+                if ((month === 5 && day >= 21) || (month === 6 && day <= 20)) return "Gemini";
+                if ((month === 6 && day >= 21) || (month === 7 && day <= 22)) return "Cancer";
+                if ((month === 7 && day >= 23) || (month === 8 && day <= 22)) return "Leo";
+                if ((month === 8 && day >= 23) || (month === 9 && day <= 22)) return "Virgo";
+                if ((month === 9 && day >= 23) || (month === 10 && day <= 22)) return "Libra";
+                if ((month === 10 && day >= 23) || (month === 11 && day <= 21)) return "Scorpio";
+                if ((month === 11 && day >= 22) || (month === 12 && day <= 21)) return "Sagittarius";
+                if ((month === 12 && day >= 22) || (month === 1 && day <= 19)) return "Capricorn";
+                
+                return "Unknown";
+            }
+            
+            // Reset all
+            function resetAll() {
+                birthdateInput.value = '';
+                yearsElement.textContent = '--';
+                monthsElement.textContent = '--';
+                daysElement.textContent = '--';
+                nextBdayElement.textContent = '--';
+                dayOfWeekElement.textContent = '--';
+                zodiacElement.textContent = '--';
+                leapYearElement.textContent = '--';
+                ageSecondsElement.textContent = '--';
+            }
+            
+            // Event listeners
+            calculateBtn.addEventListener('click', calculateAge);
+            resetBtn.addEventListener('click', resetAll);
             
             // Calculate age on date change
-            birthdateInput.addEventListener('input', calculateAge);
-            
-            // Calculate age on page load if a date is already selected
-            if (birthdateInput.value) {
-                calculateAge();
-            }
+            birthdateInput.addEventListener('input', function() {
+                if (birthdateInput.value) {
+                    calculateAge();
+                }
+            });
         });
+    </script>
+    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Age Calculator",
+        "description": "Free online tool to calculate exact age in years, months, and days.",
+        "applicationCategory": "UtilityApplication",
+        "operatingSystem": "Any",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        }
+    }
+    </script>
+    
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://www.vidzimagemaster.online/"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Tools",
+                "item": "https://www.vidzimagemaster.online/tools"
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "Age Calculator",
+                "item": "https://www.vidzimagemaster.online/age-calculator.html"
+            }
+        ]
+    }
+    </script>
+    
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "How accurate is the age calculation?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Our calculator provides exact age calculation based on the current date and your birth date, accounting for leap years and varying month lengths."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Does the calculator work for past or future dates?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "You can calculate age for any birth date, but the calculation is based on today's date. Future dates will show a negative age."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Can I calculate the age of my pet or relative?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes, simply enter the birth date of any person, pet, or even object to calculate its age."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Is my birth date stored anywhere?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "No, all calculations happen in your browser. We don't store any personal information."
+                }
+            }
+        ]
+    }
     </script>
 </body>
 </html>
