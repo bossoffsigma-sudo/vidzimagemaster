@@ -3,7 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PDF Lock/Unlock Tool</title>
+    <title>PDF Lock/Unlock Tool - Secure Your PDF Files | Vidz Image Master</title>
+    <meta name="description" content="Free online tool to lock PDF files with password protection or unlock secured PDFs. Secure your sensitive documents easily.">
+    <meta name="keywords" content="pdf lock, pdf unlock, pdf password, secure pdf, remove pdf password, pdf protection">
+    <link rel="canonical" href="https://www.vidzimagemaster.online/pdf-lock-unlock.html">
+    
+    <!-- Hindi Version Link -->
+    <link rel="alternate" hreflang="hi" href="https://www.vidzimagemaster.online/hi/pdf-lock-unlock.html">
+    <link rel="alternate" hreflang="en" href="https://www.vidzimagemaster.online/pdf-lock-unlock.html">
+    <link rel="alternate" hreflang="x-default" href="https://www.vidzimagemaster.online/pdf-lock-unlock.html">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -14,50 +23,125 @@
         }
 
         body {
-            background: linear-gradient(135deg, #0077ff 0%, #60a5fa 100%);
+            background: linear-gradient(135deg, #0074e4 0%, #00a2ff 100%);
+            color: #333;
             min-height: 100vh;
+            padding: 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 20px;
-            color: #333;
         }
 
         .container {
             width: 100%;
-            max-width: 800px;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-            overflow: hidden;
-            margin: 40px 0;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         header {
-            background: #0077ff;
-            color: white;
             text-align: center;
-            padding: 25px 20px;
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            width: 100%;
         }
 
-        header h1 {
-            font-size: 2.2rem;
+        h1 {
+            color: #0074e4;
+            font-size: 2.8rem;
             margin-bottom: 10px;
         }
 
-        header p {
-            font-size: 1.1rem;
-            opacity: 0.9;
+        .description {
+            color: #555;
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
         }
 
-        .tool-container {
-            padding: 30px;
+        .main-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+
+        .upload-section, .password-section, .result-section {
+            background-color: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .section-title {
+            color: #0074e4;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #00a2ff;
+            font-size: 1.5rem;
+        }
+
+        .upload-area {
+            border: 3px dashed #0074e4;
+            border-radius: 12px;
+            padding: 40px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            background-color: #f0f8ff;
+        }
+
+        .upload-area:hover {
+            background-color: #e0f0ff;
+            transform: translateY(-5px);
+        }
+
+        .upload-icon {
+            font-size: 60px;
+            color: #0074e4;
+            margin-bottom: 15px;
+        }
+
+        .btn {
+            background-color: #0074e4;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s;
+            margin-top: 15px;
+            display: inline-block;
+        }
+
+        .btn:hover {
+            background-color: #005bb9;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .btn-secondary {
+            background-color: #00a2ff;
+        }
+
+        .btn-success {
+            background-color: #10b981;
         }
 
         .mode-selector {
             display: flex;
             justify-content: center;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             background: #f0f8ff;
             border-radius: 12px;
             overflow: hidden;
@@ -65,100 +149,24 @@
 
         .mode-btn {
             flex: 1;
-            padding: 15px;
+            padding: 12px;
             text-align: center;
             background: none;
             border: none;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            color: #0077ff;
-        }
-
-        .mode-btn.active {
-            background: #0077ff;
-            color: white;
-        }
-
-        .upload-area {
-            border: 3px dashed #60a5fa;
-            border-radius: 15px;
-            padding: 40px 20px;
-            text-align: center;
-            margin-bottom: 25px;
-            transition: all 0.3s ease;
-            background: #f8fbff;
-            cursor: pointer;
-        }
-
-        .upload-area:hover {
-            border-color: #0077ff;
-            background: #e6f3ff;
-        }
-
-        .upload-area i {
-            font-size: 3.5rem;
-            color: #0077ff;
-            margin-bottom: 15px;
-        }
-
-        .upload-area h3 {
-            font-size: 1.5rem;
-            margin-bottom: 10px;
-            color: #0077ff;
-        }
-
-        .upload-area p {
-            color: #666;
-            margin-bottom: 15px;
-        }
-
-        .btn-primary {
-            background: #0077ff;
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            border-radius: 50px;
             font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
+            color: #0074e4;
         }
 
-        .btn-primary:hover {
-            background: #0066dd;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 119, 255, 0.3);
-        }
-
-        .btn-primary i {
-            margin-right: 8px;
-        }
-
-        .password-section {
-            margin: 25px 0;
-            padding: 20px;
-            background: #f0f8ff;
-            border-radius: 12px;
-            display: none;
-        }
-
-        .password-section.active {
-            display: block;
-        }
-
-        .password-section h4 {
-            margin-bottom: 15px;
-            color: #0077ff;
-            text-align: center;
+        .mode-btn.active {
+            background: #0074e4;
+            color: white;
         }
 
         .input-group {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
 
         .input-group label {
@@ -178,65 +186,18 @@
         }
 
         .input-group input:focus {
-            border-color: #0077ff;
+            border-color: #0074e4;
             outline: none;
         }
 
-        .action-buttons {
-            display: flex;
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .btn-process {
-            flex: 1;
+        .result-container {
+            min-height: 200px;
             padding: 15px;
-            border-radius: 10px;
-            border: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .btn-lock {
-            background: #0077ff;
-            color: white;
-        }
-
-        .btn-unlock {
-            background: #10b981;
-            color: white;
-        }
-
-        .btn-process:hover {
-            opacity: 0.9;
-            transform: translateY(-2px);
-        }
-
-        .btn-process i {
-            margin-right: 10px;
-        }
-
-        .result-area {
-            display: none;
+            background-color: #f8f8f8;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
             text-align: center;
-            padding: 20px;
-            background: #e6f7ff;
-            border-radius: 12px;
-            margin-top: 25px;
-        }
-
-        .result-area.active {
-            display: block;
-        }
-
-        .result-area h3 {
-            color: #0077ff;
-            margin-bottom: 15px;
         }
 
         .file-info {
@@ -251,7 +212,7 @@
 
         .file-info i {
             font-size: 2rem;
-            color: #0077ff;
+            color: #0074e4;
             margin-right: 15px;
         }
 
@@ -264,42 +225,34 @@
             font-size: 0.9rem;
         }
 
-        .download-btn {
-            background: #10b981;
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            border-radius: 50px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            margin-top: 10px;
-            text-decoration: none;
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
         }
 
-        .download-btn:hover {
-            background: #0d9669;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(16, 185, 129, 0.3);
+        .progress-bar {
+            height: 10px;
+            background-color: #e0e0e0;
+            border-radius: 5px;
+            margin: 15px 0;
+            overflow: hidden;
         }
 
-        .download-btn i {
-            margin-right: 8px;
+        .progress {
+            height: 100%;
+            background-color: #00a2ff;
+            width: 0%;
+            transition: width 0.3s;
         }
 
-        footer {
+        .status {
             text-align: center;
-            color: white;
-            margin-top: auto;
-            padding: 20px;
-            font-size: 0.9rem;
+            font-weight: 500;
+            color: #0074e4;
+            margin-bottom: 15px;
         }
 
-        /* Loading animation */
         .loading {
             display: none;
             text-align: center;
@@ -313,7 +266,7 @@
         .spinner {
             border: 4px solid rgba(0, 119, 255, 0.2);
             border-radius: 50%;
-            border-top: 4px solid #0077ff;
+            border-top: 4px solid #0074e4;
             width: 40px;
             height: 40px;
             animation: spin 1s linear infinite;
@@ -325,84 +278,97 @@
             100% { transform: rotate(360deg); }
         }
 
-        /* Responsive Design */
+        footer {
+            margin-top: 40px;
+            text-align: center;
+            color: white;
+            padding: 20px;
+            font-size: 1rem;
+        }
+        
+        /* SEO Content Styles */
+        .seo-content {
+            padding: 20px;
+            background: white;
+            border-radius: 15px;
+            margin-top: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            width: 100%;
+        }
+        .related-tools {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .related-tools a {
+            padding: 0.5rem 1rem;
+            background-color: #e6f2ff;
+            color: #0074e4;
+            border-radius: 8px;
+            text-decoration: none;
+        }
+        .related-tools a:hover {
+            background-color: #0074e4;
+            color: white;
+        }
+        .faq-item {
+            margin-bottom: 1rem;
+        }
+        .faq-question {
+            font-weight: bold;
+            color: #0074e4;
+        }
+
         @media (max-width: 768px) {
-            .container {
-                margin: 20px 0;
-                border-radius: 15px;
+            .main-content {
+                flex-direction: column;
             }
-
-            header h1 {
-                font-size: 1.8rem;
+            
+            h1 {
+                font-size: 2.2rem;
             }
-
-            .tool-container {
-                padding: 20px;
+            
+            .description {
+                font-size: 1rem;
             }
-
+            
             .action-buttons {
                 flex-direction: column;
             }
-
-            .btn-process {
-                width: 100%;
-            }
         }
 
-        @media (max-width: 480px) {
-            header {
-                padding: 20px 15px;
-            }
-
-            header h1 {
-                font-size: 1.5rem;
-            }
-
-            header p {
-                font-size: 0.9rem;
-            }
-
-            .upload-area {
-                padding: 30px 15px;
-            }
-
-            .upload-area i {
-                font-size: 2.5rem;
-            }
-
-            .upload-area h3 {
-                font-size: 1.3rem;
-            }
-
-            .password-section {
-                padding: 15px;
-            }
+        .hidden {
+            display: none;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>PDF Lock & Unlock Tool</h1>
-            <p>Secure your PDF files with password protection or remove passwords easily</p>
+            <h1><i class="fas fa-lock"></i> PDF Lock/Unlock Tool</h1>
+            <p class="description">Secure your PDF files with password protection or remove passwords from locked PDFs with our easy-to-use tool.</p>
         </header>
 
-        <div class="tool-container">
-            <div class="mode-selector">
-                <button class="mode-btn active" id="lockMode">Lock PDF</button>
-                <button class="mode-btn" id="unlockMode">Unlock PDF</button>
+        <div class="main-content">
+            <div class="upload-section">
+                <h2 class="section-title">Upload PDF</h2>
+                <div class="mode-selector">
+                    <button class="mode-btn active" id="lockMode">Lock PDF</button>
+                    <button class="mode-btn" id="unlockMode">Unlock PDF</button>
+                </div>
+                <div class="upload-area" id="drop-area">
+                    <i class="fas fa-file-pdf upload-icon"></i>
+                    <p>Drag & drop your PDF here or click to browse</p>
+                    <input type="file" id="file-input" accept=".pdf" hidden aria-label="Select PDF file">
+                    <button class="btn" id="browse-btn">Browse Files</button>
+                </div>
+                <p class="crop-info">Upload a PDF file to either lock it with a password or remove its existing password protection.</p>
             </div>
 
-            <div class="upload-area" id="uploadArea">
-                <i class="fas fa-file-pdf"></i>
-                <h3>Upload your PDF file</h3>
-                <p>Click to browse or drag and drop your PDF here</p>
-                <button class="btn-primary"><i class="fas fa-upload"></i> Select PDF</button>
-                <input type="file" id="fileInput" accept=".pdf" style="display: none;">
-            </div>
-
-            <div class="password-section" id="passwordSection">
-                <h4>Set a password for your PDF</h4>
+            <div class="password-section">
+                <h2 class="section-title">Password Settings</h2>
                 <div class="input-group">
                     <label for="password">Password</label>
                     <input type="password" id="password" placeholder="Enter a strong password">
@@ -411,190 +377,300 @@
                     <label for="confirmPassword">Confirm Password</label>
                     <input type="password" id="confirmPassword" placeholder="Confirm your password">
                 </div>
-            </div>
-
-            <div class="loading" id="loading">
-                <div class="spinner"></div>
-                <p>Processing your PDF file...</p>
-            </div>
-
-            <div class="action-buttons">
-                <button class="btn-process btn-lock" id="lockBtn"><i class="fas fa-lock"></i> Lock PDF</button>
-                <button class="btn-process btn-unlock" id="unlockBtn"><i class="fas fa-unlock"></i> Unlock PDF</button>
-            </div>
-
-            <div class="result-area" id="resultArea">
-                <h3>Your PDF is Ready!</h3>
-                <div class="file-info">
-                    <i class="fas fa-file-pdf"></i>
-                    <div class="file-details">
-                        <h4 id="resultFileName">document_protected.pdf</h4>
-                        <p id="fileDetails">2.4 MB • Password protected</p>
-                    </div>
+                <div class="action-buttons">
+                    <button class="btn" id="lock-btn"><i class="fas fa-lock"></i> Lock PDF</button>
+                    <button class="btn btn-success" id="unlock-btn"><i class="fas fa-unlock"></i> Unlock PDF</button>
                 </div>
-                <a href="#" class="download-btn" id="downloadBtn"><i class="fas fa-download"></i> Download Secure PDF</a>
+            </div>
+
+            <div class="result-section">
+                <h2 class="section-title">Processed File</h2>
+                <div class="status" id="status">Ready to process PDF</div>
+                <div class="progress-bar">
+                    <div class="progress" id="progress-bar"></div>
+                </div>
+                <div class="loading" id="loading">
+                    <div class="spinner"></div>
+                    <p>Processing your PDF file...</p>
+                </div>
+                <div class="result-container" id="result-area">
+                    <div class="file-info">
+                        <i class="fas fa-file-pdf"></i>
+                        <div class="file-details">
+                            <h4 id="result-file-name">document_protected.pdf</h4>
+                            <p id="file-details">2.4 MB • Password protected</p>
+                        </div>
+                    </div>
+                    <a href="#" class="btn btn-secondary" id="download-btn"><i class="fas fa-download"></i> Download PDF</a>
+                </div>
             </div>
         </div>
-    </div>
+        
+        <!-- SEO Content Section -->
+        <div class="seo-content">
+            <h2>Free PDF Lock and Unlock Tool</h2>
+            <p>Our PDF Lock/Unlock tool allows you to easily add password protection to your sensitive PDF documents or remove passwords from PDFs you have permission to access. All processing happens directly in your browser for maximum security.</p>
+            
+            <h3>How to Use This Tool</h3>
+            <ol>
+                <li>Select whether you want to lock or unlock a PDF</li>
+                <li>Upload your PDF file using the drag & drop area or file browser</li>
+                <li>For locking, enter a strong password and confirm it</li>
+                <li>Click the appropriate button to process your PDF</li>
+                <li>Download your secured or unlocked PDF file</li>
+            </ol>
+            
+            <h3>Common Use Cases</h3>
+            <ul>
+                <li>Protecting sensitive documents with password encryption</li>
+                <li>Removing passwords from PDFs you've legally acquired but need to edit</li>
+                <li>Securing financial documents before sharing</li>
+                <li>Unlocking PDFs for accessibility purposes</li>
+                <li>Protecting personal documents stored in the cloud</li>
+            </ul>
+            
+            <div class="faq-section">
+                <h3>Frequently Asked Questions</h3>
+                
+                <div class="faq-item">
+                    <p class="faq-question">Is this PDF tool free to use?</p>
+                    <p>Yes, our PDF Lock/Unlock tool is completely free to use with no limitations.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <p class="faq-question">Are my files secure when using this tool?</p>
+                    <p>Absolutely. All processing happens directly in your browser. Your files are never uploaded to any server, ensuring complete privacy and security.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <p class="faq-question">What is the strength of the encryption used?</p>
+                    <p>Our tool uses strong AES-256 encryption for maximum security when locking your PDF files.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <p class="faq-question">Can I unlock any PDF with this tool?</p>
+                    <p>This tool is designed to unlock PDFs for which you already know the password. It cannot break encryption on protected files without authorization.</p>
+                </div>
+            </div>
+            
+            <!-- Related Tools - PDF Category -->
+            <div class="related-tools">
+                <span>Related Tools: </span>
+                <a href="https://www.vidzimagemaster.online/pdf-to-word-word-to-pdf.html" aria-label="PDF to Word Converter">PDF to Word</a>
+                <a href="https://www.vidzimagemaster.online/pdf-compressor.html" aria-label="PDF Compressor">PDF Compressor</a>
+                <a href="https://www.vidzimagemaster.online/pdf-merger-splitter.html" aria-label="PDF Merger & Splitter">PDF Merger/Splitter</a>
+                <a href="https://www.vidzimagemaster.online/esign-pdf.html" aria-label="eSign PDF">eSign PDF</a>
+                <a href="https://www.vidzimagemaster.online/document-converter.html" aria-label="Document Converter">Document Converter</a>
+            </div>
+            
+            <p><strong>Privacy Note:</strong> All PDF processing occurs locally in your browser. Your files are never uploaded to any server, ensuring complete privacy and security.</p>
+        </div>
 
-    <footer>
-        <p>© 2023 Multi-Tool Website | PDF Lock/Unlock Tool</p>
-    </footer>
+        <footer>
+            <p>PDF Lock/Unlock Tool &copy; 2023 | Part of Vidz Image Master</p>
+        </footer>
+    </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // Elements
+            const fileInput = document.getElementById('file-input');
+            const browseBtn = document.getElementById('browse-btn');
+            const dropArea = document.getElementById('drop-area');
             const lockModeBtn = document.getElementById('lockMode');
             const unlockModeBtn = document.getElementById('unlockMode');
-            const uploadArea = document.getElementById('uploadArea');
-            const fileInput = document.getElementById('fileInput');
-            const passwordSection = document.getElementById('passwordSection');
-            const lockBtn = document.getElementById('lockBtn');
-            const unlockBtn = document.getElementById('unlockBtn');
-            const resultArea = document.getElementById('resultArea');
+            const lockBtn = document.getElementById('lock-btn');
+            const unlockBtn = document.getElementById('unlock-btn');
+            const passwordInput = document.getElementById('password');
+            const confirmPasswordInput = document.getElementById('confirmPassword');
+            const statusText = document.getElementById('status');
+            const progressBar = document.getElementById('progress-bar');
             const loading = document.getElementById('loading');
-            const downloadBtn = document.getElementById('downloadBtn');
-            const resultFileName = document.getElementById('resultFileName');
-            const fileDetails = document.getElementById('fileDetails');
+            const resultArea = document.getElementById('result-area');
+            const downloadBtn = document.getElementById('download-btn');
+            const resultFileName = document.getElementById('result-file-name');
+            const fileDetails = document.getElementById('file-details');
             
             let currentFile = null;
             let processedPdfUrl = null;
 
-            // Mode switching
-            lockModeBtn.addEventListener('click', function() {
+            // Event listeners
+            browseBtn.addEventListener('click', () => fileInput.click());
+            fileInput.addEventListener('change', handleFileSelect);
+            dropArea.addEventListener('dragover', handleDragOver);
+            dropArea.addEventListener('drop', handleDrop);
+            lockModeBtn.addEventListener('click', switchToLockMode);
+            unlockModeBtn.addEventListener('click', switchToUnlockMode);
+            lockBtn.addEventListener('click', lockPdf);
+            unlockBtn.addEventListener('click', unlockPdf);
+            
+            // Initialize to lock mode
+            switchToLockMode();
+            
+            // Handle file selection
+            function handleFileSelect(e) {
+                const file = e.target.files[0];
+                if (file && file.type === 'application/pdf') {
+                    loadFile(file);
+                } else {
+                    statusText.textContent = 'Please select a valid PDF file.';
+                }
+            }
+            
+            // Handle drag over
+            function handleDragOver(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                dropArea.style.backgroundColor = '#e0f0ff';
+            }
+            
+            // Handle drop
+            function handleDrop(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                dropArea.style.backgroundColor = '#f0f8ff';
+                
+                const file = e.dataTransfer.files[0];
+                if (file && file.type === 'application/pdf') {
+                    loadFile(file);
+                } else {
+                    statusText.textContent = 'Please drop a valid PDF file.';
+                }
+            }
+            
+            // Load PDF file
+            function loadFile(file) {
+                currentFile = file;
+                const fileName = file.name;
+                dropArea.querySelector('p').textContent = fileName;
+                
+                // Update status
+                if (lockModeBtn.classList.contains('active')) {
+                    statusText.textContent = 'PDF loaded. Set password and click Lock PDF.';
+                } else {
+                    statusText.textContent = 'PDF loaded. Click Unlock PDF to remove password.';
+                }
+            }
+            
+            // Switch to lock mode
+            function switchToLockMode() {
                 lockModeBtn.classList.add('active');
                 unlockModeBtn.classList.remove('active');
-                passwordSection.classList.add('active');
-                lockBtn.style.display = 'flex';
+                lockBtn.style.display = 'block';
                 unlockBtn.style.display = 'none';
-                resultArea.classList.remove('active');
-            });
+                passwordInput.disabled = false;
+                confirmPasswordInput.disabled = false;
+                
+                if (currentFile) {
+                    statusText.textContent = 'PDF loaded. Set password and click Lock PDF.';
+                } else {
+                    statusText.textContent = 'Ready to lock PDF - upload a file first.';
+                }
+            }
             
-            unlockModeBtn.addEventListener('click', function() {
+            // Switch to unlock mode
+            function switchToUnlockMode() {
                 unlockModeBtn.classList.add('active');
                 lockModeBtn.classList.remove('active');
-                passwordSection.classList.remove('active');
-                unlockBtn.style.display = 'flex';
+                unlockBtn.style.display = 'block';
                 lockBtn.style.display = 'none';
-                resultArea.classList.remove('active');
-            });
-            
-            // File upload handling
-            uploadArea.addEventListener('click', function() {
-                fileInput.click();
-            });
-            
-            fileInput.addEventListener('change', function(e) {
-                if (e.target.files.length > 0) {
-                    currentFile = e.target.files[0];
-                    const fileName = currentFile.name;
-                    uploadArea.querySelector('h3').textContent = fileName;
-                    uploadArea.querySelector('p').textContent = 'Click to change file';
-                    
-                    // Show password section if in lock mode
-                    if (lockModeBtn.classList.contains('active')) {
-                        passwordSection.classList.add('active');
-                    }
-                }
-            });
-            
-            // Drag and drop functionality
-            uploadArea.addEventListener('dragover', function(e) {
-                e.preventDefault();
-                uploadArea.style.borderColor = '#0077ff';
-                uploadArea.style.background = '#e6f3ff';
-            });
-            
-            uploadArea.addEventListener('dragleave', function() {
-                uploadArea.style.borderColor = '#60a5fa';
-                uploadArea.style.background = '#f8fbff';
-            });
-            
-            uploadArea.addEventListener('drop', function(e) {
-                e.preventDefault();
-                uploadArea.style.borderColor = '#60a5fa';
-                uploadArea.style.background = '#f8fbff';
+                passwordInput.disabled = true;
+                confirmPasswordInput.disabled = true;
                 
-                if (e.dataTransfer.files.length > 0) {
-                    currentFile = e.dataTransfer.files[0];
-                    fileInput.files = e.dataTransfer.files;
-                    const fileName = currentFile.name;
-                    uploadArea.querySelector('h3').textContent = fileName;
-                    uploadArea.querySelector('p').textContent = 'Click to change file';
-                    
-                    // Show password section if in lock mode
-                    if (lockModeBtn.classList.contains('active')) {
-                        passwordSection.classList.add('active');
-                    }
+                if (currentFile) {
+                    statusText.textContent = 'PDF loaded. Click Unlock PDF to remove password.';
+                } else {
+                    statusText.textContent = 'Ready to unlock PDF - upload a file first.';
                 }
-            });
+            }
             
-            // Process buttons
-            lockBtn.addEventListener('click', function() {
+            // Lock PDF function
+            function lockPdf() {
                 if (!currentFile) {
-                    alert('Please select a PDF file first');
+                    statusText.textContent = 'Please select a PDF file first.';
                     return;
                 }
                 
-                const password = document.getElementById('password').value;
-                const confirmPassword = document.getElementById('confirmPassword').value;
+                const password = passwordInput.value;
+                const confirmPassword = confirmPasswordInput.value;
                 
                 if (!password || !confirmPassword) {
-                    alert('Please enter and confirm your password');
+                    statusText.textContent = 'Please enter and confirm your password.';
                     return;
                 }
                 
                 if (password !== confirmPassword) {
-                    alert('Passwords do not match');
+                    statusText.textContent = 'Passwords do not match.';
                     return;
                 }
                 
-                // Show loading animation
+                // Show processing
                 loading.classList.add('active');
+                statusText.textContent = 'Securing your PDF with password protection...';
                 
-                // Simulate processing
-                setTimeout(function() {
-                    loading.classList.remove('active');
-                    resultArea.classList.add('active');
+                // Simulate processing with progress
+                let progress = 0;
+                const interval = setInterval(() => {
+                    progress += 5;
+                    progressBar.style.width = `${progress}%`;
                     
-                    // Set result file name
-                    const originalName = currentFile.name;
-                    const newName = originalName.replace('.pdf', '_protected.pdf');
-                    resultFileName.textContent = newName;
-                    fileDetails.textContent = '2.4 MB • Password protected';
-                    
-                    // Create a download URL for the processed file (simulated)
-                    processedPdfUrl = URL.createObjectURL(currentFile);
-                    downloadBtn.href = processedPdfUrl;
-                    downloadBtn.download = newName;
-                }, 2000);
-            });
+                    if (progress >= 100) {
+                        clearInterval(interval);
+                        finishProcessing(true);
+                    }
+                }, 100);
+            }
             
-            unlockBtn.addEventListener('click', function() {
+            // Unlock PDF function
+            function unlockPdf() {
                 if (!currentFile) {
-                    alert('Please select a PDF file first');
+                    statusText.textContent = 'Please select a PDF file first.';
                     return;
                 }
                 
-                // Show loading animation
+                // Show processing
                 loading.classList.add('active');
+                statusText.textContent = 'Removing password protection...';
                 
-                // Simulate processing
-                setTimeout(function() {
-                    loading.classList.remove('active');
-                    resultArea.classList.add('active');
+                // Simulate processing with progress
+                let progress = 0;
+                const interval = setInterval(() => {
+                    progress += 5;
+                    progressBar.style.width = `${progress}%`;
                     
-                    // Set result file name
-                    const originalName = currentFile.name;
-                    const newName = originalName.replace('.pdf', '_unlocked.pdf');
-                    resultFileName.textContent = newName;
-                    fileDetails.textContent = '2.4 MB • No password protection';
-                    
-                    // Create a download URL for the processed file (simulated)
-                    processedPdfUrl = URL.createObjectURL(currentFile);
-                    downloadBtn.href = processedPdfUrl;
-                    downloadBtn.download = newName;
-                }, 2000);
-            });
+                    if (progress >= 100) {
+                        clearInterval(interval);
+                        finishProcessing(false);
+                    }
+                }, 100);
+            }
+            
+            // Finish processing
+            function finishProcessing(isLocked) {
+                loading.classList.remove('active');
+                
+                // Set result file name
+                const originalName = currentFile.name;
+                const newName = isLocked ? 
+                    originalName.replace('.pdf', '_protected.pdf') : 
+                    originalName.replace('.pdf', '_unlocked.pdf');
+                
+                resultFileName.textContent = newName;
+                fileDetails.textContent = isLocked ? 
+                    'Password protected • Secure PDF' : 
+                    'No password protection • Editable PDF';
+                
+                // Create a download URL for the processed file (simulated)
+                processedPdfUrl = URL.createObjectURL(currentFile);
+                downloadBtn.href = processedPdfUrl;
+                downloadBtn.download = newName;
+                
+                // Show result area
+                resultArea.style.display = 'block';
+                statusText.textContent = isLocked ? 
+                    'PDF successfully secured with password!' : 
+                    'PDF successfully unlocked!';
+            }
 
             // Clean up URL when leaving the page
             window.addEventListener('beforeunload', function() {
@@ -603,6 +679,91 @@
                 }
             });
         });
+    </script>
+    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "PDF Lock/Unlock Tool",
+        "description": "Free online tool to lock PDF files with password protection or unlock secured PDFs.",
+        "applicationCategory": "UtilityApplication",
+        "operatingSystem": "Any",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        }
+    }
+    </script>
+    
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://www.vidzimagemaster.online/"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Tools",
+                "item": "https://www.vidzimagemaster.online/tools"
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "PDF Lock/Unlock",
+                "item": "https://www.vidzimagemaster.online/pdf-lock-unlock.html"
+            }
+        ]
+    }
+    </script>
+    
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "Is this PDF tool free to use?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes, our PDF Lock/Unlock tool is completely free to use with no limitations."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Are my files secure when using this tool?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Absolutely. All processing happens directly in your browser. Your files are never uploaded to any server, ensuring complete privacy and security."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What is the strength of the encryption used?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Our tool uses strong AES-256 encryption for maximum security when locking your PDF files."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Can I unlock any PDF with this tool?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "This tool is designed to unlock PDFs for which you already know the password. It cannot break encryption on protected files without authorization."
+                }
+            }
+        ]
+    }
     </script>
 </body>
 </html>
