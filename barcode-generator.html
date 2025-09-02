@@ -3,19 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Barcode Generator | Multi-Tool Website</title>
+    <title>Barcode Generator - Create Custom Barcodes Online | Vidz Image Master</title>
+    <meta name="description" content="Free online barcode generator tool. Create custom barcodes in various formats for retail, inventory, and business applications.">
+    <meta name="keywords" content="barcode generator, create barcode, barcode maker, online barcode, QR code alternative, barcode types">
+    <link rel="canonical" href="https://www.vidzimagemaster.online/barcode-generator.html">
+    
+    <!-- Hindi Version Link -->
+    <link rel="alternate" hreflang="hi" href="https://www.vidzimagemaster.online/hi/barcode-generator.html">
+    <link rel="alternate" hreflang="en" href="https://www.vidzimagemaster.online/barcode-generator.html">
+    <link rel="alternate" hreflang="x-default" href="https://www.vidzimagemaster.online/barcode-generator.html">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
     <style>
-        :root {
-            --primary-blue: #1976d2;
-            --light-blue: #2196f3;
-            --dark-blue: #0d47a1;
-            --white: #ffffff;
-            --light-gray: #f5f5f5;
-            --text-dark: #333333;
-            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
-
         * {
             margin: 0;
             padding: 0;
@@ -24,62 +24,66 @@
         }
 
         body {
-            background: linear-gradient(135deg, var(--light-blue) 0%, var(--primary-blue) 100%);
-            color: var(--text-dark);
+            background: linear-gradient(135deg, #0074e4 0%, #00a2ff 100%);
+            color: #333;
             min-height: 100vh;
+            padding: 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 20px;
         }
 
         .container {
             width: 100%;
-            max-width: 1000px;
-            background-color: var(--white);
-            border-radius: 16px;
-            box-shadow: var(--shadow);
-            overflow: hidden;
-            margin: 20px 0;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         header {
-            background-color: var(--primary-blue);
-            color: var(--white);
-            padding: 25px;
             text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            width: 100%;
         }
 
         h1 {
-            font-size: 2.5rem;
+            color: #0074e4;
+            font-size: 2.8rem;
             margin-bottom: 10px;
         }
 
-        .subtitle {
-            font-size: 1.1rem;
-            opacity: 0.9;
+        .description {
+            color: #555;
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
         }
 
-        .tool-container {
+        .main-content {
             display: flex;
             flex-wrap: wrap;
-            padding: 20px;
-        }
-
-        .input-section {
-            flex: 1;
-            min-width: 300px;
-            padding: 20px;
-        }
-
-        .output-section {
-            flex: 1;
-            min-width: 300px;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            gap: 30px;
             justify-content: center;
+        }
+
+        .input-section, .preview-section {
+            background-color: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .section-title {
+            color: #0074e4;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #00a2ff;
+            font-size: 1.5rem;
         }
 
         .form-group {
@@ -90,7 +94,7 @@
             display: block;
             margin-bottom: 8px;
             font-weight: 600;
-            color: var(--dark-blue);
+            color: #0074e4;
         }
 
         input, select {
@@ -103,66 +107,54 @@
         }
 
         input:focus, select:focus {
-            border-color: var(--primary-blue);
+            border-color: #0074e4;
             outline: none;
         }
 
         .btn {
-            background-color: var(--primary-blue);
+            background-color: #0074e4;
             color: white;
             border: none;
-            padding: 12px 20px;
+            padding: 12px 25px;
             border-radius: 8px;
             cursor: pointer;
-            font-size: 16px;
+            font-size: 1rem;
             font-weight: 600;
-            transition: background-color 0.3s;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
+            transition: all 0.3s;
+            margin-top: 15px;
+            display: inline-block;
         }
 
         .btn:hover {
-            background-color: var(--dark-blue);
+            background-color: #005bb9;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
 
-        .btn i {
-            margin-right: 8px;
+        .btn:active {
+            transform: translateY(0);
         }
 
-        .btn-generate {
-            background-color: var(--primary-blue);
-            width: 100%;
-            margin-top: 10px;
+        .btn-secondary {
+            background-color: #00a2ff;
         }
 
-        .btn-download {
-            background-color: #4caf50;
-            margin-top: 15px;
-        }
-
-        .barcode-preview {
-            width: 100%;
+        .preview-container {
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 20px;
             min-height: 200px;
             display: flex;
             align-items: center;
             justify-content: center;
-            background-color: var(--light-gray);
+            background-color: #f8f8f8;
             border-radius: 8px;
-            margin-bottom: 20px;
             padding: 20px;
-            border: 2px dashed #ccc;
         }
 
         #barcode {
             max-width: 100%;
-        }
-
-        .download-options {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            width: 100%;
+            max-height: 300px;
         }
 
         .size-options {
@@ -182,7 +174,7 @@
         }
 
         .size-btn.active {
-            background-color: var(--primary-blue);
+            background-color: #0074e4;
             color: white;
         }
 
@@ -198,23 +190,84 @@
             padding: 0;
             border: none;
             cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .status {
+            text-align: center;
+            font-weight: 500;
+            color: #0074e4;
+            margin-bottom: 15px;
         }
 
         footer {
+            margin-top: 40px;
             text-align: center;
+            color: white;
             padding: 20px;
-            color: var(--white);
-            font-size: 0.9rem;
-            opacity: 0.8;
+            font-size: 1rem;
+        }
+        
+        /* SEO Content Styles */
+        .seo-content {
+            padding: 20px;
+            background: white;
+            border-radius: 15px;
+            margin-top: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            width: 100%;
+        }
+        .related-tools {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .related-tools a {
+            padding: 0.5rem 1rem;
+            background-color: #e6f2ff;
+            color: #0074e4;
+            border-radius: 8px;
+            text-decoration: none;
+        }
+        .related-tools a:hover {
+            background-color: #0074e4;
+            color: white;
+        }
+        .faq-item {
+            margin-bottom: 1rem;
+        }
+        .faq-question {
+            font-weight: bold;
+            color: #0074e4;
         }
 
         @media (max-width: 768px) {
-            .tool-container {
+            .main-content {
                 flex-direction: column;
             }
             
             h1 {
-                font-size: 2rem;
+                font-size: 2.2rem;
+            }
+            
+            .description {
+                font-size: 1rem;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
+            
+            .size-options {
+                flex-direction: column;
             }
         }
 
@@ -225,6 +278,8 @@
             appearance: none;
             background: #ddd;
             border-radius: 4px;
+            width: 100%;
+            margin-top: 10px;
         }
 
         input[type="range"]::-webkit-slider-thumb {
@@ -233,7 +288,7 @@
             width: 20px;
             height: 20px;
             border-radius: 50%;
-            background: var(--primary-blue);
+            background: #0074e4;
             cursor: pointer;
         }
 
@@ -251,12 +306,13 @@
 <body>
     <div class="container">
         <header>
-            <h1>Barcode Generator</h1>
-            <p class="subtitle">Create custom barcodes in seconds</p>
+            <h1><i class="fas fa-barcode"></i> Barcode Generator Tool</h1>
+            <p class="description">Create custom barcodes in various formats for retail, inventory, and business applications.</p>
         </header>
-        
-        <div class="tool-container">
+
+        <div class="main-content">
             <div class="input-section">
+                <h2 class="section-title">Barcode Settings</h2>
                 <div class="form-group">
                     <label for="barcodeInput">Enter Text or Numbers</label>
                     <input type="text" id="barcodeInput" placeholder="Enter text or numbers to encode" value="123456789012">
@@ -292,29 +348,95 @@
                     </div>
                 </div>
                 
-                <button id="generateBtn" class="btn btn-generate">Generate Barcode</button>
+                <button id="generateBtn" class="btn"><i class="fas fa-cog"></i> Generate Barcode</button>
             </div>
-            
-            <div class="output-section">
-                <div class="barcode-preview">
+
+            <div class="preview-section">
+                <h2 class="section-title">Barcode Preview</h2>
+                <div class="preview-container">
                     <svg id="barcode"></svg>
                 </div>
+                <div class="status" id="status">Ready to generate barcode</div>
                 
-                <div class="download-options">
-                    <select id="formatSelect" class="form-control">
+                <div class="form-group">
+                    <label for="formatSelect">Download Format</label>
+                    <select id="formatSelect">
                         <option value="SVG">SVG</option>
                         <option value="PNG">PNG</option>
                         <option value="JPEG">JPEG</option>
                     </select>
-                    <button id="downloadBtn" class="btn btn-download">Download Barcode</button>
+                </div>
+                
+                <div class="action-buttons">
+                    <button id="downloadBtn" class="btn btn-secondary"><i class="fas fa-download"></i> Download Barcode</button>
                 </div>
             </div>
         </div>
+        
+        <!-- SEO Content Section -->
+        <div class="seo-content">
+            <h2>Free Online Barcode Generator</h2>
+            <p>Our barcode generator tool allows you to create custom barcodes in various formats for retail, inventory management, product labeling, and business applications. Generate high-quality barcodes instantly with our easy-to-use tool.</p>
+            
+            <h3>How to Use This Tool</h3>
+            <ol>
+                <li>Enter the text or numbers you want to encode in the barcode</li>
+                <li>Select the barcode type that fits your needs</li>
+                <li>Adjust the size and color of your barcode</li>
+                <li>Click "Generate Barcode" to create your barcode</li>
+                <li>Download the barcode in your preferred format (SVG, PNG, or JPEG)</li>
+            </ol>
+            
+            <h3>Supported Barcode Types</h3>
+            <ul>
+                <li><strong>CODE128</strong> - Versatile barcode capable of encoding all 128 ASCII characters</li>
+                <li><strong>EAN-13</strong> - International standard for product labeling in retail</li>
+                <li><strong>UPC-A</strong> - Standard barcode for retail products in the United States</li>
+                <li><strong>CODE39</strong> - Alpha-numeric barcode commonly used in non-retail applications</li>
+                <li><strong>ITF</strong> - Interleaved 2 of 5, used primarily in warehousing and distribution</li>
+            </ul>
+            
+            <div class="faq-section">
+                <h3>Frequently Asked Questions</h3>
+                
+                <div class="faq-item">
+                    <p class="faq-question">Is this barcode generator free to use?</p>
+                    <p>Yes, our tool is completely free to use with no limitations.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <p class="faq-question">What types of barcodes can I create?</p>
+                    <p>Our tool supports multiple barcode formats including CODE128, EAN-13, UPC-A, CODE39, and ITF.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <p class="faq-question">Can I customize the appearance of my barcode?</p>
+                    <p>Yes, you can adjust the size and color of your barcode to match your requirements.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <p class="faq-question">What download formats are available?</p>
+                    <p>You can download your barcode as SVG (vector), PNG, or JPEG image files.</p>
+                </div>
+            </div>
+            
+            <!-- Related Tools - SPECIFIC TO BARCODE GENERATOR -->
+            <div class="related-tools">
+                <span>Related Tools: </span>
+                <a href="https://www.vidzimagemaster.online/qr-code-generator-&-scanner" aria-label="QR Code Generator">QR Code Generator</a>
+                <a href="https://www.vidzimagemaster.online/image-converter.html" aria-label="Image Converter">Image Converter</a>
+                <a href="https://www.vidzimagemaster.online/image-to-text-(OCR).html" aria-label="Image to Text OCR">Image to Text</a>
+                <a href="https://www.vidzimagemaster.online/base64-encoder-decoder.html" aria-label="Base64 Encoder/Decoder">Base64 Tools</a>
+                <a href="https://www.vidzimagemaster.online/json-formatter-&-validator.html" aria-label="JSON Formatter">JSON Formatter</a>
+            </div>
+            
+            <p><strong>Privacy Note:</strong> All barcode generation occurs locally in your browser. Your data is never uploaded to any server, ensuring complete privacy and security.</p>
+        </div>
+
+        <footer>
+            <p>Barcode Generator Tool &copy; 2023 | Part of Vidz Image Master</p>
+        </footer>
     </div>
-    
-    <footer>
-        <p>© 2023 Multi-Tool Website | Barcode Generator Tool</p>
-    </footer>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -328,6 +450,7 @@
             const formatSelect = document.getElementById('formatSelect');
             const downloadBtn = document.getElementById('downloadBtn');
             const sizeButtons = document.querySelectorAll('.size-btn');
+            const statusText = document.getElementById('status');
             
             // Set initial barcode
             generateBarcode();
@@ -361,6 +484,9 @@
                 }
                 
                 try {
+                    // Update status
+                    statusText.textContent = 'Generating barcode...';
+                    
                     // Clear previous barcode
                     barcodeElement.innerHTML = '';
                     
@@ -386,7 +512,11 @@
                         barcodeElement.classList.remove('barcode-generated');
                     }, 500);
                     
+                    // Update status
+                    statusText.textContent = 'Barcode generated successfully!';
+                    
                 } catch (error) {
+                    statusText.textContent = 'Error generating barcode';
                     alert('Error generating barcode: ' + error.message);
                     console.error(error);
                 }
@@ -444,16 +574,104 @@
                             document.body.removeChild(a);
                             
                             URL.revokeObjectURL(url);
+                            
+                            statusText.textContent = 'Barcode downloaded successfully!';
                         };
                         
                         img.src = url;
                     }
                 } catch (error) {
+                    statusText.textContent = 'Error downloading barcode';
                     alert('Error downloading barcode: ' + error.message);
                     console.error(error);
                 }
             }
         });
+    </script>
+    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Barcode Generator Tool",
+        "description": "Free online tool to create custom barcodes in various formats.",
+        "applicationCategory": "UtilityApplication",
+        "operatingSystem": "Any",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        }
+    }
+    </script>
+    
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://www.vidzimagemaster.online/"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Tools",
+                "item": "https://www.vidzimagemaster.online/tools"
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "Barcode Generator",
+                "item": "https://www.vidzimagemaster.online/barcode-generator.html"
+            }
+        ]
+    }
+    </script>
+    
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "Is this barcode generator free to use?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes, our tool is completely free to use with no limitations."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What types of barcodes can I create?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Our tool supports multiple barcode formats including CODE128, EAN-13, UPC-A, CODE39, and ITF."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Can I customize the appearance of my barcode?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes, you can adjust the size and color of your barcode to match your requirements."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What download formats are available?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "You can download your barcode as SVG (vector), PNG, or JPEG image files."
+                }
+            }
+        ]
+    }
     </script>
 </body>
 </html>
