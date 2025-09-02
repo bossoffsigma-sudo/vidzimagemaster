@@ -3,7 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Image Resizer Tool</title>
+    <title>Image Resizer - Resize Images Online | Vidz Image Master</title>
+    <meta name="description" content="Free online image resizer tool. Resize JPEG, PNG, WebP images to any dimensions. Maintain aspect ratio, adjust quality, and download instantly.">
+    <meta name="keywords" content="image resizer, resize images, photo resizer, change image size, image size reducer, online image editor">
+    <link rel="canonical" href="https://www.vidzimagemaster.online/image-resizer.html">
+    
+    <!-- Hindi Version Link -->
+    <link rel="alternate" hreflang="hi" href="https://www.vidzimagemaster.online/hi/image-resizer.html">
+    <link rel="alternate" hreflang="en" href="https://www.vidzimagemaster.online/image-resizer.html">
+    <link rel="alternate" hreflang="x-default" href="https://www.vidzimagemaster.online/image-resizer.html">
+    
     <style>
         :root {
             --primary-blue: #007bff;
@@ -209,6 +218,7 @@
             display: none;
             text-align: center;
             margin: 10px 0;
+            padding: 10px;
         }
 
         .spinner {
@@ -224,6 +234,39 @@
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
+        }
+        
+        /* SEO Content Styles */
+        .seo-content {
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        .related-tools {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .related-tools a {
+            padding: 0.5rem 1rem;
+            background-color: #e6f2ff;
+            color: #0077ff;
+            border-radius: 8px;
+            text-decoration: none;
+        }
+        .related-tools a:hover {
+            background-color: #0077ff;
+            color: white;
+        }
+        .faq-item {
+            margin-bottom: 1rem;
+        }
+        .faq-question {
+            font-weight: bold;
+            color: #0077ff;
         }
     </style>
 </head>
@@ -242,7 +285,7 @@
                     <p>Drag & drop your image here</p>
                     <p>or</p>
                     <label for="file-input" class="btn">Choose File</label>
-                    <input type="file" id="file-input" accept="image/*">
+                    <input type="file" id="file-input" accept="image/*" aria-label="Select image file">
                 </div>
                 <div class="loading" id="upload-loading">
                     <div class="spinner"></div>
@@ -256,23 +299,23 @@
                 <div class="dimension-controls">
                     <div class="control-group">
                         <label for="width">Width (px)</label>
-                        <input type="number" id="width" min="1" placeholder="Width">
+                        <input type="number" id="width" min="1" placeholder="Width" aria-label="Image width in pixels">
                     </div>
                     
                     <div class="control-group">
                         <label for="height">Height (px)</label>
-                        <input type="number" id="height" min="1" placeholder="Height">
+                        <input type="number" id="height" min="1" placeholder="Height" aria-label="Image height in pixels">
                     </div>
                 </div>
                 
                 <div class="control-group">
                     <label for="quality">Quality</label>
-                    <input type="range" id="quality" min="1" max="100" value="90">
+                    <input type="range" id="quality" min="1" max="100" value="90" aria-label="Image quality slider">
                     <span id="quality-value">90%</span>
                 </div>
                 
                 <div class="ratio-lock">
-                    <input type="checkbox" id="maintain-ratio" checked>
+                    <input type="checkbox" id="maintain-ratio" checked aria-label="Maintain aspect ratio">
                     <label for="maintain-ratio">Maintain aspect ratio</label>
                 </div>
                 
@@ -297,9 +340,70 @@
                 </div>
             </div>
         </div>
+        
+        <!-- SEO Content Section -->
+        <div class="seo-content">
+            <h2>Free Online Image Resizer Tool</h2>
+            <p>Our Image Resizer allows you to easily change image dimensions while maintaining quality. Perfect for social media, websites, email attachments, and more.</p>
+            
+            <h3>How to Use This Tool</h3>
+            <ol>
+                <li>Upload your image using the drag & drop area or file browser</li>
+                <li>Set your desired width and height in pixels</li>
+                <li>Adjust quality if needed (higher quality = larger file size)</li>
+                <li>Toggle aspect ratio lock to maintain proportions</li>
+                <li>Click "Resize Image" to process</li>
+                <li>Download your resized image</li>
+            </ol>
+            
+            <h3>Common Use Cases</h3>
+            <ul>
+                <li>Resizing images for social media profiles and posts</li>
+                <li>Optimizing photos for website content</li>
+                <li>Reducing image size for email attachments</li>
+                <li>Preparing images for documents and presentations</li>
+                <li>Creating thumbnails for galleries and portfolios</li>
+            </ul>
+            
+            <div class="faq-section">
+                <h3>Frequently Asked Questions</h3>
+                
+                <div class="faq-item">
+                    <p class="faq-question">Is this image resizer free to use?</p>
+                    <p>Yes, our tool is completely free to use with no limitations.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <p class="faq-question">What image formats are supported?</p>
+                    <p>Our tool supports JPEG, PNG, WebP, GIF, and other common image formats.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <p class="faq-question">Will resizing affect image quality?</p>
+                    <p>Some quality reduction may occur when downscaling, but our algorithm preserves as much quality as possible.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <p class="faq-question">Are my images stored on your servers?</p>
+                    <p>No, all processing happens directly in your browser. Your images are never uploaded to our servers.</p>
+                </div>
+            </div>
+            
+            <!-- Related Tools - SPECIFIC TO IMAGE RESIZER -->
+            <div class="related-tools">
+                <span>Related Tools: </span>
+                <a href="https://www.vidzimagemaster.online/image-compressor.html" aria-label="Image Compressor">Image Compressor</a>
+                <a href="https://www.vidzimagemaster.online/image-converter.html" aria-label="Image Converter">Image Converter</a>
+                <a href="https://www.vidzimagemaster.online/image-cropper.html" aria-label="Image Cropper">Image Cropper</a>
+                <a href="https://www.vidzimagemaster.online/image-rotator-flipper.html" aria-label="Image Rotator & Flipper">Rotator & Flipper</a>
+                <a href="https://www.vidzimagemaster.online/image-to-text-(OCR).html" aria-label="Image to Text OCR">Image to Text</a>
+            </div>
+            
+            <p><strong>Privacy Note:</strong> All image processing occurs locally in your browser. Your files are never uploaded to any server, ensuring complete privacy and security.</p>
+        </div>
 
         <footer>
-            <p>Image Resizer Tool &copy; 2023</p>
+            <p>Image Resizer Tool &copy; 2023 | Part of Vidz Image Master</p>
         </footer>
     </div>
 
@@ -458,6 +562,91 @@
                 return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
             }
         });
+    </script>
+    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Image Resizer Tool",
+        "description": "Free online tool to resize images to any dimensions while maintaining quality.",
+        "applicationCategory": "MultimediaApplication",
+        "operatingSystem": "Any",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        }
+    }
+    </script>
+    
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://www.vidzimagemaster.online/"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Tools",
+                "item": "https://www.vidzimagemaster.online/tools"
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "Image Resizer",
+                "item": "https://www.vidzimagemaster.online/image-resizer.html"
+            }
+        ]
+    }
+    </script>
+    
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "Is this image resizer free to use?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes, our tool is completely free to use with no limitations."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What image formats are supported?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Our tool supports JPEG, PNG, WebP, GIF, and other common image formats."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Will resizing affect image quality?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Some quality reduction may occur when downscaling, but our algorithm preserves as much quality as possible."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Are my images stored on your servers?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "No, all processing happens directly in your browser. Your images are never uploaded to our servers."
+                }
+            }
+        ]
+    }
     </script>
 </body>
 </html>
