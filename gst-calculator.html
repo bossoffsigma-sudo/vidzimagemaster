@@ -3,7 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GST Calculator | Multi-Tool Website</title>
+    <title>GST Calculator | Calculate GST Online | Vidz Image Master</title>
+    <meta name="description" content="Free online GST calculator tool. Calculate GST amount, total price, and original amount for both inclusive and exclusive GST calculations.">
+    <meta name="keywords" content="gst calculator, gst calculation, gst exclusive, gst inclusive, tax calculator, gst amount calculator">
+    <link rel="canonical" href="https://www.vidzimagemaster.online/gst-calculator.html">
+    
+    <!-- Hindi Version Link -->
+    <link rel="alternate" hreflang="hi" href="https://www.vidzimagemaster.online/hi/gst-calculator.html">
+    <link rel="alternate" hreflang="en" href="https://www.vidzimagemaster.online/gst-calculator.html">
+    <link rel="alternate" hreflang="x-default" href="https://www.vidzimagemaster.online/gst-calculator.html">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -14,44 +23,66 @@
         }
 
         body {
-            background: linear-gradient(135deg, #007bff 0%, #60a5ff 100%);
+            background: linear-gradient(135deg, #0074e4 0%, #00a2ff 100%);
             color: #333;
             min-height: 100vh;
+            padding: 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            padding: 20px;
         }
 
         .container {
             width: 100%;
-            max-width: 500px;
-            background: white;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: white;
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-            overflow: hidden;
+            width: 100%;
         }
 
-        .header {
-            background: #007bff;
-            color: white;
+        h1 {
+            color: #0074e4;
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+        }
+
+        .description {
+            color: #555;
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .main-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+
+        .input-section, .result-section {
+            background-color: white;
+            border-radius: 15px;
             padding: 25px;
-            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            flex: 1;
+            min-width: 300px;
         }
 
-        .header h1 {
-            font-size: 1.8rem;
-            margin-bottom: 5px;
-        }
-
-        .header p {
-            font-size: 1rem;
-            opacity: 0.9;
-        }
-
-        .calculator-body {
-            padding: 25px;
+        .section-title {
+            color: #0074e4;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #00a2ff;
+            font-size: 1.5rem;
         }
 
         .input-group {
@@ -62,7 +93,7 @@
             display: block;
             margin-bottom: 8px;
             font-weight: 600;
-            color: #007bff;
+            color: #0074e4;
         }
 
         .input-field {
@@ -75,7 +106,7 @@
         }
 
         .input-field:focus {
-            border-color: #007bff;
+            border-color: #0074e4;
             outline: none;
         }
 
@@ -87,10 +118,12 @@
             display: flex;
             gap: 20px;
             margin-bottom: 20px;
+            flex-wrap: wrap;
         }
 
         .radio-option {
             flex: 1;
+            min-width: 120px;
             text-align: center;
         }
 
@@ -107,13 +140,13 @@
             cursor: pointer;
             transition: all 0.3s;
             font-weight: 600;
-            color: #007bff;
+            color: #0074e4;
         }
 
         .radio-option input:checked + label {
-            background: #007bff;
+            background: #0074e4;
             color: white;
-            border-color: #007bff;
+            border-color: #0074e4;
         }
 
         .select-group {
@@ -131,7 +164,7 @@
             height: 0;
             border-left: 6px solid transparent;
             border-right: 6px solid transparent;
-            border-top: 6px solid #007bff;
+            border-top: 6px solid #0074e4;
             pointer-events: none;
         }
 
@@ -148,7 +181,7 @@
         }
 
         .select-group select:focus {
-            border-color: #007bff;
+            border-color: #0074e4;
             outline: none;
         }
 
@@ -163,21 +196,24 @@
             display: flex;
             justify-content: space-between;
             margin-bottom: 15px;
+            padding: 10px;
+            border-bottom: 1px solid #e0e0e0;
         }
 
         .result-item:last-child {
             margin-bottom: 0;
+            border-bottom: none;
         }
 
         .result-label {
             font-weight: 600;
-            color: #007bff;
+            color: #0074e4;
         }
 
         .result-value {
             font-weight: 700;
             font-size: 1.2rem;
-            color: #007bff;
+            color: #0074e4;
         }
 
         .highlight {
@@ -191,36 +227,45 @@
             display: flex;
             gap: 15px;
             margin-top: 25px;
+            flex-wrap: wrap;
         }
 
         .btn {
-            flex: 1;
-            padding: 15px;
-            border: none;
+            padding: 12px 25px;
             border-radius: 8px;
+            cursor: pointer;
             font-size: 1rem;
             font-weight: 600;
-            cursor: pointer;
             transition: all 0.3s;
+            display: inline-block;
+            text-align: center;
+            border: none;
         }
 
-        .btn-calculate {
-            background: #007bff;
+        .btn-primary {
+            background-color: #0074e4;
             color: white;
         }
 
-        .btn-calculate:hover {
-            background: #0056b3;
+        .btn-primary:hover {
+            background-color: #005bb9;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
 
-        .btn-reset {
-            background: #f8f9fa;
-            color: #007bff;
-            border: 2px solid #e0e0e0;
+        .btn-secondary {
+            background-color: #00a2ff;
+            color: white;
         }
 
-        .btn-reset:hover {
-            background: #e9ecef;
+        .btn-secondary:hover {
+            background-color: #0085d4;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn:active {
+            transform: translateY(0);
         }
 
         .error-message {
@@ -230,101 +275,203 @@
             display: none;
         }
 
-        .footer {
+        footer {
+            margin-top: 40px;
             text-align: center;
-            margin-top: 20px;
             color: white;
-            font-size: 0.9rem;
-            opacity: 0.9;
+            padding: 20px;
+            font-size: 1rem;
+        }
+        
+        /* SEO Content Styles */
+        .seo-content {
+            padding: 20px;
+            background: white;
+            border-radius: 15px;
+            margin-top: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            width: 100%;
+        }
+        .related-tools {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .related-tools a {
+            padding: 0.5rem 1rem;
+            background-color: #e6f2ff;
+            color: #0074e4;
+            border-radius: 8px;
+            text-decoration: none;
+        }
+        .related-tools a:hover {
+            background-color: #0074e4;
+            color: white;
+        }
+        .faq-item {
+            margin-bottom: 1rem;
+        }
+        .faq-question {
+            font-weight: bold;
+            color: #0074e4;
         }
 
-        @media (max-width: 576px) {
-            .container {
-                border-radius: 10px;
-            }
-            
-            .header {
-                padding: 20px;
-            }
-            
-            .calculator-body {
-                padding: 20px;
-            }
-            
-            .radio-group {
+        @media (max-width: 768px) {
+            .main-content {
                 flex-direction: column;
-                gap: 10px;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .description {
+                font-size: 1rem;
             }
             
             .action-buttons {
                 flex-direction: column;
             }
+            
+            .radio-group {
+                flex-direction: column;
+            }
+        }
+
+        .hidden {
+            display: none;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="header">
+        <header>
             <h1><i class="fas fa-calculator"></i> GST Calculator</h1>
-            <p>Calculate GST amount and total price easily</p>
+            <p class="description">Calculate GST amount, total price, and original amount for both inclusive and exclusive GST calculations.</p>
+        </header>
+
+        <div class="main-content">
+            <div class="input-section">
+                <h2 class="section-title">Input Details</h2>
+                <div class="input-group">
+                    <label for="amount">Enter Amount</label>
+                    <input type="number" id="amount" class="input-field" placeholder="Enter amount" min="0" step="0.01">
+                    <div class="error-message" id="amount-error">Please enter a valid amount</div>
+                </div>
+                
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" id="exclusive" name="gstType" value="exclusive" checked>
+                        <label for="exclusive">GST Exclusive</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="inclusive" name="gstType" value="inclusive">
+                        <label for="inclusive">GST Inclusive</label>
+                    </div>
+                </div>
+                
+                <div class="select-group">
+                    <label for="gstRate" style="display: none;">GST Rate</label>
+                    <select id="gstRate">
+                        <option value="5">5% GST</option>
+                        <option value="12">12% GST</option>
+                        <option value="18" selected>18% GST</option>
+                        <option value="28">28% GST</option>
+                    </select>
+                </div>
+                
+                <div class="action-buttons">
+                    <button class="btn btn-primary" id="calculateBtn"><i class="fas fa-calculator"></i> Calculate</button>
+                    <button class="btn btn-secondary" id="resetBtn"><i class="fas fa-redo"></i> Reset</button>
+                </div>
+            </div>
+
+            <div class="result-section">
+                <h2 class="section-title">Calculation Results</h2>
+                <div class="results">
+                    <div class="result-item">
+                        <span class="result-label">Original Amount:</span>
+                        <span class="result-value" id="originalAmount">₹0.00</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">GST Rate:</span>
+                        <span class="result-value" id="gstRateValue">18%</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">GST Amount:</span>
+                        <span class="result-value" id="gstAmount">₹0.00</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Total Amount:</span>
+                        <span class="result-value" id="totalAmount">₹0.00</span>
+                    </div>
+                </div>
+            </div>
         </div>
         
-        <div class="calculator-body">
-            <div class="input-group">
-                <label for="amount">Enter Amount</label>
-                <input type="number" id="amount" class="input-field" placeholder="Enter amount" min="0" step="0.01">
-                <div class="error-message" id="amount-error">Please enter a valid amount</div>
-            </div>
+        <!-- SEO Content Section -->
+        <div class="seo-content">
+            <h2>Free Online GST Calculator</h2>
+            <p>Our GST Calculator helps you quickly calculate Goods and Services Tax amounts for both inclusive and exclusive pricing. Whether you're a business owner, accountant, or consumer, this tool makes GST calculations simple and accurate.</p>
             
-            <div class="radio-group">
-                <div class="radio-option">
-                    <input type="radio" id="exclusive" name="gstType" value="exclusive" checked>
-                    <label for="exclusive">GST Exclusive</label>
-                </div>
-                <div class="radio-option">
-                    <input type="radio" id="inclusive" name="gstType" value="inclusive">
-                    <label for="inclusive">GST Inclusive</label>
-                </div>
-            </div>
+            <h3>How to Use This GST Calculator</h3>
+            <ol>
+                <li>Enter the amount in the input field</li>
+                <li>Select whether the amount is GST Inclusive or GST Exclusive</li>
+                <li>Choose the applicable GST rate from the dropdown</li>
+                <li>Click "Calculate" to see the detailed breakdown</li>
+                <li>Use "Reset" to clear all fields and start over</li>
+            </ol>
             
-            <div class="select-group">
-                <label for="gstRate" style="display: none;">GST Rate</label>
-                <select id="gstRate">
-                    <option value="5">5% GST</option>
-                    <option value="12">12% GST</option>
-                    <option value="18" selected>18% GST</option>
-                    <option value="28">28% GST</option>
-                </select>
-            </div>
+            <h3>GST Calculation Formulas</h3>
+            <ul>
+                <li><strong>GST Exclusive Calculation:</strong> GST Amount = Original Amount × (GST Rate / 100)</li>
+                <li><strong>GST Inclusive Calculation:</strong> Original Amount = Total Amount ÷ (1 + GST Rate / 100)</li>
+                <li><strong>Total Amount:</strong> Original Amount + GST Amount</li>
+            </ul>
             
-            <div class="results">
-                <div class="result-item">
-                    <span class="result-label">Original Amount:</span>
-                    <span class="result-value" id="originalAmount">₹0.00</span>
+            <div class="faq-section">
+                <h3>Frequently Asked Questions</h3>
+                
+                <div class="faq-item">
+                    <p class="faq-question">What is GST?</p>
+                    <p>GST (Goods and Services Tax) is a value-added tax levied on most goods and services sold for domestic consumption. It's a comprehensive indirect tax that replaced many previous taxes in India.</p>
                 </div>
-                <div class="result-item">
-                    <span class="result-label">GST Rate:</span>
-                    <span class="result-value" id="gstRateValue">18%</span>
+                
+                <div class="faq-item">
+                    <p class="faq-question">What are the different GST rates in India?</p>
+                    <p>The main GST rates in India are 5%, 12%, 18%, and 28%. Some goods and services are exempt from GST, while others have special rates like 0.25% or 3%.</p>
                 </div>
-                <div class="result-item">
-                    <span class="result-label">GST Amount:</span>
-                    <span class="result-value" id="gstAmount">₹0.00</span>
+                
+                <div class="faq-item">
+                    <p class="faq-question">What's the difference between GST inclusive and exclusive?</p>
+                    <p>GST Exclusive means the price shown doesn't include GST, which will be added at the time of payment. GST Inclusive means the price already includes the GST amount.</p>
                 </div>
-                <div class="result-item">
-                    <span class="result-label">Total Amount:</span>
-                    <span class="result-value" id="totalAmount">₹0.00</span>
+                
+                <div class="faq-item">
+                    <p class="faq-question">Is this GST calculator free to use?</p>
+                    <p>Yes, our GST calculator is completely free to use with no limitations. You can use it as many times as you need without any registration or payment.</p>
                 </div>
             </div>
             
-            <div class="action-buttons">
-                <button class="btn btn-calculate" id="calculateBtn">Calculate</button>
-                <button class="btn btn-reset" id="resetBtn">Reset</button>
+            <!-- Related Tools - SPECIFIC TO CALCULATOR TOOLS -->
+            <div class="related-tools">
+                <span>Related Tools: </span>
+                <a href="https://www.vidzimagemaster.online/scientific-calculator.html" aria-label="Scientific Calculator">Scientific Calculator</a>
+                <a href="https://www.vidzimagemaster.online/age-calculator.html" aria-label="Age Calculator">Age Calculator</a>
+                <a href="https://www.vidzimagemaster.online/bmi-calculator.html" aria-label="BMI Calculator">BMI Calculator</a>
+                <a href="https://www.vidzimagemaster.online/loan-emi-calculator.html" aria-label="Loan EMI Calculator">Loan EMI Calculator</a>
+                <a href="https://www.vidzimagemaster.online/currency-converter.html" aria-label="Currency Converter">Currency Converter</a>
             </div>
+            
+            <p><strong>Note:</strong> This calculator provides estimates based on standard GST rates. For official tax calculations, please consult with a qualified tax professional.</p>
         </div>
-    </div>
-    
-    <div class="footer">
-        <p>© 2023 Multi-Tool Website | GST Calculator Tool</p>
+
+        <footer>
+            <p>GST Calculator &copy; 2023 | Part of Vidz Image Master</p>
+        </footer>
     </div>
 
     <script>
@@ -418,6 +565,91 @@
             // Initialize with default values
             calculateGST();
         });
+    </script>
+    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "GST Calculator",
+        "description": "Free online GST calculator tool for calculating GST amounts and total prices.",
+        "applicationCategory": "FinancialApplication",
+        "operatingSystem": "Any",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        }
+    }
+    </script>
+    
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://www.vidzimagemaster.online/"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Calculators",
+                "item": "https://www.vidzimagemaster.online/calculators"
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "GST Calculator",
+                "item": "https://www.vidzimagemaster.online/gst-calculator.html"
+            }
+        ]
+    }
+    </script>
+    
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "What is GST?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "GST (Goods and Services Tax) is a value-added tax levied on most goods and services sold for domestic consumption. It's a comprehensive indirect tax that replaced many previous taxes in India."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What are the different GST rates in India?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "The main GST rates in India are 5%, 12%, 18%, and 28%. Some goods and services are exempt from GST, while others have special rates like 0.25% or 3%."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What's the difference between GST inclusive and exclusive?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "GST Exclusive means the price shown doesn't include GST, which will be added at the time of payment. GST Inclusive means the price already includes the GST amount."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Is this GST calculator free to use?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes, our GST calculator is completely free to use with no limitations. You can use it as many times as you need without any registration or payment."
+                }
+            }
+        ]
+    }
     </script>
 </body>
 </html>
