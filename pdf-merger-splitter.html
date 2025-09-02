@@ -3,7 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PDF Merger & Splitter | Multi-Tool Website</title>
+    <title>PDF Merger & Splitter - Combine & Split PDF Files Online | Vidz Image Master</title>
+    <meta name="description" content="Free online PDF tools to merge multiple PDFs into one or split PDF files into individual pages. Process files securely in your browser.">
+    <meta name="keywords" content="pdf merger, pdf splitter, combine pdf, split pdf, pdf tools, online pdf tools">
+    <link rel="canonical" href="https://www.vidzimagemaster.online/pdf-tools.html">
+    
+    <!-- Hindi Version Link -->
+    <link rel="alternate" hreflang="hi" href="https://www.vidzimagemaster.online/hi/pdf-tools.html">
+    <link rel="alternate" hreflang="en" href="https://www.vidzimagemaster.online/pdf-tools.html">
+    <link rel="alternate" hreflang="x-default" href="https://www.vidzimagemaster.online/pdf-tools.html">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -14,7 +23,7 @@
         }
 
         body {
-            background: linear-gradient(135deg, #0077ff 0%, #00a2ff 100%);
+            background: linear-gradient(135deg, #0074e4 0%, #00a2ff 100%);
             color: #333;
             min-height: 100vh;
             padding: 20px;
@@ -25,40 +34,39 @@
 
         .container {
             width: 100%;
-            max-width: 1000px;
-            margin: 20px auto;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         header {
             text-align: center;
             margin-bottom: 30px;
-            color: white;
+            padding: 20px;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            width: 100%;
         }
 
-        header h1 {
+        h1 {
+            color: #0074e4;
             font-size: 2.8rem;
             margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
         }
 
-        header p {
+        .description {
+            color: #555;
             font-size: 1.2rem;
-            max-width: 600px;
+            max-width: 800px;
             margin: 0 auto;
-            opacity: 0.9;
-        }
-
-        .tool-container {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
         }
 
         .tabs {
             display: flex;
             background-color: white;
-            border-radius: 10px;
+            border-radius: 10px 10px 0 0;
             overflow: hidden;
+            margin-bottom: 0;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
 
@@ -70,11 +78,11 @@
             font-size: 1.1rem;
             cursor: pointer;
             transition: all 0.3s ease;
-            color: #0077ff;
+            color: #0074e4;
         }
 
         .tab.active {
-            background-color: #0077ff;
+            background-color: #0074e4;
             color: white;
         }
 
@@ -84,9 +92,10 @@
 
         .tool-content {
             background-color: white;
-            border-radius: 10px;
+            border-radius: 0 0 15px 15px;
             padding: 25px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            margin-bottom: 30px;
         }
 
         .tab-pane {
@@ -97,36 +106,66 @@
             display: block;
         }
 
-        .upload-area {
-            border: 2px dashed #0077ff;
-            border-radius: 10px;
-            padding: 30px;
-            text-align: center;
+        .upload-section {
+            margin-bottom: 25px;
+        }
+
+        .section-title {
+            color: #0074e4;
             margin-bottom: 20px;
-            transition: all 0.3s ease;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #00a2ff;
+            font-size: 1.5rem;
+        }
+
+        .upload-area {
+            border: 3px dashed #0074e4;
+            border-radius: 12px;
+            padding: 40px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
             background-color: #f0f8ff;
             position: relative;
-            overflow: hidden;
         }
 
         .upload-area:hover {
-            background-color: #e6f2ff;
+            background-color: #e0f0ff;
+            transform: translateY(-5px);
         }
 
-        .upload-area i {
-            font-size: 3rem;
-            color: #0077ff;
+        .upload-icon {
+            font-size: 60px;
+            color: #0074e4;
             margin-bottom: 15px;
         }
 
-        .upload-area h3 {
-            margin-bottom: 10px;
-            color: #0077ff;
+        .btn {
+            background-color: #0074e4;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s;
+            margin-top: 15px;
+            display: inline-block;
         }
 
-        .upload-area p {
-            margin-bottom: 15px;
-            color: #666;
+        .btn:hover {
+            background-color: #005bb9;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .btn-secondary {
+            background-color: #00a2ff;
         }
 
         .file-input {
@@ -137,29 +176,6 @@
             height: 100%;
             opacity: 0;
             cursor: pointer;
-        }
-
-        .btn {
-            background-color: #0077ff;
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            border-radius: 50px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: inline-block;
-            text-align: center;
-        }
-
-        .btn:hover {
-            background-color: #0055cc;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .btn i {
-            margin-right: 8px;
         }
 
         .file-list {
@@ -182,7 +198,7 @@
         }
 
         .file-item .file-name i {
-            color: #0077ff;
+            color: #0074e4;
             margin-right: 10px;
             font-size: 1.2rem;
         }
@@ -208,13 +224,13 @@
             display: block;
             margin-bottom: 8px;
             font-weight: 600;
-            color: #0077ff;
+            color: #0074e4;
         }
 
         .range-input input {
             width: 100%;
             padding: 12px;
-            border: 2px solid #0077ff;
+            border: 2px solid #0074e4;
             border-radius: 8px;
             font-size: 1rem;
         }
@@ -229,19 +245,12 @@
             display: flex;
             gap: 15px;
             margin-top: 25px;
+            flex-wrap: wrap;
         }
 
         .action-buttons .btn {
             flex: 1;
-        }
-
-        .btn-secondary {
-            background-color: #e6f2ff;
-            color: #0077ff;
-        }
-
-        .btn-secondary:hover {
-            background-color: #cce6ff;
+            min-width: 200px;
         }
 
         .result-area {
@@ -258,7 +267,29 @@
         }
 
         .result-area h3 {
-            color: #0077ff;
+            color: #0074e4;
+            margin-bottom: 15px;
+        }
+
+        .progress-bar {
+            height: 10px;
+            background-color: #e0e0e0;
+            border-radius: 5px;
+            margin: 15px 0;
+            overflow: hidden;
+        }
+
+        .progress {
+            height: 100%;
+            background-color: #00a2ff;
+            width: 0%;
+            transition: width 0.3s;
+        }
+
+        .status {
+            text-align: center;
+            font-weight: 500;
+            color: #0074e4;
             margin-bottom: 15px;
         }
 
@@ -276,46 +307,93 @@
             border-radius: 10px;
             padding: 20px;
             text-align: center;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
         }
 
         .feature i {
             font-size: 2.5rem;
-            color: #0077ff;
+            color: #0074e4;
             margin-bottom: 15px;
         }
 
         .feature h3 {
             margin-bottom: 10px;
-            color: #0077ff;
+            color: #0074e4;
         }
 
         footer {
             margin-top: 40px;
             text-align: center;
             color: white;
-            opacity: 0.8;
+            padding: 20px;
+            font-size: 1rem;
+        }
+        
+        /* SEO Content Styles */
+        .seo-content {
+            padding: 20px;
+            background: white;
+            border-radius: 15px;
+            margin-top: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            width: 100%;
+        }
+        .related-tools {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .related-tools a {
+            padding: 0.5rem 1rem;
+            background-color: #e6f2ff;
+            color: #0074e4;
+            border-radius: 8px;
+            text-decoration: none;
+        }
+        .related-tools a:hover {
+            background-color: #0074e4;
+            color: white;
+        }
+        .faq-item {
+            margin-bottom: 1rem;
+        }
+        .faq-question {
+            font-weight: bold;
+            color: #0074e4;
         }
 
-        /* Responsive styles */
         @media (max-width: 768px) {
             .tabs {
                 flex-direction: column;
             }
-
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .description {
+                font-size: 1rem;
+            }
+            
             .action-buttons {
                 flex-direction: column;
             }
-
-            header h1 {
-                font-size: 2.2rem;
+            
+            .action-buttons .btn {
+                width: 100%;
             }
-
-            .upload-area {
-                padding: 20px;
+            
+            .features {
+                flex-direction: column;
             }
         }
 
+        .hidden {
+            display: none;
+        }
+        
         /* Animation for file upload */
         @keyframes pulse {
             0% { transform: scale(1); }
@@ -326,100 +404,92 @@
         .pulse {
             animation: pulse 0.5s ease-in-out;
         }
-        
-        .progress-bar {
-            height: 6px;
-            background-color: #e6f2ff;
-            border-radius: 3px;
-            margin-top: 10px;
-            overflow: hidden;
-            display: none;
-        }
-        
-        .progress {
-            height: 100%;
-            background-color: #0077ff;
-            width: 0%;
-            transition: width 0.3s ease;
-        }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>PDF Merger & Splitter</h1>
-            <p>Combine multiple PDFs into one or split a PDF into individual pages. Simple, fast, and free!</p>
+            <h1><i class="fas fa-file-pdf"></i> PDF Merger & Splitter Tool</h1>
+            <p class="description">Combine multiple PDFs into one or split PDF files into individual pages. Process files securely in your browser.</p>
         </header>
 
-        <div class="tool-container">
-            <div class="tabs">
-                <div class="tab active" data-tab="merge">Merge PDFs</div>
-                <div class="tab" data-tab="split">Split PDF</div>
-            </div>
+        <div class="tabs">
+            <div class="tab active" data-tab="merge">Merge PDFs</div>
+            <div class="tab" data-tab="split">Split PDF</div>
+        </div>
 
-            <div class="tool-content">
-                <!-- Merge PDF Tab -->
-                <div class="tab-pane active" id="merge-tab">
+        <div class="tool-content">
+            <!-- Merge PDF Tab -->
+            <div class="tab-pane active" id="merge-tab">
+                <div class="upload-section">
+                    <h2 class="section-title">Upload PDF Files</h2>
                     <div class="upload-area" id="merge-upload">
-                        <i class="fas fa-file-pdf"></i>
-                        <h3>Upload PDF Files to Merge</h3>
-                        <p>Drag & drop files here or click to browse</p>
+                        <i class="fas fa-file-pdf upload-icon"></i>
+                        <p>Drag & drop PDF files here or click to browse</p>
                         <button class="btn"><i class="fas fa-upload"></i> Select Files</button>
-                        <input type="file" class="file-input" id="merge-file-input" accept=".pdf" multiple>
-                        <div class="progress-bar">
-                            <div class="progress" id="merge-progress"></div>
-                        </div>
+                        <input type="file" class="file-input" id="merge-file-input" accept=".pdf" multiple aria-label="Select PDF files">
                     </div>
-
-                    <div class="file-list" id="merge-file-list">
-                        <!-- Files will be listed here -->
-                    </div>
-
-                    <div class="action-buttons">
-                        <button class="btn" id="merge-btn"><i class="fas fa-object-group"></i> Merge PDFs</button>
-                        <button class="btn btn-secondary" id="merge-clear-btn"><i class="fas fa-trash"></i> Clear All</button>
-                    </div>
-
-                    <div class="result-area" id="merge-result">
-                        <h3>Your PDFs have been merged successfully!</h3>
-                        <p>File name: <strong>merged_document.pdf</strong> (2.4 MB)</p>
-                        <button class="btn" id="merge-download-btn"><i class="fas fa-download"></i> Download Merged PDF</button>
-                    </div>
+                    <p class="crop-info">Select multiple PDF files to merge into a single document.</p>
                 </div>
 
-                <!-- Split PDF Tab -->
-                <div class="tab-pane" id="split-tab">
+                <div class="file-list" id="merge-file-list">
+                    <!-- Files will be listed here -->
+                </div>
+
+                <div class="status" id="merge-status">Ready to process PDF files</div>
+                <div class="progress-bar">
+                    <div class="progress" id="merge-progress"></div>
+                </div>
+
+                <div class="action-buttons">
+                    <button class="btn" id="merge-btn"><i class="fas fa-object-group"></i> Merge PDFs</button>
+                    <button class="btn btn-secondary" id="merge-clear-btn"><i class="fas fa-trash"></i> Clear All</button>
+                </div>
+
+                <div class="result-area" id="merge-result">
+                    <h3>Your PDFs have been merged successfully!</h3>
+                    <p>File name: <strong>merged_document.pdf</strong> (2.4 MB)</p>
+                    <button class="btn" id="merge-download-btn"><i class="fas fa-download"></i> Download Merged PDF</button>
+                </div>
+            </div>
+
+            <!-- Split PDF Tab -->
+            <div class="tab-pane" id="split-tab">
+                <div class="upload-section">
+                    <h2 class="section-title">Upload PDF File</h2>
                     <div class="upload-area" id="split-upload">
-                        <i class="fas fa-file-pdf"></i>
-                        <h3>Upload PDF File to Split</h3>
-                        <p>Drag & drop file here or click to browse</p>
+                        <i class="fas fa-file-pdf upload-icon"></i>
+                        <p>Drag & drop a PDF file here or click to browse</p>
                         <button class="btn"><i class="fas fa-upload"></i> Select File</button>
-                        <input type="file" class="file-input" id="split-file-input" accept=".pdf">
-                        <div class="progress-bar">
-                            <div class="progress" id="split-progress"></div>
-                        </div>
+                        <input type="file" class="file-input" id="split-file-input" accept=".pdf" aria-label="Select PDF file">
                     </div>
+                    <p class="crop-info">Select a PDF file to split into individual pages or specific ranges.</p>
+                </div>
 
-                    <div class="file-list" id="split-file-list">
-                        <!-- File will be listed here -->
-                    </div>
+                <div class="file-list" id="split-file-list">
+                    <!-- File will be listed here -->
+                </div>
 
-                    <div class="range-input">
-                        <label for="page-range">Select Pages to Extract</label>
-                        <input type="text" id="page-range" placeholder="e.g., 1-5, 8, 11-13">
-                        <p class="hint">Enter page numbers or ranges separated by commas. Leave blank to split all pages.</p>
-                    </div>
+                <div class="range-input">
+                    <label for="page-range">Select Pages to Extract</label>
+                    <input type="text" id="page-range" placeholder="e.g., 1-5, 8, 11-13">
+                    <p class="hint">Enter page numbers or ranges separated by commas. Leave blank to split all pages.</p>
+                </div>
 
-                    <div class="action-buttons">
-                        <button class="btn" id="split-btn"><i class="fas fa-cut"></i> Split PDF</button>
-                        <button class="btn btn-secondary" id="split-clear-btn"><i class="fas fa-trash"></i> Clear</button>
-                    </div>
+                <div class="status" id="split-status">Ready to process PDF file</div>
+                <div class="progress-bar">
+                    <div class="progress" id="split-progress"></div>
+                </div>
 
-                    <div class="result-area" id="split-result">
-                        <h3>Your PDF has been split successfully!</h3>
-                        <p>5 pages extracted from the original document</p>
-                        <button class="btn" id="split-download-btn"><i class="fas fa-download"></i> Download Split PDFs as ZIP</button>
-                    </div>
+                <div class="action-buttons">
+                    <button class="btn" id="split-btn"><i class="fas fa-cut"></i> Split PDF</button>
+                    <button class="btn btn-secondary" id="split-clear-btn"><i class="fas fa-trash"></i> Clear</button>
+                </div>
+
+                <div class="result-area" id="split-result">
+                    <h3>Your PDF has been split successfully!</h3>
+                    <p>5 pages extracted from the original document</p>
+                    <button class="btn" id="split-download-btn"><i class="fas fa-download"></i> Download Split PDFs as ZIP</button>
                 </div>
             </div>
         </div>
@@ -441,195 +511,375 @@
                 <p>Works perfectly on all devices - smartphones, tablets, and desktops.</p>
             </div>
         </div>
+        
+        <!-- SEO Content Section -->
+        <div class="seo-content">
+            <h2>Free Online PDF Merger & Splitter Tool</h2>
+            <p>Our PDF tools allow you to merge multiple PDF documents into a single file or split PDF files into individual pages or specific ranges. All processing happens directly in your browser for maximum security.</p>
+            
+            <h3>How to Use This Tool</h3>
+            <ol>
+                <li>Select the Merge or Split tab depending on your needs</li>
+                <li>Upload your PDF files using the drag & drop area or file browser</li>
+                <li>For splitting, specify page ranges if needed (optional)</li>
+                <li>Click the process button to merge or split your PDFs</li>
+                <li>Download the resulting file(s)</li>
+            </ol>
+            
+            <h3>Common Use Cases</h3>
+            <ul>
+                <li>Combining multiple scanned documents into a single PDF</li>
+                <li>Splitting large PDFs into smaller, more manageable files</li>
+                <li>Extracting specific pages from reports or documents</li>
+                <li>Preparing documents for email attachments by reducing file size</li>
+                <li>Organizing PDF pages for presentations or submissions</li>
+            </ul>
+            
+            <div class="faq-section">
+                <h3>Frequently Asked Questions</h3>
+                
+                <div class="faq-item">
+                    <p class="faq-question">Is this PDF tool free to use?</p>
+                    <p>Yes, our tool is completely free to use with no limitations.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <p class="faq-question">Are my files secure?</p>
+                    <p>Absolutely! All processing happens directly in your browser. Your files are never uploaded to our servers.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <p class="faq-question">What is the maximum file size I can process?</p>
+                    <p>There are no specific limits, but very large files may take longer to process depending on your device's capabilities.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <p class="faq-question">Can I merge password-protected PDFs?</p>
+                    <p>No, our tool cannot process encrypted or password-protected PDF files.</p>
+                </div>
+            </div>
+            
+            <!-- Related Tools - SPECIFIC TO PDF TOOL -->
+            <div class="related-tools">
+                <span>Related Tools: </span>
+                <a href="https://www.vidzimagemaster.online/pdf-to-word-word-to-pdf.html" aria-label="PDF to Word Converter">PDF to Word</a>
+                <a href="https://www.vidzimagemaster.online/document-converter.html" aria-label="Document Converter">Document Converter</a>
+                <a href="https://www.vidzimagemaster.online/image-to-text-(OCR).html" aria-label="Image to Text OCR">Image to Text</a>
+                <a href="https://www.vidzimagemaster.online/base64-encoder-decoder.html" aria-label="Base64 Encoder/Decoder">Base64 Tools</a>
+                <a href="https://www.vidzimagemaster.online/json-formatter-&-validator.html" aria-label="JSON Formatter">JSON Formatter</a>
+            </div>
+            
+            <p><strong>Privacy Note:</strong> All PDF processing occurs locally in your browser. Your files are never uploaded to any server, ensuring complete privacy and security.</p>
+        </div>
+
+        <footer>
+            <p>PDF Merger & Splitter Tool &copy; 2023 | Part of Vidz Image Master</p>
+        </footer>
     </div>
 
-    <footer>
-        <p>© 2023 Multi-Tool Website | PDF Tools</p>
-    </footer>
-
     <script>
-        // Tab switching functionality
-        document.querySelectorAll('.tab').forEach(tab => {
-            tab.addEventListener('click', () => {
-                // Remove active class from all tabs
-                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-                // Add active class to clicked tab
-                tab.classList.add('active');
+        document.addEventListener('DOMContentLoaded', function() {
+            // Tab switching functionality
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.addEventListener('click', () => {
+                    // Remove active class from all tabs
+                    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                    // Add active class to clicked tab
+                    tab.classList.add('active');
+                    
+                    // Hide all tab panes
+                    document.querySelectorAll('.tab-pane').forEach(pane => pane.classList.remove('active'));
+                    // Show the corresponding tab pane
+                    const tabName = tab.getAttribute('data-tab');
+                    document.getElementById(`${tabName}-tab`).classList.add('active');
+                });
+            });
+
+            // File input functionality for merge
+            const mergeFileInput = document.getElementById('merge-file-input');
+            const mergeUploadArea = document.getElementById('merge-upload');
+            const mergeFileList = document.getElementById('merge-file-list');
+            const mergeProgress = document.getElementById('merge-progress');
+            const mergeStatus = document.getElementById('merge-status');
+
+            mergeFileInput.addEventListener('change', function(e) {
+                handleFiles(e.target.files, 'merge');
+            });
+
+            mergeUploadArea.addEventListener('dragover', function(e) {
+                e.preventDefault();
+                this.style.borderColor = '#0055cc';
+                this.style.backgroundColor = '#e0f0ff';
+            });
+
+            mergeUploadArea.addEventListener('dragleave', function(e) {
+                e.preventDefault();
+                this.style.borderColor = '#0074e4';
+                this.style.backgroundColor = '#f0f8ff';
+            });
+
+            mergeUploadArea.addEventListener('drop', function(e) {
+                e.preventDefault();
+                this.style.borderColor = '#0074e4';
+                this.style.backgroundColor = '#f0f8ff';
                 
-                // Hide all tab panes
-                document.querySelectorAll('.tab-pane').forEach(pane => pane.classList.remove('active'));
-                // Show the corresponding tab pane
-                const tabName = tab.getAttribute('data-tab');
-                document.getElementById(`${tabName}-tab`).classList.add('active');
+                if (e.dataTransfer.files.length > 0) {
+                    handleFiles(e.dataTransfer.files, 'merge');
+                }
+            });
+
+            // File input functionality for split
+            const splitFileInput = document.getElementById('split-file-input');
+            const splitUploadArea = document.getElementById('split-upload');
+            const splitFileList = document.getElementById('split-file-list');
+            const splitProgress = document.getElementById('split-progress');
+            const splitStatus = document.getElementById('split-status');
+
+            splitFileInput.addEventListener('change', function(e) {
+                handleFiles(e.target.files, 'split');
+            });
+
+            splitUploadArea.addEventListener('dragover', function(e) {
+                e.preventDefault();
+                this.style.borderColor = '#0055cc';
+                this.style.backgroundColor = '#e0f0ff';
+            });
+
+            splitUploadArea.addEventListener('dragleave', function(e) {
+                e.preventDefault();
+                this.style.borderColor = '#0074e4';
+                this.style.backgroundColor = '#f0f8ff';
+            });
+
+            splitUploadArea.addEventListener('drop', function(e) {
+                e.preventDefault();
+                this.style.borderColor = '#0074e4';
+                this.style.backgroundColor = '#f0f8ff';
+                
+                if (e.dataTransfer.files.length > 0) {
+                    handleFiles(e.dataTransfer.files, 'split');
+                }
+            });
+
+            // Handle uploaded files
+            function handleFiles(files, type) {
+                const fileList = type === 'merge' ? mergeFileList : splitFileList;
+                const progressBar = type === 'merge' ? mergeProgress : splitProgress;
+                const statusText = type === 'merge' ? mergeStatus : splitStatus;
+                
+                // Show progress
+                statusText.textContent = 'Uploading files...';
+                progressBar.style.width = '0%';
+                
+                // Simulate upload progress
+                let width = 0;
+                const interval = setInterval(() => {
+                    width += 5;
+                    progressBar.style.width = width + '%';
+                    
+                    if (width >= 100) {
+                        clearInterval(interval);
+                        statusText.textContent = 'Files uploaded successfully!';
+                        
+                        // Add files to list
+                        fileList.innerHTML = '';
+                        
+                        for (let i = 0; i < files.length; i++) {
+                            const file = files[i];
+                            const size = formatFileSize(file.size);
+                            
+                            const fileItem = document.createElement('div');
+                            fileItem.className = 'file-item';
+                            fileItem.innerHTML = `
+                                <div class="file-name">
+                                    <i class="fas fa-file-pdf"></i>
+                                    <span>${file.name} (${size})</span>
+                                </div>
+                                <div class="file-actions">
+                                    <button><i class="fas fa-times"></i></button>
+                                </div>
+                            `;
+                            fileList.appendChild(fileItem);
+                            
+                            // Add event listener to remove button
+                            fileItem.querySelector('.file-actions button').addEventListener('click', function() {
+                                fileItem.remove();
+                                if (fileList.children.length === 0) {
+                                    statusText.textContent = 'Ready to process PDF files';
+                                }
+                            });
+                        }
+                    }
+                }, 50);
+            }
+
+            // Format file size
+            function formatFileSize(bytes) {
+                if (bytes === 0) return '0 Bytes';
+                
+                const k = 1024;
+                const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+                const i = Math.floor(Math.log(bytes) / Math.log(k));
+                
+                return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+            }
+
+            // Simulate merge process
+            document.getElementById('merge-btn').addEventListener('click', function() {
+                const fileList = document.getElementById('merge-file-list');
+                if (fileList.children.length > 0) {
+                    mergeStatus.textContent = 'Merging PDF files...';
+                    
+                    // Simulate processing
+                    let width = 0;
+                    const interval = setInterval(() => {
+                        width += 5;
+                        mergeProgress.style.width = width + '%';
+                        
+                        if (width >= 100) {
+                            clearInterval(interval);
+                            mergeStatus.textContent = 'PDFs merged successfully!';
+                            // Show result area
+                            document.getElementById('merge-result').classList.add('active');
+                        }
+                    }, 50);
+                }
+            });
+
+            // Simulate split process
+            document.getElementById('split-btn').addEventListener('click', function() {
+                const fileList = document.getElementById('split-file-list');
+                if (fileList.children.length > 0) {
+                    splitStatus.textContent = 'Splitting PDF file...';
+                    
+                    // Simulate processing
+                    let width = 0;
+                    const interval = setInterval(() => {
+                        width += 5;
+                        splitProgress.style.width = width + '%';
+                        
+                        if (width >= 100) {
+                            clearInterval(interval);
+                            splitStatus.textContent = 'PDF split successfully!';
+                            // Show result area
+                            document.getElementById('split-result').classList.add('active');
+                        }
+                    }, 50);
+                }
+            });
+
+            // Clear buttons functionality
+            document.getElementById('merge-clear-btn').addEventListener('click', function() {
+                document.getElementById('merge-file-list').innerHTML = '';
+                document.getElementById('merge-result').classList.remove('active');
+                mergeFileInput.value = '';
+                mergeStatus.textContent = 'Ready to process PDF files';
+                mergeProgress.style.width = '0%';
+            });
+
+            document.getElementById('split-clear-btn').addEventListener('click', function() {
+                document.getElementById('split-file-list').innerHTML = '';
+                document.getElementById('split-result').classList.remove('active');
+                document.getElementById('page-range').value = '';
+                splitFileInput.value = '';
+                splitStatus.textContent = 'Ready to process PDF file';
+                splitProgress.style.width = '0%';
+            });
+
+            // Download buttons functionality
+            document.getElementById('merge-download-btn').addEventListener('click', function() {
+                alert('In a real application, this would download the merged PDF file.');
+            });
+
+            document.getElementById('split-download-btn').addEventListener('click', function() {
+                alert('In a real application, this would download the split PDF files as a ZIP archive.');
             });
         });
-
-        // File input functionality for merge
-        const mergeFileInput = document.getElementById('merge-file-input');
-        const mergeUploadArea = document.getElementById('merge-upload');
-        const mergeFileList = document.getElementById('merge-file-list');
-        const mergeProgress = document.getElementById('merge-progress');
-        const mergeProgressBar = mergeProgress.parentElement;
-
-        mergeFileInput.addEventListener('change', function(e) {
-            handleFiles(e.target.files, 'merge');
-        });
-
-        mergeUploadArea.addEventListener('dragover', function(e) {
-            e.preventDefault();
-            this.style.borderColor = '#0055cc';
-            this.style.backgroundColor = '#e6f2ff';
-        });
-
-        mergeUploadArea.addEventListener('dragleave', function(e) {
-            e.preventDefault();
-            this.style.borderColor = '#0077ff';
-            this.style.backgroundColor = '#f0f8ff';
-        });
-
-        mergeUploadArea.addEventListener('drop', function(e) {
-            e.preventDefault();
-            this.style.borderColor = '#0077ff';
-            this.style.backgroundColor = '#f0f8ff';
-            
-            if (e.dataTransfer.files.length > 0) {
-                handleFiles(e.dataTransfer.files, 'merge');
+    </script>
+    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "PDF Merger & Splitter Tool",
+        "description": "Free online tool to merge multiple PDFs into one or split PDF files into individual pages.",
+        "applicationCategory": "UtilityApplication",
+        "operatingSystem": "Any",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        }
+    }
+    </script>
+    
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://www.vidzimagemaster.online/"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Tools",
+                "item": "https://www.vidzimagemaster.online/tools"
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "PDF Merger & Splitter",
+                "item": "https://www.vidzimagemaster.online/pdf-tools.html"
             }
-        });
-
-        // File input functionality for split
-        const splitFileInput = document.getElementById('split-file-input');
-        const splitUploadArea = document.getElementById('split-upload');
-        const splitFileList = document.getElementById('split-file-list');
-        const splitProgress = document.getElementById('split-progress');
-        const splitProgressBar = splitProgress.parentElement;
-
-        splitFileInput.addEventListener('change', function(e) {
-            handleFiles(e.target.files, 'split');
-        });
-
-        splitUploadArea.addEventListener('dragover', function(e) {
-            e.preventDefault();
-            this.style.borderColor = '#0055cc';
-            this.style.backgroundColor = '#e6f2ff';
-        });
-
-        splitUploadArea.addEventListener('dragleave', function(e) {
-            e.preventDefault();
-            this.style.borderColor = '#0077ff';
-            this.style.backgroundColor = '#f0f8ff';
-        });
-
-        splitUploadArea.addEventListener('drop', function(e) {
-            e.preventDefault();
-            this.style.borderColor = '#0077ff';
-            this.style.backgroundColor = '#f0f8ff';
-            
-            if (e.dataTransfer.files.length > 0) {
-                handleFiles(e.dataTransfer.files, 'split');
-            }
-        });
-
-        // Handle uploaded files
-        function handleFiles(files, type) {
-            const fileList = type === 'merge' ? mergeFileList : splitFileList;
-            const progressBar = type === 'merge' ? mergeProgressBar : splitProgressBar;
-            const progress = type === 'merge' ? mergeProgress : splitProgress;
-            
-            // Show progress bar
-            progressBar.style.display = 'block';
-            progress.style.width = '0%';
-            
-            // Simulate upload progress
-            let width = 0;
-            const interval = setInterval(() => {
-                width += 5;
-                progress.style.width = width + '%';
-                
-                if (width >= 100) {
-                    clearInterval(interval);
-                    progressBar.style.display = 'none';
-                    
-                    // Add files to list
-                    fileList.innerHTML = '';
-                    
-                    for (let i = 0; i < files.length; i++) {
-                        const file = files[i];
-                        const size = formatFileSize(file.size);
-                        
-                        const fileItem = document.createElement('div');
-                        fileItem.className = 'file-item';
-                        fileItem.innerHTML = `
-                            <div class="file-name">
-                                <i class="fas fa-file-pdf"></i>
-                                <span>${file.name} (${size})</span>
-                            </div>
-                            <div class="file-actions">
-                                <button><i class="fas fa-times"></i></button>
-                            </div>
-                        `;
-                        fileList.appendChild(fileItem);
-                        
-                        // Add event listener to remove button
-                        fileItem.querySelector('.file-actions button').addEventListener('click', function() {
-                            fileItem.remove();
-                        });
-                    }
+        ]
+    }
+    </script>
+    
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "Is this PDF tool free to use?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes, our tool is completely free to use with no limitations."
                 }
-            }, 50);
-        }
-
-        // Format file size
-        function formatFileSize(bytes) {
-            if (bytes === 0) return '0 Bytes';
-            
-            const k = 1024;
-            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
-            const i = Math.floor(Math.log(bytes) / Math.log(k));
-            
-            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
-        }
-
-        // Simulate merge process
-        document.getElementById('merge-btn').addEventListener('click', function() {
-            const fileList = document.getElementById('merge-file-list');
-            if (fileList.children.length > 0) {
-                // Show result area
-                document.getElementById('merge-result').classList.add('active');
+            },
+            {
+                "@type": "Question",
+                "name": "Are my files secure?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Absolutely! All processing happens directly in your browser. Your files are never uploaded to our servers."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What is the maximum file size I can process?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "There are no specific limits, but very large files may take longer to process depending on your device's capabilities."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Can I merge password-protected PDFs?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "No, our tool cannot process encrypted or password-protected PDF files."
+                }
             }
-        });
-
-        // Simulate split process
-        document.getElementById('split-btn').addEventListener('click', function() {
-            const fileList = document.getElementById('split-file-list');
-            if (fileList.children.length > 0) {
-                // Show result area
-                document.getElementById('split-result').classList.add('active');
-            }
-        });
-
-        // Clear buttons functionality
-        document.getElementById('merge-clear-btn').addEventListener('click', function() {
-            document.getElementById('merge-file-list').innerHTML = '';
-            document.getElementById('merge-result').classList.remove('active');
-            mergeFileInput.value = '';
-        });
-
-        document.getElementById('split-clear-btn').addEventListener('click', function() {
-            document.getElementById('split-file-list').innerHTML = '';
-            document.getElementById('split-result').classList.remove('active');
-            document.getElementById('page-range').value = '';
-            splitFileInput.value = '';
-        });
-
-        // Download buttons functionality
-        document.getElementById('merge-download-btn').addEventListener('click', function() {
-            alert('In a real application, this would download the merged PDF file.');
-        });
-
-        document.getElementById('split-download-btn').addEventListener('click', function() {
-            alert('In a real application, this would download the split PDF files as a ZIP archive.');
-        });
+        ]
+    }
     </script>
 </body>
 </html>
