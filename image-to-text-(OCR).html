@@ -3,7 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OCR Tool - MultiTool</title>
+    <title>OCR Image to Text - Extract Text from Images Online | Vidz Image Master</title>
+    <meta name="description" content="Free online OCR tool to extract text from images. Convert scanned documents, photos, and screenshots to editable text with high accuracy.">
+    <meta name="keywords" content="ocr tool, image to text, extract text from image, text recognition, online ocr, scanned text extraction">
+    <link rel="canonical" href="https://www.vidzimagemaster.online/image-to-text-ocr.html">
+    
+    <!-- Hindi Version Link -->
+    <link rel="alternate" hreflang="hi" href="https://www.vidzimagemaster.online/hi/image-to-text-ocr.html">
+    <link rel="alternate" hreflang="en" href="https://www.vidzimagemaster.online/image-to-text-ocr.html">
+    <link rel="alternate" hreflang="x-default" href="https://www.vidzimagemaster.online/image-to-text-ocr.html">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/tesseract.js@4/dist/tesseract.min.js"></script>
     <style>
@@ -197,6 +206,41 @@
             padding: 20px;
             font-size: 1rem;
         }
+        
+        /* SEO Content Styles */
+        .seo-content {
+            padding: 20px;
+            background: white;
+            border-radius: 15px;
+            margin-top: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            width: 100%;
+        }
+        .related-tools {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .related-tools a {
+            padding: 0.5rem 1rem;
+            background-color: #e6f2ff;
+            color: #0074e4;
+            border-radius: 8px;
+            text-decoration: none;
+        }
+        .related-tools a:hover {
+            background-color: #0074e4;
+            color: white;
+        }
+        .faq-item {
+            margin-bottom: 1rem;
+        }
+        .faq-question {
+            font-weight: bold;
+            color: #0074e4;
+        }
 
         @media (max-width: 768px) {
             .main-content {
@@ -209,6 +253,10 @@
             
             .description {
                 font-size: 1rem;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
             }
         }
 
@@ -230,7 +278,7 @@
                 <div class="upload-area" id="drop-area">
                     <i class="fas fa-cloud-upload-alt upload-icon"></i>
                     <p>Drag & drop your image here or click to browse</p>
-                    <input type="file" id="file-input" accept="image/*" hidden>
+                    <input type="file" id="file-input" accept="image/*" hidden aria-label="Select image file">
                     <button class="btn" id="browse-btn">Browse Files</button>
                 </div>
                 <p class="crop-info">After uploading, you can crop the image to select the specific area for text extraction.</p>
@@ -239,7 +287,7 @@
             <div class="preview-section">
                 <h2 class="section-title">Crop & Preview</h2>
                 <div class="preview-container">
-                    <img id="image-preview" src="" alt="Image preview">
+                    <img id="image-preview" src="" alt="Image preview for text extraction">
                 </div>
                 <div class="action-buttons">
                     <button class="btn" id="crop-btn"><i class="fas fa-crop-alt"></i> Crop Selection</button>
@@ -263,11 +311,71 @@
                 </div>
             </div>
         </div>
-    </div>
+        
+        <!-- SEO Content Section -->
+        <div class="seo-content">
+            <h2>Free Online OCR Image to Text Tool</h2>
+            <p>Our OCR (Optical Character Recognition) tool allows you to extract text from images with high accuracy. Convert scanned documents, photos, screenshots, and more into editable text.</p>
+            
+            <h3>How to Use This Tool</h3>
+            <ol>
+                <li>Upload your image using the drag & drop area or file browser</li>
+                <li>Crop the image to focus on the specific text area (optional)</li>
+                <li>Click "Extract Text" to process the image</li>
+                <li>Review the extracted text in the results area</li>
+                <li>Download the text as a TXT file for your use</li>
+            </ol>
+            
+            <h3>Common Use Cases</h3>
+            <ul>
+                <li>Extracting text from scanned documents and PDFs</li>
+                <li>Converting images of receipts and invoices to editable text</li>
+                <li>Reading text from screenshots and photos</li>
+                <li>Digitizing printed documents and books</li>
+                <li>Converting handwritten notes to digital text (limited accuracy)</li>
+            </ul>
+            
+            <div class="faq-section">
+                <h3>Frequently Asked Questions</h3>
+                
+                <div class="faq-item">
+                    <p class="faq-question">Is this OCR tool free to use?</p>
+                    <p>Yes, our tool is completely free to use with no limitations.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <p class="faq-question">What languages are supported?</p>
+                    <p>Our tool supports multiple languages including English, Spanish, French, German, Hindi, and more.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <p class="faq-question">How accurate is the text extraction?</p>
+                    <p>Accuracy depends on image quality. Clear, high-resolution images with standard fonts typically yield the best results.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <p class="faq-question">Are my images stored on your servers?</p>
+                    <p>No, all processing happens directly in your browser. Your images are never uploaded to our servers.</p>
+                </div>
+            </div>
+            
+            <!-- Related Tools - SPECIFIC TO OCR TOOL -->
+            <div class="related-tools">
+                <span>Related Tools: </span>
+                <a href="https://www.vidzimagemaster.online/pdf-to-word-word-to-pdf.html" aria-label="PDF to Word Converter">PDF to Word</a>
+                <a href="https://www.vidzimagemaster.online/document-converter.html" aria-label="Document Converter">Document Converter</a>
+                <a href="https://www.vidzimagemaster.online/image-to-text-(OCR).html" aria-label="Image to Text OCR">Image to Text</a>
+                <a href="https://www.vidzimagemaster.online/base64-encoder-decoder.html" aria-label="Base64 Encoder/Decoder">Base64 Tools</a>
+                <a href="https://www.vidzimagemaster.online/json-formatter-&-validator.html" aria-label="JSON Formatter">JSON Formatter</a>
+            </div>
+            
+            <p><strong>Privacy Note:</strong> All image processing occurs locally in your browser. Your files are never uploaded to any server, ensuring complete privacy and security.</p>
+        </div>
 
-    <footer>
-        <p>MultiTool OCR © 2023 | Fast and Accurate Image to Text Conversion</p>
-    </footer>
+        <footer>
+            <p>OCR Image to Text Tool &copy; 2023 | Part of Vidz Image Master</p>
+        </footer>
+    </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -433,5 +541,90 @@
     <!-- Load Cropper.js CSS and JS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
+    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "OCR Image to Text Tool",
+        "description": "Free online tool to extract text from images using OCR technology.",
+        "applicationCategory": "UtilityApplication",
+        "operatingSystem": "Any",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        }
+    }
+    </script>
+    
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://www.vidzimagemaster.online/"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Tools",
+                "item": "https://www.vidzimagemaster.online/tools"
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "OCR Image to Text",
+                "item": "https://www.vidzimagemaster.online/image-to-text-ocr.html"
+            }
+        ]
+    }
+    </script>
+    
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "Is this OCR tool free to use?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes, our tool is completely free to use with no limitations."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What languages are supported?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Our tool supports multiple languages including English, Spanish, French, German, Hindi, and more."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "How accurate is the text extraction?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Accuracy depends on image quality. Clear, high-resolution images with standard fonts typically yield the best results."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Are my images stored on your servers?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "No, all processing happens directly in your browser. Your images are never uploaded to our servers."
+                }
+            }
+        ]
+    }
+    </script>
 </body>
 </html>
