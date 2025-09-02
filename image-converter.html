@@ -1,10 +1,18 @@
-  
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Image Converter Tool</title>
+  <title>Image Converter - Convert PNG, JPG, GIF, WebP Online | Vidz Image Master</title>
+  <meta name="description" content="Free online image converter tool. Convert images between PNG, JPG, GIF, WebP formats instantly. No registration required. Client-side processing for privacy." />
+  <meta name="keywords" content="image converter, convert image, png to jpg, jpg to png, webp converter, image format converter, online tool" />
+  <link rel="canonical" href="https://www.vidzimagemaster.online/image-converter.html" />
+  
+  <!-- Hindi Version Link (if available) -->
+  <link rel="alternate" hreflang="hi" href="https://www.vidzimagemaster.online/hi/image-converter.html" />
+  <link rel="alternate" hreflang="en" href="https://www.vidzimagemaster.online/image-converter.html" />
+  <link rel="alternate" hreflang="x-default" href="https://www.vidzimagemaster.online/image-converter.html" />
+  
   <style>
     body {
       background-color: #ffffff;
@@ -17,14 +25,22 @@
       min-height: 100vh;
       padding: 1rem;
       box-sizing: border-box;
+      line-height: 1.6;
     }
     .container {
       padding: 2rem;
       border-radius: 16px;
-      max-width: 500px;
+      max-width: 800px;
       width: 100%;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
       background-color: #ffffff;
+      margin-bottom: 2rem;
+    }
+    .seo-content {
+      max-width: 800px;
+      width: 100%;
+      padding: 1rem;
+      margin-top: 2rem;
     }
     input, select, button {
       width: 100%;
@@ -62,21 +78,106 @@
     .download-btn:hover {
       background-color: #1e40af;
     }
+    .related-tools {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .related-tools a {
+      padding: 0.5rem 1rem;
+      background-color: #f1f5f9;
+      color: #2563eb;
+      border-radius: 8px;
+      text-decoration: none;
+    }
+    .related-tools a:hover {
+      background-color: #2563eb;
+      color: white;
+    }
+    .faq-item {
+      margin-bottom: 1rem;
+    }
+    .faq-question {
+      font-weight: bold;
+      color: #2563eb;
+    }
+    a {
+      color: #2563eb;
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
   <div class="container">
     <h1>Image Converter Tool</h1>
-    <input type="file" id="imageInput" accept="image/*" />
-    <select id="formatSelect">
+    <input type="file" id="imageInput" accept="image/*" aria-label="Select image to convert" />
+    <select id="formatSelect" aria-label="Select output format">
       <option value="png">PNG</option>
       <option value="jpeg">JPG</option>
       <option value="gif">GIF</option>
       <option value="webp">WebP</option>
     </select>
-    <button onclick="convertImage()">Convert Image</button>
+    <button onclick="convertImage()" aria-label="Convert image">Convert Image</button>
 
     <div id="previewContainer"></div>
+    
+    <!-- Related Tools -->
+    <div class="related-tools">
+      <span>Related Tools: </span>
+      <a href="https://www.vidzimagemaster.online/image-compressor.html" aria-label="Image Compressor">Image Compressor</a>
+      <a href="https://www.vidzimagemaster.online/image-resizer.html" aria-label="Image Resizer">Image Resizer</a>
+      <a href="https://www.vidzimagemaster.online/base64-encoder-decoder.html" aria-label="Image to Base64">Image to Base64</a>
+    </div>
+  </div>
+
+  <!-- SEO Content Section -->
+  <div class="seo-content">
+    <h2>Free Online Image Converter Tool</h2>
+    <p>Our Image Converter tool allows you to easily convert images between different formats including PNG, JPG, GIF, and WebP. This free online tool helps you change image formats without losing quality.</p>
+    
+    <h3>How to Use This Image Converter</h3>
+    <ol>
+      <li>Select an image using the "Choose File" button</li>
+      <li>Choose your desired output format (PNG, JPG, GIF, or WebP)</li>
+      <li>Click the "Convert Image" button</li>
+      <li>Preview your converted image</li>
+      <li>Download the converted image using the download button</li>
+    </ol>
+    
+    <h3>Common Use Cases</h3>
+    <ul>
+      <li>Convert PNG to JPG for smaller file sizes</li>
+      <li>Convert JPG to PNG for transparent backgrounds</li>
+      <li>Convert images to WebP for modern web compatibility</li>
+      <li>Convert GIF to other formats for editing purposes</li>
+    </ul>
+    
+    <div class="faq-section">
+      <h3>Frequently Asked Questions</h3>
+      
+      <div class="faq-item">
+        <p class="faq-question">Is this image converter free to use?</p>
+        <p>Yes, our image converter is completely free to use with no limitations.</p>
+      </div>
+      
+      <div class="faq-item">
+        <p class="faq-question">Are my images uploaded to your server?</p>
+        <p>No, all image processing happens directly in your browser (client-side). Your images are never sent to our servers, ensuring complete privacy.</p>
+      </div>
+      
+      <div class="faq-item">
+        <p class="faq-question">What is the maximum file size I can convert?</p>
+        <p>You can convert images up to 10MB in size. For larger files, consider using our <a href="https://www.vidzimagemaster.online/image-compressor.html">Image Compressor</a> first.</p>
+      </div>
+      
+      <div class="faq-item">
+        <p class="faq-question">Which image formats are supported?</p>
+        <p>Our tool supports conversion between PNG, JPG, GIF, and WebP formats.</p>
+      </div>
+    </div>
+    
+    <p><strong>Privacy Note:</strong> All image processing occurs locally in your browser. Your files are never uploaded to any server, ensuring complete privacy and security.</p>
   </div>
 
   <script>
@@ -85,7 +186,7 @@
     document.getElementById('imageInput').addEventListener('change', function(e) {
       originalFile = e.target.files[0];
       const previewContainer = document.getElementById('previewContainer');
-      previewContainer.innerHTML = '<p>Original Preview:</p>' + '<img src="' + URL.createObjectURL(originalFile) + '" alt="Original Image">';
+      previewContainer.innerHTML = '<p>Original Preview:</p>' + '<img src="' + URL.createObjectURL(originalFile) + '" alt="Original Image Preview">';
     });
 
     function convertImage() {
@@ -107,7 +208,7 @@
             const convertedUrl = URL.createObjectURL(blob);
             const previewContainer = document.getElementById("previewContainer");
             previewContainer.innerHTML += '<p>Converted Preview:</p>' +
-              '<img src="' + convertedUrl + '" alt="Converted Image">' +
+              '<img src="' + convertedUrl + '" alt="Converted Image Preview in ' + format + ' format">' +
               '<a class="download-btn" href="' + convertedUrl + '" download="converted-image.' + format + '">Download Converted Image</a>';
           }, 'image/' + format);
         };
@@ -117,7 +218,90 @@
       reader.readAsDataURL(originalFile);
     }
   </script>
+  
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Image Converter Tool",
+    "description": "Free online image converter tool to convert between PNG, JPG, GIF, and WebP formats.",
+    "applicationCategory": "MultimediaApplication",
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://www.vidzimagemaster.online/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Tools",
+        "item": "https://www.vidzimagemaster.online/tools"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Image Converter",
+        "item": "https://www.vidzimagemaster.online/image-converter.html"
+      }
+    ]
+  }
+  </script>
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Is this image converter free to use?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, our image converter is completely free to use with no limitations."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Are my images uploaded to your server?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No, all image processing happens directly in your browser (client-side). Your images are never sent to our servers, ensuring complete privacy."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the maximum file size I can convert?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "You can convert images up to 10MB in size. For larger files, consider using our Image Compressor first."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Which image formats are supported?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Our tool supports conversion between PNG, JPG, GIF, and WebP formats."
+        }
+      }
+    ]
+  }
+  </script>
 </body>
 </html>
-  
-  
