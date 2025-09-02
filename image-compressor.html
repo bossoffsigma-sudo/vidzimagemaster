@@ -3,7 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Image Compressor Tool</title>
+    <title>Image Compressor - Reduce Image Size Online | Vidz Image Master</title>
+    <meta name="description" content="Free online image compressor tool. Reduce JPEG, PNG, WebP image size without losing quality. Compress photos for websites, social media, and emails.">
+    <meta name="keywords" content="image compressor, compress images, reduce image size, photo compressor, optimize images, jpeg compressor, png compressor">
+    <link rel="canonical" href="https://www.vidzimagemaster.online/image-compressor.html">
+    
+    <!-- Hindi Version Link -->
+    <link rel="alternate" hreflang="hi" href="https://www.vidzimagemaster.online/hi/image-compressor.html">
+    <link rel="alternate" hreflang="en" href="https://www.vidzimagemaster.online/image-compressor.html">
+    <link rel="alternate" hreflang="x-default" href="https://www.vidzimagemaster.online/image-compressor.html">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -253,6 +262,39 @@
             font-size: 0.9rem;
             color: #666;
         }
+        
+        /* SEO Content Styles */
+        .seo-content {
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        .related-tools {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .related-tools a {
+            padding: 0.5rem 1rem;
+            background-color: #e6f2ff;
+            color: #0077ff;
+            border-radius: 8px;
+            text-decoration: none;
+        }
+        .related-tools a:hover {
+            background-color: #0077ff;
+            color: white;
+        }
+        .faq-item {
+            margin-bottom: 1rem;
+        }
+        .faq-question {
+            font-weight: bold;
+            color: #0077ff;
+        }
 
         footer {
             text-align: center;
@@ -277,6 +319,11 @@
             
             .btn {
                 width: 100%;
+            }
+            
+            .related-tools {
+                flex-direction: column;
+                align-items: center;
             }
         }
 
@@ -319,14 +366,14 @@
                     <div class="image-box">
                         <h3>Original Image</h3>
                         <div class="image-preview">
-                            <img id="originalPreview" src="" alt="Original image">
+                            <img id="originalPreview" src="" alt="Original image preview">
                         </div>
                     </div>
                     
                     <div class="image-box">
                         <h3>Compressed Image</h3>
                         <div class="image-preview">
-                            <img id="compressedPreview" src="" alt="Compressed image">
+                            <img id="compressedPreview" src="" alt="Compressed image preview">
                         </div>
                     </div>
                 </div>
@@ -352,7 +399,7 @@
                     <div class="control-group">
                         <label for="qualitySlider">Compression Quality</label>
                         <div class="slider-container">
-                            <input type="range" id="qualitySlider" min="30" max="100" value="80">
+                            <input type="range" id="qualitySlider" min="30" max="100" value="80" aria-label="Compression quality slider">
                             <span class="quality-value" id="qualityValue">80%</span>
                         </div>
                         <p class="info-text">Lower quality = smaller file size</p>
@@ -364,11 +411,70 @@
                     <button class="btn btn-secondary" id="downloadBtn" disabled>Download Compressed Image</button>
                 </div>
             </div>
+            
+            <!-- SEO Content Section -->
+            <div class="seo-content">
+                <h2>Free Online Image Compressor Tool</h2>
+                <p>Our Image Compressor tool helps you reduce image file sizes while maintaining visual quality. Perfect for optimizing photos for websites, social media, email attachments, and storage savings.</p>
+                
+                <h3>How to Use This Tool</h3>
+                <ol>
+                    <li>Upload your image using the drag & drop area or browse button</li>
+                    <li>Adjust the compression quality using the slider (30-100%)</li>
+                    <li>Click "Compress Image" to process your photo</li>
+                    <li>Compare original and compressed versions</li>
+                    <li>Download your optimized image</li>
+                </ol>
+                
+                <h3>Common Use Cases</h3>
+                <ul>
+                    <li>Optimizing website images for faster loading</li>
+                    <li>Reducing photo sizes for email attachments</li>
+                    <li>Compressing social media images</li>
+                    <li>Saving storage space on devices</li>
+                    <li>Preparing images for online portfolios</li>
+                </ul>
+                
+                <div class="faq-section">
+                    <h3>Frequently Asked Questions</h3>
+                    
+                    <div class="faq-item">
+                        <p class="faq-question">Is this image compressor free to use?</p>
+                        <p>Yes, our image compressor is completely free to use with no limitations.</p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <p class="faq-question">What image formats are supported?</p>
+                        <p>Our tool supports JPEG, PNG, WebP, and other common image formats.</p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <p class="faq-question">Will compression reduce image quality?</p>
+                        <p>Some quality reduction may occur, but our algorithm optimizes for the best balance between size and visual quality.</p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <p class="faq-question">Are my images stored on your servers?</p>
+                        <p>No, all processing happens directly in your browser. Your images are never uploaded to our servers.</p>
+                    </div>
+                </div>
+                
+                <!-- Related Tools -->
+                <div class="related-tools">
+                    <span>Related Tools: </span>
+                    <a href="https://www.vidzimagemaster.online/image-converter.html" aria-label="Image Converter">Image Converter</a>
+                    <a href="https://www.vidzimagemaster.online/image-resizer.html" aria-label="Image Resizer">Image Resizer</a>
+                    <a href="https://www.vidzimagemaster.online/image-cropper.html" aria-label="Image Cropper">Image Cropper</a>
+                    <a href="https://www.vidzimagemaster.online/youtube-thumbnail-downloader.html" aria-label="YouTube Thumbnail Downloader">Thumbnail Downloader</a>
+                </div>
+                
+                <p><strong>Privacy Note:</strong> All image processing occurs locally in your browser. Your files are never uploaded to any server, ensuring complete privacy and security.</p>
+            </div>
         </div>
     </div>
     
     <footer>
-        <p>Image Compressor Tool &copy; 2023 | Part of Multi-Tool Website</p>
+        <p>Image Compressor Tool &copy; 2023 | Part of Vidz Image Master</p>
     </footer>
 
     <script>
@@ -524,6 +630,91 @@
                     });
             }
         });
+    </script>
+    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Image Compressor Tool",
+        "description": "Free online tool to compress images and reduce file size without losing quality.",
+        "applicationCategory": "MultimediaApplication",
+        "operatingSystem": "Any",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        }
+    }
+    </script>
+    
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://www.vidzimagemaster.online/"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Tools",
+                "item": "https://www.vidzimagemaster.online/tools"
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "Image Compressor",
+                "item": "https://www.vidzimagemaster.online/image-compressor.html"
+            }
+        ]
+    }
+    </script>
+    
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "Is this image compressor free to use?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes, our image compressor is completely free to use with no limitations."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What image formats are supported?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Our tool supports JPEG, PNG, WebP, and other common image formats."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Will compression reduce image quality?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Some quality reduction may occur, but our algorithm optimizes for the best balance between size and visual quality."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Are my images stored on your servers?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "No, all processing happens directly in your browser. Your images are never uploaded to our servers."
+                }
+            }
+        ]
+    }
     </script>
 </body>
 </html>
