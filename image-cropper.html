@@ -3,18 +3,31 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Blue Cropper Tool</title>
+  <title>Image Cropper - Crop Images Online | Vidz Image Master</title>
+  <meta name="description" content="Free online image cropper tool. Crop JPEG, PNG, WebP images with precision. Multiple aspect ratios, drag & drop interface, and instant download.">
+  <meta name="keywords" content="image cropper, crop images, photo cropper, image editing, online crop tool, photo editor">
+  <link rel="canonical" href="https://www.vidzimagemaster.online/image-cropper.html">
+  
+  <!-- Hindi Version Link -->
+  <link rel="alternate" hreflang="hi" href="https://www.vidzimagemaster.online/hi/image-cropper.html">
+  <link rel="alternate" hreflang="en" href="https://www.vidzimagemaster.online/image-cropper.html">
+  <link rel="alternate" hreflang="x-default" href="https://www.vidzimagemaster.online/image-cropper.html">
+  
   <style>
     body {
       margin: 0; font-family: Arial, sans-serif;
       background: #f5faff; color: #003366;
+      line-height: 1.6;
     }
     header {
       background: #1890ff; color: #fff;
       padding: 15px; font-size: 20px;
       font-weight: bold; text-align: center;
     }
-    .container { max-width: 1000px; margin: 20px auto; padding: 10px; }
+    .container { 
+      max-width: 1000px; margin: 20px auto; 
+      padding: 10px; 
+    }
     .uploader {
       border: 2px dashed #1890ff; padding: 20px;
       text-align: center; background: #fff;
@@ -54,13 +67,54 @@
     select { padding: 8px; border: 2px solid #1890ff; border-radius: 6px; }
     .preview { margin-top: 20px; text-align: center; }
     canvas { max-width: 100%; border: 1px solid #ddd; border-radius: 12px; }
+    
+    /* SEO Content Styles */
+    .seo-content {
+      padding: 20px;
+      background: #f8f9fa;
+      border-radius: 10px;
+      margin-top: 20px;
+    }
+    .related-tools {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1.5rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .related-tools a {
+      padding: 0.5rem 1rem;
+      background-color: #e6f2ff;
+      color: #1890ff;
+      border-radius: 8px;
+      text-decoration: none;
+    }
+    .related-tools a:hover {
+      background-color: #1890ff;
+      color: white;
+    }
+    .faq-item {
+      margin-bottom: 1rem;
+    }
+    .faq-question {
+      font-weight: bold;
+      color: #1890ff;
+    }
+    footer {
+      text-align: center;
+      margin-top: 20px;
+      padding: 15px;
+      background: #1890ff;
+      color: white;
+      border-radius: 8px;
+    }
   </style>
 </head>
 <body>
-  <header>⚡ Blue & White Image Crop Tool</header>
+  <header>⚡ Image Cropper Tool</header>
   <div class="container">
     <div class="uploader">
-      <input type="file" id="fileInput" accept="image/*" />
+      <input type="file" id="fileInput" accept="image/*" aria-label="Select image file" />
       <button class="btn" onclick="document.getElementById('fileInput').click()">Upload Image</button>
     </div>
 
@@ -77,7 +131,7 @@
     </div>
 
     <div class="workspace" id="workspace">
-      <img id="sourceImage" />
+      <img id="sourceImage" alt="Source image for cropping" />
       <div id="cropBox">
         <div class="handle nw"></div><div class="handle ne"></div>
         <div class="handle sw"></div><div class="handle se"></div>
@@ -87,10 +141,74 @@
     </div>
 
     <div class="preview">
-      <button class="btn" id="cropBtn">Crop</button>
-      <button class="btn" id="downloadBtn">Download</button>
-      <div><canvas id="preview"></canvas></div>
+      <button class="btn" id="cropBtn">Crop Image</button>
+      <button class="btn" id="downloadBtn">Download Cropped Image</button>
+      <div><canvas id="preview" aria-label="Cropped image preview"></canvas></div>
     </div>
+    
+    <!-- SEO Content Section -->
+    <div class="seo-content">
+      <h2>Free Online Image Cropper Tool</h2>
+      <p>Our Image Cropper allows you to precisely crop images with various aspect ratios. Perfect for profile pictures, social media, documents, and more.</p>
+      
+      <h3>How to Use This Tool</h3>
+      <ol>
+        <li>Upload your image using the upload button or drag & drop</li>
+        <li>Select your desired aspect ratio or choose "Free" for custom cropping</li>
+        <li>Adjust the crop area using the handles on the edges and corners</li>
+        <li>Click "Crop Image" to preview your cropped image</li>
+        <li>Download your perfectly cropped image</li>
+      </ol>
+      
+      <h3>Common Use Cases</h3>
+      <ul>
+        <li>Creating profile pictures for social media</li>
+        <li>Cropping images for documents and IDs</li>
+        <li>Preparing product images for e-commerce</li>
+        <li>Creating thumbnails for websites and blogs</li>
+        <li>Removing unwanted parts from photos</li>
+      </ul>
+      
+      <div class="faq-section">
+        <h3>Frequently Asked Questions</h3>
+        
+        <div class="faq-item">
+          <p class="faq-question">Is this image cropper free to use?</p>
+          <p>Yes, our tool is completely free to use with no limitations.</p>
+        </div>
+        
+        <div class="faq-item">
+          <p class="faq-question">What image formats are supported?</p>
+          <p>Our tool supports JPEG, PNG, WebP, GIF, and other common image formats.</p>
+        </div>
+        
+        <div class="faq-item">
+          <p class="faq-question">Will cropping reduce image quality?</p>
+          <p>No, cropping preserves the original image quality within the selected area.</p>
+        </div>
+        
+        <div class="faq-item">
+          <p class="faq-question">Are my images stored on your servers?</p>
+          <p>No, all processing happens directly in your browser. Your images are never uploaded to our servers.</p>
+        </div>
+      </div>
+      
+      <!-- Related Tools - SPECIFIC TO IMAGE CROPPER -->
+      <div class="related-tools">
+        <span>Related Tools: </span>
+        <a href="https://www.vidzimagemaster.online/image-resizer.html" aria-label="Image Resizer">Image Resizer</a>
+        <a href="https://www.vidzimagemaster.online/image-compressor.html" aria-label="Image Compressor">Image Compressor</a>
+        <a href="https://www.vidzimagemaster.online/image-converter.html" aria-label="Image Converter">Image Converter</a>
+        <a href="https://www.vidzimagemaster.online/image-rotator-flipper.html" aria-label="Image Rotator & Flipper">Rotator & Flipper</a>
+        <a href="https://www.vidzimagemaster.online/youtube-thumbnail-downloader.html" aria-label="YouTube Thumbnail Downloader">Thumbnail Downloader</a>
+      </div>
+      
+      <p><strong>Privacy Note:</strong> All image processing occurs locally in your browser. Your files are never uploaded to any server, ensuring complete privacy and security.</p>
+    </div>
+    
+    <footer>
+      <p>Image Cropper Tool &copy; 2023 | Part of Vidz Image Master</p>
+    </footer>
   </div>
 
   <script>
@@ -201,10 +319,95 @@
 
     document.getElementById("downloadBtn").addEventListener("click", () => {
       const link = document.createElement("a");
-      link.download = "cropped.png";
+      link.download = "cropped-image.png";
       link.href = previewCanvas.toDataURL("image/png");
       link.click();
     });
+  </script>
+  
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Image Cropper Tool",
+    "description": "Free online tool to crop images with precision and multiple aspect ratios.",
+    "applicationCategory": "MultimediaApplication",
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://www.vidzimagemaster.online/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Tools",
+        "item": "https://www.vidzimagemaster.online/tools"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Image Cropper",
+        "item": "https://www.vidzimagemaster.online/image-cropper.html"
+      }
+    ]
+  }
+  </script>
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Is this image cropper free to use?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, our tool is completely free to use with no limitations."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What image formats are supported?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Our tool supports JPEG, PNG, WebP, GIF, and other common image formats."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Will cropping reduce image quality?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No, cropping preserves the original image quality within the selected area."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Are my images stored on your servers?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No, all processing happens directly in your browser. Your images are never uploaded to our servers."
+        }
+      }
+    ]
+  }
   </script>
 </body>
 </html>
