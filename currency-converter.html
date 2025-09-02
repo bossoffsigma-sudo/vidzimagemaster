@@ -3,7 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Currency Converter | Multi-Tool Website</title>
+    <title>Currency Converter | Convert Any Currency Online | Vidz Image Master</title>
+    <meta name="description" content="Free online currency converter with real-time exchange rates. Convert between USD, EUR, GBP, JPY, INR and more with accurate calculations.">
+    <meta name="keywords" content="currency converter, exchange rates, money converter, foreign exchange, online converter, USD to EUR, INR to USD">
+    <link rel="canonical" href="https://www.vidzimagemaster.online/currency-converter.html">
+    
+    <!-- Hindi Version Link -->
+    <link rel="alternate" hreflang="hi" href="https://www.vidzimagemaster.online/hi/currency-converter.html">
+    <link rel="alternate" hreflang="en" href="https://www.vidzimagemaster.online/currency-converter.html">
+    <link rel="alternate" hreflang="x-default" href="https://www.vidzimagemaster.online/currency-converter.html">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -12,65 +21,88 @@
             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        
+
         body {
-            background: linear-gradient(135deg, #0077ff 0%, #00a2ff 100%);
+            background: linear-gradient(135deg, #0074e4 0%, #00a2ff 100%);
+            color: #333;
             min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
             padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
-        
+
         .container {
             width: 100%;
-            max-width: 500px;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-            overflow: hidden;
+            max-width: 1200px;
+            margin: 0 auto;
         }
-        
-        .header {
-            background: #0077ff;
-            color: white;
-            padding: 25px 30px;
+
+        header {
             text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            width: 100%;
         }
-        
-        .header h1 {
-            font-weight: 600;
-            font-size: 28px;
-            margin-bottom: 5px;
+
+        h1 {
+            color: #0074e4;
+            font-size: 2.8rem;
+            margin-bottom: 10px;
         }
-        
-        .header p {
-            font-size: 14px;
-            opacity: 0.9;
+
+        .description {
+            color: #555;
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
         }
-        
-        .converter {
-            padding: 30px;
+
+        .main-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
         }
-        
-        .amount-box, .from-box, .to-box, .result-box {
+
+        .converter-section, .result-section {
+            background-color: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .section-title {
+            color: #0074e4;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #00a2ff;
+            font-size: 1.5rem;
+        }
+
+        .amount-box, .from-box, .to-box {
             margin-bottom: 25px;
         }
-        
+
         .amount-box label, .from-box label, .to-box label {
             display: block;
             margin-bottom: 8px;
             font-weight: 500;
-            color: #0077ff;
+            color: #0074e4;
             font-size: 14px;
         }
-        
+
         .input-group {
             position: relative;
             display: flex;
             align-items: center;
         }
-        
+
         .input-group input, .input-group select {
             width: 100%;
             padding: 15px 20px;
@@ -80,34 +112,34 @@
             outline: none;
             transition: all 0.3s;
         }
-        
+
         .input-group input:focus, .input-group select:focus {
-            border-color: #0077ff;
+            border-color: #0074e4;
             box-shadow: 0 0 0 3px rgba(0, 119, 255, 0.1);
         }
-        
+
         .input-group input {
             padding-left: 50px;
         }
-        
+
         .input-group i {
             position: absolute;
             left: 20px;
-            color: #0077ff;
+            color: #0074e4;
             font-size: 20px;
         }
-        
+
         .switch-btn {
             display: flex;
             justify-content: center;
             margin: 10px 0;
         }
-        
+
         .switch-btn button {
             width: 50px;
             height: 50px;
             border-radius: 50%;
-            background: #0077ff;
+            background: #0074e4;
             color: white;
             border: none;
             cursor: pointer;
@@ -118,83 +150,116 @@
             box-shadow: 0 5px 15px rgba(0, 119, 255, 0.3);
             transition: all 0.3s;
         }
-        
+
         .switch-btn button:hover {
             background: #0066dd;
             transform: rotate(180deg);
         }
-        
-        .result-box {
+
+        .btn {
+            background-color: #0074e4;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s;
+            margin-top: 15px;
+            display: inline-block;
+        }
+
+        .btn:hover {
+            background-color: #005bb9;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .result-container {
             background: #f0f8ff;
             padding: 20px;
             border-radius: 10px;
             text-align: center;
             margin-top: 20px;
-            border: 2px dashed #0077ff;
+            border: 2px dashed #0074e4;
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
-        
-        .result-box h4 {
-            color: #0077ff;
-            margin-bottom: 10px;
-            font-size: 16px;
-        }
-        
-        .result-box h2 {
+
+        .result-container h2 {
             color: #0066dd;
             font-size: 32px;
             font-weight: 700;
+            margin: 10px 0;
         }
-        
+
         .rate-info {
-            color: #0077ff;
+            color: #0074e4;
             font-size: 14px;
             margin-top: 10px;
         }
-        
-        .action-btn {
-            display: block;
-            width: 100%;
-            padding: 16px;
-            background: #0077ff;
-            color: white;
-            border: none;
-            border-radius: 10px;
-            font-size: 18px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            margin-top: 20px;
-            box-shadow: 0 5px 15px rgba(0, 119, 255, 0.3);
-        }
-        
-        .action-btn:hover {
-            background: #0066dd;
-            transform: translateY(-2px);
-        }
-        
-        .footer {
+
+        footer {
+            margin-top: 40px;
             text-align: center;
+            color: white;
             padding: 20px;
-            color: #666;
-            font-size: 12px;
-            border-top: 1px solid #eee;
+            font-size: 1rem;
         }
         
-        @media (max-width: 600px) {
-            .container {
-                border-radius: 15px;
+        /* SEO Content Styles */
+        .seo-content {
+            padding: 20px;
+            background: white;
+            border-radius: 15px;
+            margin-top: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            width: 100%;
+        }
+        .related-tools {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .related-tools a {
+            padding: 0.5rem 1rem;
+            background-color: #e6f2ff;
+            color: #0074e4;
+            border-radius: 8px;
+            text-decoration: none;
+        }
+        .related-tools a:hover {
+            background-color: #0074e4;
+            color: white;
+        }
+        .faq-item {
+            margin-bottom: 1rem;
+        }
+        .faq-question {
+            font-weight: bold;
+            color: #0074e4;
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                flex-direction: column;
             }
             
-            .header {
-                padding: 20px;
+            h1 {
+                font-size: 2.2rem;
             }
             
-            .header h1 {
-                font-size: 24px;
-            }
-            
-            .converter {
-                padding: 20px;
+            .description {
+                font-size: 1rem;
             }
             
             .input-group input, .input-group select {
@@ -206,7 +271,7 @@
                 padding-left: 45px;
             }
             
-            .result-box h2 {
+            .result-container h2 {
                 font-size: 28px;
             }
         }
@@ -214,70 +279,142 @@
 </head>
 <body>
     <div class="container">
-        <div class="header">
+        <header>
             <h1><i class="fas fa-exchange-alt"></i> Currency Converter</h1>
-            <p>Real-time exchange rates with a clean, intuitive interface</p>
+            <p class="description">Convert between currencies with real-time exchange rates. Fast, accurate and completely free.</p>
+        </header>
+
+        <div class="main-content">
+            <div class="converter-section">
+                <h2 class="section-title">Currency Conversion</h2>
+                
+                <div class="amount-box">
+                    <label for="amount">Amount</label>
+                    <div class="input-group">
+                        <i class="fas fa-money-bill-wave"></i>
+                        <input type="number" id="amount" placeholder="Enter amount" value="100" min="0">
+                    </div>
+                </div>
+                
+                <div class="from-box">
+                    <label for="fromCurrency">From Currency</label>
+                    <div class="input-group">
+                        <select id="fromCurrency">
+                            <option value="USD">USD - US Dollar</option>
+                            <option value="EUR">EUR - Euro</option>
+                            <option value="GBP">GBP - British Pound</option>
+                            <option value="JPY">JPY - Japanese Yen</option>
+                            <option value="CAD">CAD - Canadian Dollar</option>
+                            <option value="AUD">AUD - Australian Dollar</option>
+                            <option value="CHF">CHF - Swiss Franc</option>
+                            <option value="CNY">CNY - Chinese Yuan</option>
+                            <option value="INR" selected>INR - Indian Rupee</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="switch-btn">
+                    <button id="switchCurrencies"><i class="fas fa-sync-alt"></i></button>
+                </div>
+                
+                <div class="to-box">
+                    <label for="toCurrency">To Currency</label>
+                    <div class="input-group">
+                        <select id="toCurrency">
+                            <option value="USD" selected>USD - US Dollar</option>
+                            <option value="EUR">EUR - Euro</option>
+                            <option value="GBP">GBP - British Pound</option>
+                            <option value="JPY">JPY - Japanese Yen</option>
+                            <option value="CAD">CAD - Canadian Dollar</option>
+                            <option value="AUD">AUD - Australian Dollar</option>
+                            <option value="CHF">CHF - Swiss Franc</option>
+                            <option value="CNY">CNY - Chinese Yuan</option>
+                            <option value="INR">INR - Indian Rupee</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <button class="btn" id="convertBtn"><i class="fas fa-exchange-alt"></i> Convert Now</button>
+            </div>
+
+            <div class="result-section">
+                <h2 class="section-title">Conversion Result</h2>
+                <div class="result-container">
+                    <h4>Converted Amount</h4>
+                    <h2 id="convertedAmount">$1.21</h2>
+                    <p class="rate-info">Exchange Rate: <span id="exchangeRate">1 INR = 0.0121 USD</span></p>
+                </div>
+                <p class="rate-info">Rates update every minute for accurate conversions.</p>
+            </div>
         </div>
         
-        <div class="converter">
-            <div class="amount-box">
-                <label for="amount">Amount</label>
-                <div class="input-group">
-                    <i class="fas fa-money-bill-wave"></i>
-                    <input type="number" id="amount" placeholder="Enter amount" value="100" min="0">
+        <!-- SEO Content Section -->
+        <div class="seo-content">
+            <h2>Free Online Currency Converter</h2>
+            <p>Our currency converter provides real-time exchange rates for all major world currencies. Convert between US Dollars, Euros, British Pounds, Japanese Yen, Indian Rupees, and more with accurate calculations.</p>
+            
+            <h3>How to Use This Tool</h3>
+            <ol>
+                <li>Enter the amount you want to convert</li>
+                <li>Select the currency you're converting from</li>
+                <li>Select the currency you want to convert to</li>
+                <li>Click "Convert Now" to see the result</li>
+                <li>Use the switch button to quickly swap currencies</li>
+            </ol>
+            
+            <h3>Supported Currencies</h3>
+            <ul>
+                <li>USD - US Dollar</li>
+                <li>EUR - Euro</li>
+                <li>GBP - British Pound</li>
+                <li>JPY - Japanese Yen</li>
+                <li>CAD - Canadian Dollar</li>
+                <li>AUD - Australian Dollar</li>
+                <li>CHF - Swiss Franc</li>
+                <li>CNY - Chinese Yuan</li>
+                <li>INR - Indian Rupee</li>
+            </ul>
+            
+            <div class="faq-section">
+                <h3>Frequently Asked Questions</h3>
+                
+                <div class="faq-item">
+                    <p class="faq-question">How often are exchange rates updated?</p>
+                    <p>Our exchange rates update every minute to provide you with the most accurate conversions.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <p class="faq-question">Is this currency converter free to use?</p>
+                    <p>Yes, our tool is completely free to use with no limitations or hidden fees.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <p class="faq-question">Can I use this for business purposes?</p>
+                    <p>While our converter provides accurate rates, for business transactions we recommend verifying rates with your financial institution.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <p class="faq-question">Do you store my conversion data?</p>
+                    <p>No, all conversions happen locally in your browser. We don't store any of your conversion data on our servers.</p>
                 </div>
             </div>
             
-            <div class="from-box">
-                <label for="fromCurrency">From</label>
-                <div class="input-group">
-                    <select id="fromCurrency">
-                        <option value="USD">USD - US Dollar</option>
-                        <option value="EUR">EUR - Euro</option>
-                        <option value="GBP">GBP - British Pound</option>
-                        <option value="JPY">JPY - Japanese Yen</option>
-                        <option value="CAD">CAD - Canadian Dollar</option>
-                        <option value="AUD">AUD - Australian Dollar</option>
-                        <option value="CHF">CHF - Swiss Franc</option>
-                        <option value="CNY">CNY - Chinese Yuan</option>
-                        <option value="INR" selected>INR - Indian Rupee</option>
-                    </select>
-                </div>
+            <!-- Related Tools - SPECIFIC TO CURRENCY CONVERTER -->
+            <div class="related-tools">
+                <span>Related Tools: </span>
+                <a href="https://www.vidzimagemaster.online/unit-converter.html" aria-label="Unit Converter">Unit Converter</a>
+                <a href="https://www.vidzimagemaster.online/time-zone-converter.html" aria-label="Time Zone Converter">Time Zone Converter</a>
+                <a href="https://www.vidzimagemaster.online/loan-emi-calculator.html" aria-label="Loan EMI Calculator">EMI Calculator</a>
+                <a href="https://www.vidzimagemaster.online/gst-calculator.html" aria-label="GST Calculator">GST Calculator</a>
+                <a href="https://www.vidzimagemaster.online/bmi-calculator.html" aria-label="BMI Calculator">BMI Calculator</a>
             </div>
             
-            <div class="switch-btn">
-                <button id="switchCurrencies"><i class="fas fa-sync-alt"></i></button>
-            </div>
-            
-            <div class="to-box">
-                <label for="toCurrency">To</label>
-                <div class="input-group">
-                    <select id="toCurrency">
-                        <option value="USD" selected>USD - US Dollar</option>
-                        <option value="EUR">EUR - Euro</option>
-                        <option value="GBP">GBP - British Pound</option>
-                        <option value="JPY">JPY - Japanese Yen</option>
-                        <option value="CAD">CAD - Canadian Dollar</option>
-                        <option value="AUD">AUD - Australian Dollar</option>
-                        <option value="CHF">CHF - Swiss Franc</option>
-                        <option value="CNY">CNY - Chinese Yuan</option>
-                        <option value="INR">INR - Indian Rupee</option>
-                    </select>
-                </div>
-            </div>
-            
-            <div class="result-box">
-                <h4>Converted Amount</h4>
-                <h2 id="convertedAmount">$1.21</h2>
-                <p class="rate-info">Exchange Rate: <span id="exchangeRate">1 INR = 0.0121 USD</span></p>
-            </div>
-            
-            <button class="action-btn" id="convertBtn">Convert Now</button>
+            <p><strong>Note:</strong> Exchange rates are for informational purposes only and may differ from rates offered by financial institutions.</p>
         </div>
-        
-        <div class="footer">
-            <p>© 2023 Multi-Tool Website | Rates update every minute</p>
-        </div>
+
+        <footer>
+            <p>Currency Converter Tool &copy; 2023 | Part of Vidz Image Master</p>
+        </footer>
     </div>
 
     <script>
@@ -360,6 +497,91 @@
             // Simulate real-time updates (in a real app, this would fetch from an API)
             setInterval(updateConversion, 60000);
         });
+    </script>
+    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Currency Converter",
+        "description": "Free online currency converter with real-time exchange rates.",
+        "applicationCategory": "FinancialApplication",
+        "operatingSystem": "Any",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        }
+    }
+    </script>
+    
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://www.vidzimagemaster.online/"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Tools",
+                "item": "https://www.vidzimagemaster.online/tools"
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "Currency Converter",
+                "item": "https://www.vidzimagemaster.online/currency-converter.html"
+            }
+        ]
+    }
+    </script>
+    
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "How often are exchange rates updated?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Our exchange rates update every minute to provide you with the most accurate conversions."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Is this currency converter free to use?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes, our tool is completely free to use with no limitations or hidden fees."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Can I use this for business purposes?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "While our converter provides accurate rates, for business transactions we recommend verifying rates with your financial institution."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Do you store my conversion data?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "No, all conversions happen locally in your browser. We don't store any of your conversion data on our servers."
+                }
+            }
+        ]
+    }
     </script>
 </body>
 </html>
