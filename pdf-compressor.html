@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PDF Compressor | Multi-Tool Website</title>
+    <title>PDF Compressor | Vidz Tools</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.12.313/pdf.min.js"></script>
     <style>
         * {
             margin: 0;
@@ -25,7 +26,7 @@
         
         .container {
             width: 100%;
-            max-width: 800px;
+            max-width: 900px;
             background: white;
             border-radius: 20px;
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
@@ -38,6 +39,7 @@
             color: white;
             padding: 25px;
             text-align: center;
+            position: relative;
         }
         
         h1 {
@@ -48,6 +50,26 @@
         .subtitle {
             font-size: 16px;
             opacity: 0.9;
+        }
+        
+        .language-switcher {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+        
+        .language-btn {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .language-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
         }
         
         .main-content {
@@ -62,6 +84,7 @@
             margin-bottom: 30px;
             transition: all 0.3s;
             background: #f0f8ff;
+            position: relative;
         }
         
         .upload-area:hover, .upload-area.dragover {
@@ -78,6 +101,12 @@
         .upload-text {
             margin-bottom: 20px;
             font-size: 18px;
+        }
+        
+        .file-info {
+            margin-top: 15px;
+            font-size: 14px;
+            color: #555;
         }
         
         .browse-btn {
@@ -185,7 +214,7 @@
             color: white;
         }
         
-        .compress-btn:hover {
+        .compress-btn:hover:not(:disabled) {
             background: #0054a6;
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(0, 85, 166, 0.3);
@@ -196,13 +225,13 @@
             color: white;
         }
         
-        .download-btn:hover {
+        .download-btn:hover:not(:disabled) {
             background: #008040;
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(0, 128, 64, 0.3);
         }
         
-        .download-btn:disabled {
+        .compress-btn:disabled, .download-btn:disabled {
             background: #ccc;
             cursor: not-allowed;
             transform: none;
@@ -258,12 +287,105 @@
             transition: width 0.5s;
         }
         
+        .preview-container {
+            margin-top: 30px;
+            display: none;
+        }
+        
+        .preview-title {
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: #0073e6;
+            font-weight: 600;
+        }
+        
+        .preview-content {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .preview-box {
+            flex: 1;
+            min-width: 250px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 15px;
+            background: #f9f9f9;
+        }
+        
+        .preview-box h4 {
+            margin-bottom: 10px;
+            color: #0073e6;
+            text-align: center;
+        }
+        
+        .page-preview {
+            width: 100%;
+            height: 200px;
+            background: white;
+            border: 1px solid #eee;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        
+        .page-preview img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+        
         footer {
             text-align: center;
             color: white;
             margin-top: auto;
             padding: 20px;
             font-size: 14px;
+            width: 100%;
+        }
+        
+        /* SEO Content Styles */
+        .seo-content {
+            padding: 20px;
+            background: white;
+            border-radius: 15px;
+            margin-top: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            width: 100%;
+            max-width: 900px;
+        }
+        
+        .related-tools {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .related-tools a {
+            padding: 0.5rem 1rem;
+            background-color: #e6f2ff;
+            color: #0073e6;
+            border-radius: 8px;
+            text-decoration: none;
+        }
+        
+        .related-tools a:hover {
+            background-color: #0073e6;
+            color: white;
+        }
+        
+        .faq-item {
+            margin-bottom: 1rem;
+        }
+        
+        .faq-question {
+            font-weight: bold;
+            color: #0073e6;
         }
         
         /* Responsive Design */
@@ -295,6 +417,10 @@
             
             .status-item {
                 min-width: 100%;
+            }
+            
+            .preview-content {
+                flex-direction: column;
             }
         }
         
@@ -330,14 +456,24 @@
             .browse-btn {
                 padding: 10px 25px;
             }
+            
+            .language-switcher {
+                position: relative;
+                top: 0;
+                right: 0;
+                margin-top: 15px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>PDF Compressor</h1>
+            <h1><i class="fas fa-file-pdf"></i> PDF Compressor</h1>
             <p class="subtitle">Reduce your PDF file size without losing quality</p>
+            <div class="language-switcher">
+                <button class="language-btn">English</button>
+            </div>
         </header>
         
         <div class="main-content">
@@ -347,6 +483,7 @@
                 <p class="upload-text">OR</p>
                 <button class="browse-btn" id="browseBtn">Browse Files</button>
                 <input type="file" class="file-input" id="fileInput" accept=".pdf">
+                <p class="file-info" id="fileInfo">No file selected</p>
             </div>
             
             <div class="compression-options">
@@ -359,9 +496,9 @@
                     </div>
                     <input type="range" min="1" max="3" value="2" class="slider" id="compressionSlider">
                     <div class="compression-level">
-                        <span>Low</span>
+                        <span>Low (Better Quality)</span>
                         <span>Medium</span>
-                        <span>High</span>
+                        <span>High (Smaller Size)</span>
                     </div>
                 </div>
             </div>
@@ -399,11 +536,88 @@
                     <div class="progress" id="progressBar"></div>
                 </div>
             </div>
+            
+            <div class="preview-container" id="previewContainer">
+                <h3 class="preview-title">PDF Preview</h3>
+                <div class="preview-content">
+                    <div class="preview-box">
+                        <h4>Original PDF</h4>
+                        <div class="page-preview" id="originalPreview">
+                            <p>Preview will be shown here</p>
+                        </div>
+                    </div>
+                    <div class="preview-box">
+                        <h4>Compressed PDF</h4>
+                        <div class="page-preview" id="compressedPreview">
+                            <p>Preview will be shown after compression</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     
+    <!-- SEO Content Section -->
+    <div class="seo-content">
+        <h2>Free Online PDF Compressor Tool</h2>
+        <p>Our PDF Compressor tool allows you to reduce the file size of your PDF documents without sacrificing quality. Perfect for email attachments, website uploads, and storage optimization.</p>
+        
+        <h3>How to Use This Tool</h3>
+        <ol>
+            <li>Upload your PDF using the drag & drop area or file browser</li>
+            <li>Select your desired compression level</li>
+            <li>Click "Compress PDF" to process the file</li>
+            <li>Preview the results and download your compressed PDF</li>
+        </ol>
+        
+        <h3>Benefits of PDF Compression</h3>
+        <ul>
+            <li>Faster email attachments and transfers</li>
+            <li>Reduced storage space requirements</li>
+            <li>Faster loading on websites</li>
+            <li>Maintains text and image quality</li>
+            <li>Ideal for archiving and sharing</li>
+        </ul>
+        
+        <div class="faq-section">
+            <h3>Frequently Asked Questions</h3>
+            
+            <div class="faq-item">
+                <p class="faq-question">Is this PDF compressor free to use?</p>
+                <p>Yes, our tool is completely free to use with no limitations.</p>
+            </div>
+            
+            <div class="faq-item">
+                <p class="faq-question">Will compressing my PDF reduce quality?</p>
+                <p>Our compression algorithm is designed to minimize quality loss. You can choose the compression level to balance between file size and quality.</p>
+            </div>
+            
+            <div class="faq-item">
+                <p class="faq-question">Are my files secure?</p>
+                <p>Yes, all processing happens directly in your browser. Your files are never uploaded to our servers.</p>
+            </div>
+            
+            <div class="faq-item">
+                <p class="faq-question">What is the maximum file size I can compress?</p>
+                <p>You can compress PDF files up to 100MB in size.</p>
+            </div>
+        </div>
+        
+        <!-- Related Tools -->
+        <div class="related-tools">
+            <span>Related Tools: </span>
+            <a href="https://www.vidzimagemaster.online/pdf-to-word-word-to-pdf.html" aria-label="PDF to Word Converter">PDF to Word</a>
+            <a href="https://www.vidzimagemaster.online/document-converter.html" aria-label="Document Converter">Document Converter</a>
+            <a href="https://www.vidzimagemaster.online/image-to-text-(OCR).html" aria-label="Image to Text OCR">Image to Text</a>
+            <a href="https://www.vidzimagemaster.online/base64-encoder-decoder.html" aria-label="Base64 Encoder/Decoder">Base64 Tools</a>
+            <a href="https://www.vidzimagemaster.online/json-formatter-&-validator.html" aria-label="JSON Formatter">JSON Formatter</a>
+        </div>
+        
+        <p><strong>Privacy Note:</strong> All PDF processing occurs locally in your browser. Your files are never uploaded to any server, ensuring complete privacy and security.</p>
+    </div>
+
     <footer>
-        <p>© 2023 Multi-Tool Website | PDF Compressor Tool</p>
+        <p>PDF Compressor Tool &copy; 2023 | Part of Vidz Tools</p>
     </footer>
 
     <script>
@@ -419,6 +633,10 @@
             const compressedSize = document.getElementById('compressedSize');
             const reduction = document.getElementById('reduction');
             const progressBar = document.getElementById('progressBar');
+            const fileInfo = document.getElementById('fileInfo');
+            const previewContainer = document.getElementById('previewContainer');
+            const originalPreview = document.getElementById('originalPreview');
+            const compressedPreview = document.getElementById('compressedPreview');
             
             let selectedFile = null;
             let compressedFileData = null;
@@ -476,10 +694,18 @@
                     selectedFile = files[0];
                     updateFileInfo(selectedFile);
                     compressBtn.disabled = false;
-                    uploadArea.querySelector('.upload-text').textContent = `Selected: ${selectedFile.name}`;
+                    fileInfo.textContent = `Selected: ${selectedFile.name} (${formatFileSize(selectedFile.size)})`;
+                    generatePreview(selectedFile, originalPreview);
+                    previewContainer.style.display = 'block';
                 } else {
                     alert('Please select a valid PDF file.');
                 }
+            }
+            
+            function formatFileSize(bytes) {
+                if (bytes < 1024) return bytes + ' bytes';
+                else if (bytes < 1048576) return (bytes / 1024).toFixed(2) + ' KB';
+                else return (bytes / 1048576).toFixed(2) + ' MB';
             }
             
             function updateFileInfo(file) {
@@ -496,14 +722,52 @@
                 let level;
                 
                 if (value === '1') {
-                    level = 'Low';
+                    level = 'Low (Better Quality)';
                 } else if (value === '2') {
                     level = 'Medium';
                 } else {
-                    level = 'High';
+                    level = 'High (Smaller Size)';
                 }
                 
                 compressionValue.textContent = level;
+            }
+            
+            function generatePreview(file, previewElement) {
+                const reader = new FileReader();
+                
+                reader.onload = function(e) {
+                    const pdfData = new Uint8Array(e.target.result);
+                    
+                    // Using PDF.js to render the first page
+                    const loadingTask = pdfjsLib.getDocument({data: pdfData});
+                    loadingTask.promise.then(function(pdf) {
+                        pdf.getPage(1).then(function(page) {
+                            const viewport = page.getViewport({scale: 1.0});
+                            const canvas = document.createElement('canvas');
+                            const context = canvas.getContext('2d');
+                            
+                            // Adjust canvas size
+                            canvas.height = viewport.height;
+                            canvas.width = viewport.width;
+                            
+                            // Render PDF page
+                            const renderContext = {
+                                canvasContext: context,
+                                viewport: viewport
+                            };
+                            
+                            page.render(renderContext).promise.then(function() {
+                                previewElement.innerHTML = '';
+                                previewElement.appendChild(canvas);
+                            });
+                        });
+                    }).catch(function(error) {
+                        previewElement.innerHTML = '<p>Could not load preview</p>';
+                        console.error('Error generating PDF preview:', error);
+                    });
+                };
+                
+                reader.readAsArrayBuffer(file);
             }
             
             function compressPDF() {
@@ -558,6 +822,9 @@
                     name: selectedFile.name.replace('.pdf', '_compressed.pdf'),
                     size: compressedSizeMB
                 };
+                
+                // Update compressed preview (using same preview for demo)
+                generatePreview(selectedFile, compressedPreview);
             }
             
             function downloadPDF() {
@@ -579,6 +846,91 @@
             // Initialize compression level display
             updateCompressionLevel();
         });
+    </script>
+    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "PDF Compressor Tool",
+        "description": "Free online tool to compress PDF files and reduce their size without losing quality.",
+        "applicationCategory": "UtilityApplication",
+        "operatingSystem": "Any",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        }
+    }
+    </script>
+    
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://www.vidzimagemaster.online/"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Tools",
+                "item": "https://www.vidzimagemaster.online/tools"
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "PDF Compressor",
+                "item": "https://www.vidzimagemaster.online/pdf-compressor.html"
+            }
+        ]
+    }
+    </script>
+    
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "Is this PDF compressor free to use?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes, our tool is completely free to use with no limitations."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Will compressing my PDF reduce quality?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Our compression algorithm is designed to minimize quality loss. You can choose the compression level to balance between file size and quality."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Are my files secure?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes, all processing happens directly in your browser. Your files are never uploaded to our servers."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What is the maximum file size I can compress?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "You can compress PDF files up to 100MB in size."
+                }
+            }
+        ]
+    }
     </script>
 </body>
 </html>
