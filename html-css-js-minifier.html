@@ -3,94 +3,91 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HTML Minifier Tool</title>
+    <title>HTML Minifier Tool - Minify HTML Code Online | Vidz Image Master</title>
+    <meta name="description" content="Free online HTML minifier tool to compress HTML code by removing unnecessary spaces, comments, and line breaks. Reduce file size and improve website loading speed.">
+    <meta name="keywords" content="html minifier, minify html, compress html, code optimization, html compressor, web optimization tool">
+    <link rel="canonical" href="https://www.vidzimagemaster.online/html-minifier.html">
+    
+    <!-- Hindi Version Link -->
+    <link rel="alternate" hreflang="hi" href="https://www.vidzimagemaster.online/hi/html-minifier.html">
+    <link rel="alternate" hreflang="en" href="https://www.vidzimagemaster.online/html-minifier.html">
+    <link rel="alternate" hreflang="x-default" href="https://www.vidzimagemaster.online/html-minifier.html">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        :root {
-            --primary-blue: #2196F3;
-            --dark-blue: #1976D2;
-            --light-blue: #E3F2FD;
-            --white: #FFFFFF;
-            --light-gray: #F5F5F5;
-            --text-dark: #333333;
-            --shadow: 0 4px 8px rgba(33, 150, 243, 0.15);
-        }
-        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        
+
         body {
-            background-color: #f8fbff;
-            color: var(--text-dark);
-            line-height: 1.6;
+            background: linear-gradient(135deg, #2196F3 0%, #21CBF3 100%);
+            color: #333;
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
-        
+
         .container {
+            width: 100%;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
         }
-        
+
         header {
             text-align: center;
             margin-bottom: 30px;
-            padding: 20px 0;
+            padding: 20px;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            width: 100%;
         }
-        
-        header h1 {
-            color: var(--primary-blue);
-            font-size: 2.5rem;
+
+        h1 {
+            color: #2196F3;
+            font-size: 2.8rem;
             margin-bottom: 10px;
         }
-        
-        header p {
-            color: #666;
-            font-size: 1.1rem;
+
+        .description {
+            color: #555;
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
         }
-        
-        .tool-container {
-            background: var(--white);
-            border-radius: 12px;
-            box-shadow: var(--shadow);
-            overflow: hidden;
-            margin-bottom: 30px;
-        }
-        
-        .input-section, .output-section {
-            padding: 25px;
-        }
-        
-        .input-section {
-            background: var(--light-blue);
-            border-bottom: 1px solid #BBDEFB;
-        }
-        
-        .section-header {
+
+        .main-content {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
         }
-        
-        .section-header h2 {
-            color: var(--dark-blue);
+
+        .input-section, .output-section, .stats-section {
+            background-color: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .section-title {
+            color: #2196F3;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #21CBF3;
             font-size: 1.5rem;
         }
-        
-        .char-count {
-            background: var(--primary-blue);
-            color: white;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-        }
-        
-        textarea {
+
+        .code-area {
             width: 100%;
-            min-height: 200px;
+            min-height: 250px;
             padding: 15px;
             border: 2px solid #BBDEFB;
             border-radius: 8px;
@@ -98,156 +95,194 @@
             font-family: 'Courier New', monospace;
             font-size: 14px;
             line-height: 1.5;
-            transition: border-color 0.3s;
         }
-        
-        textarea:focus {
+
+        .code-area:focus {
             outline: none;
-            border-color: var(--primary-blue);
+            border-color: #2196F3;
         }
-        
-        .output-code {
-            background: var(--light-gray);
-            padding: 15px;
-            border-radius: 8px;
-            min-height: 200px;
-            max-height: 300px;
-            overflow: auto;
-            font-family: 'Courier New', monospace;
-            font-size: 14px;
-            white-space: pre-wrap;
-            border: 2px solid #E0E0E0;
-        }
-        
-        .button-group {
-            display: flex;
-            gap: 12px;
-            margin-top: 20px;
-            flex-wrap: wrap;
-        }
-        
-        button {
-            padding: 12px 24px;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .btn-primary {
-            background: var(--primary-blue);
-            color: white;
-        }
-        
-        .btn-primary:hover {
-            background: var(--dark-blue);
-            transform: translateY(-2px);
-        }
-        
-        .btn-secondary {
-            background: #E0E0E0;
+
+        .char-count {
+            text-align: right;
             color: #666;
+            margin-top: 10px;
+            font-size: 0.9rem;
         }
-        
-        .btn-secondary:hover {
-            background: #BDBDBD;
-            transform: translateY(-2px);
-        }
-        
-        .btn-success {
-            background: #4CAF50;
+
+        .btn {
+            background-color: #2196F3;
             color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s;
+            margin-top: 15px;
+            display: inline-block;
         }
-        
-        .btn-success:hover {
-            background: #388E3C;
-            transform: translateY(-2px);
+
+        .btn:hover {
+            background-color: #1976D2;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
-        
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .btn-secondary {
+            background-color: #21CBF3;
+        }
+
+        .btn-success {
+            background-color: #4CAF50;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .stats-container {
+            display: flex;
+            justify-content: space-around;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .stat-box {
+            padding: 15px;
+            background-color: #E3F2FD;
+            border-radius: 8px;
+            min-width: 120px;
+        }
+
+        .stat-box h3 {
+            color: #1976D2;
+            margin-bottom: 5px;
+            font-size: 1rem;
+        }
+
+        .stat-box p {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #2196F3;
+        }
+
         .comparison-section {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 25px;
             margin-top: 30px;
+            width: 100%;
         }
-        
+
         .comparison-box {
-            background: var(--white);
+            background: white;
             border-radius: 12px;
             padding: 20px;
-            box-shadow: var(--shadow);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
         }
-        
+
         .comparison-box h3 {
-            color: var(--dark-blue);
+            color: #1976D2;
             margin-bottom: 15px;
             padding-bottom: 10px;
-            border-bottom: 2px solid var(--light-blue);
+            border-bottom: 2px solid #BBDEFB;
         }
-        
+
         .code-compare {
             font-family: 'Courier New', monospace;
             font-size: 14px;
             white-space: pre-wrap;
             max-height: 250px;
             overflow: auto;
-            padding: 10px;
-            background: var(--light-gray);
-            border-radius: 6px;
-        }
-        
-        .stats {
-            display: flex;
-            justify-content: space-around;
-            margin-top: 20px;
-            text-align: center;
-        }
-        
-        .stat-box {
             padding: 15px;
-            background: var(--light-blue);
-            border-radius: 8px;
-            min-width: 120px;
+            background: #F5F5F5;
+            border-radius: 6px;
+            border: 1px solid #E0E0E0;
         }
-        
-        .stat-box h4 {
-            color: var(--dark-blue);
-            margin-bottom: 5px;
-        }
-        
-        .stat-box p {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: var(--primary-blue);
-        }
-        
+
         footer {
-            text-align: center;
             margin-top: 40px;
+            text-align: center;
+            color: white;
             padding: 20px;
-            color: #666;
+            font-size: 1rem;
+            width: 100%;
         }
         
+        /* SEO Content Styles */
+        .seo-content {
+            padding: 20px;
+            background: white;
+            border-radius: 15px;
+            margin-top: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            width: 100%;
+        }
+        .related-tools {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .related-tools a {
+            padding: 0.5rem 1rem;
+            background-color: #E3F2FD;
+            color: #2196F3;
+            border-radius: 8px;
+            text-decoration: none;
+        }
+        .related-tools a:hover {
+            background-color: #2196F3;
+            color: white;
+        }
+        .faq-item {
+            margin-bottom: 1rem;
+        }
+        .faq-question {
+            font-weight: bold;
+            color: #2196F3;
+        }
+
         @media (max-width: 768px) {
+            .main-content {
+                flex-direction: column;
+            }
+            
             .comparison-section {
                 grid-template-columns: 1fr;
             }
             
-            .button-group {
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .description {
+                font-size: 1rem;
+            }
+            
+            .action-buttons {
                 flex-direction: column;
             }
             
-            button {
-                width: 100%;
-                justify-content: center;
+            .stats-container {
+                flex-direction: column;
+                gap: 15px;
             }
         }
+
+        .hidden {
+            display: none;
+        }
         
-        /* Animation for copy feedback */
         .copied-feedback {
             position: fixed;
             bottom: 20px;
@@ -271,52 +306,50 @@
 <body>
     <div class="container">
         <header>
-            <h1>HTML Minifier Tool</h1>
-            <p>Minify your HTML code by removing unnecessary spaces, line breaks, and comments</p>
+            <h1><i class="fas fa-code"></i> HTML Minifier Tool</h1>
+            <p class="description">Minify your HTML code by removing unnecessary spaces, comments, and line breaks to reduce file size and improve loading speed.</p>
         </header>
-        
-        <div class="tool-container">
+
+        <div class="main-content">
             <div class="input-section">
-                <div class="section-header">
-                    <h2>Input HTML</h2>
-                    <div class="char-count">Characters: <span id="input-count">0</span></div>
+                <h2 class="section-title">Input HTML</h2>
+                <textarea class="code-area" id="input-code" placeholder="Paste your HTML code here..."></textarea>
+                <div class="char-count">Characters: <span id="input-count">0</span></div>
+                <div class="action-buttons">
+                    <button class="btn" id="minify-btn"><i class="fas fa-compress-alt"></i> Minify HTML</button>
+                    <button class="btn btn-secondary" id="clear-btn"><i class="fas fa-redo"></i> Clear</button>
                 </div>
-                <textarea id="input-code" placeholder="Paste your HTML code here..."></textarea>
             </div>
-            
+
             <div class="output-section">
-                <div class="section-header">
-                    <h2>Minified Output</h2>
-                    <div class="char-count">Characters: <span id="output-count">0</span></div>
+                <h2 class="section-title">Minified Output</h2>
+                <div class="code-area" id="output-code" contenteditable="true">Minified code will appear here...</div>
+                <div class="char-count">Characters: <span id="output-count">0</span></div>
+                <div class="action-buttons">
+                    <button class="btn btn-success" id="copy-btn"><i class="fas fa-copy"></i> Copy to Clipboard</button>
+                    <button class="btn" id="download-btn"><i class="fas fa-download"></i> Download</button>
                 </div>
-                <div id="output-code" class="output-code">Minified code will appear here...</div>
-                
-                <div class="button-group">
-                    <button id="minify-btn" class="btn-primary">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                            <path d="M5 1a2 2 0 0 0-2 2v1h10V3a2 2 0 0 0-2-2H5zm6 8H5a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1z"/>
-                            <path d="M0 7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2h-1v-2a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v2H2a2 2 0 0 1-2-2V7zm2.5 1a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z"/>
-                        </svg>
-                        Minify HTML
-                    </button>
-                    <button id="clear-btn" class="btn-secondary">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                            <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
-                            <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
-                        </svg>
-                        Clear All
-                    </button>
-                    <button id="copy-btn" class="btn-success">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                            <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
-                            <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
-                        </svg>
-                        Copy Output
-                    </button>
+            </div>
+
+            <div class="stats-section">
+                <h2 class="section-title">Compression Stats</h2>
+                <div class="stats-container">
+                    <div class="stat-box">
+                        <h3>Original Size</h3>
+                        <p id="original-size">0 B</p>
+                    </div>
+                    <div class="stat-box">
+                        <h3>Minified Size</h3>
+                        <p id="minified-size">0 B</p>
+                    </div>
+                    <div class="stat-box">
+                        <h3>Reduction</h3>
+                        <p id="reduction">0%</p>
+                    </div>
                 </div>
             </div>
         </div>
-        
+
         <div class="comparison-section">
             <div class="comparison-box">
                 <h3>Original Code Preview</h3>
@@ -329,35 +362,81 @@
             </div>
         </div>
         
-        <div class="stats">
-            <div class="stat-box">
-                <h4>Original Size</h4>
-                <p id="original-size">0 B</p>
+        <!-- SEO Content Section -->
+        <div class="seo-content">
+            <h2>Free Online HTML Minifier Tool</h2>
+            <p>Our HTML Minifier tool compresses your HTML code by removing unnecessary characters like whitespace, comments, and line breaks. This reduces file size and improves website loading speed without changing functionality.</p>
+            
+            <h3>How to Use This Tool</h3>
+            <ol>
+                <li>Paste your HTML code into the input area</li>
+                <li>Click the "Minify HTML" button to compress your code</li>
+                <li>Review the minified output in the results area</li>
+                <li>Copy the minified code to your clipboard or download it as a file</li>
+            </ol>
+            
+            <h3>Benefits of HTML Minification</h3>
+            <ul>
+                <li>Faster page loading times</li>
+                <li>Reduced bandwidth usage</li>
+                <li>Improved website performance</li>
+                <li>Better user experience</li>
+                <li>Improved SEO rankings (page speed is a ranking factor)</li>
+            </ul>
+            
+            <div class="faq-section">
+                <h3>Frequently Asked Questions</h3>
+                
+                <div class="faq-item">
+                    <p class="faq-question">Is this HTML minifier tool free to use?</p>
+                    <p>Yes, our tool is completely free to use with no limitations.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <p class="faq-question">Will minification break my code?</p>
+                    <p>No, our minifier only removes unnecessary characters without changing the functionality of your code.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <p class="faq-question">What characters are removed during minification?</p>
+                    <p>The minifier removes comments, unnecessary whitespace, and line breaks while preserving the structure and functionality of your HTML.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <p class="faq-question">Is my code stored on your servers?</p>
+                    <p>No, all processing happens directly in your browser. Your code is never uploaded to our servers.</p>
+                </div>
             </div>
-            <div class="stat-box">
-                <h4>Minified Size</h4>
-                <p id="minified-size">0 B</p>
+            
+            <!-- Related Tools - SPECIFIC TO HTML MINIFIER TOOL -->
+            <div class="related-tools">
+                <span>Related Tools: </span>
+                <a href="https://www.vidzimagemaster.online/html-css-js-minifier.html" aria-label="HTML CSS JS Minifier">HTML/CSS/JS Minifier</a>
+                <a href="https://www.vidzimagemaster.online/json-formatter-&-validator.html" aria-label="JSON Formatter">JSON Formatter</a>
+                <a href="https://www.vidzimagemaster.online/base64-encoder-decoder.html" aria-label="Base64 Encoder/Decoder">Base64 Tools</a>
+                <a href="https://www.vidzimagemaster.online/url-encoder-decoder.html" aria-label="URL Encoder/Decoder">URL Encoder/Decoder</a>
+                <a href="https://www.vidzimagemaster.online/image-compressor.html" aria-label="Image Compressor">Image Compressor</a>
             </div>
-            <div class="stat-box">
-                <h4>Reduction</h4>
-                <p id="reduction">0%</p>
-            </div>
+            
+            <p><strong>Privacy Note:</strong> All code processing occurs locally in your browser. Your code is never uploaded to any server, ensuring complete privacy and security.</p>
         </div>
-        
+
         <footer>
-            <p>HTML Minifier Tool - Part of Multi-Tool Website</p>
+            <p>HTML Minifier Tool &copy; 2023 | Part of Vidz Image Master</p>
         </footer>
     </div>
-    
+
     <div id="copied-feedback" class="copied-feedback">Code copied to clipboard!</div>
-    
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // Elements
             const inputCode = document.getElementById('input-code');
             const outputCode = document.getElementById('output-code');
             const minifyBtn = document.getElementById('minify-btn');
             const clearBtn = document.getElementById('clear-btn');
             const copyBtn = document.getElementById('copy-btn');
+            const downloadBtn = document.getElementById('download-btn');
             const inputCount = document.getElementById('input-count');
             const outputCount = document.getElementById('output-count');
             const originalPreview = document.getElementById('original-preview');
@@ -367,23 +446,20 @@
             const reduction = document.getElementById('reduction');
             const copiedFeedback = document.getElementById('copied-feedback');
             
-            // Update character count
+            // Event listeners
             inputCode.addEventListener('input', updateCharacterCount);
-            
-            // Minify button click event
             minifyBtn.addEventListener('click', minifyHTML);
-            
-            // Clear button click event
             clearBtn.addEventListener('click', clearAll);
-            
-            // Copy button click event
             copyBtn.addEventListener('click', copyOutput);
+            downloadBtn.addEventListener('click', downloadFile);
             
+            // Update character count
             function updateCharacterCount() {
                 const count = inputCode.value.length;
                 inputCount.textContent = count.toLocaleString();
             }
             
+            // Minify HTML
             function minifyHTML() {
                 const html = inputCode.value.trim();
                 
@@ -405,19 +481,20 @@
                 outputCount.textContent = minified.length.toLocaleString();
                 
                 // Update previews
-                originalPreview.textContent = html;
-                minifiedPreview.textContent = minified;
+                originalPreview.textContent = html.length > 1000 ? html.substring(0, 1000) + '...' : html;
+                minifiedPreview.textContent = minified.length > 1000 ? minified.substring(0, 1000) + '...' : minified;
                 
                 // Update stats
                 const originalBytes = new Blob([html]).size;
                 const minifiedBytes = new Blob([minified]).size;
-                const reductionPercent = ((originalBytes - minifiedBytes) / originalBytes * 100).toFixed(1);
+                const reductionPercent = originalBytes > 0 ? ((originalBytes - minifiedBytes) / originalBytes * 100).toFixed(1) : 0;
                 
                 originalSize.textContent = formatBytes(originalBytes);
                 minifiedSize.textContent = formatBytes(minifiedBytes);
                 reduction.textContent = reductionPercent + '%';
             }
             
+            // Clear all fields
             function clearAll() {
                 inputCode.value = '';
                 outputCode.textContent = 'Minified code will appear here...';
@@ -430,6 +507,7 @@
                 reduction.textContent = '0%';
             }
             
+            // Copy output to clipboard
             function copyOutput() {
                 if (outputCode.textContent === 'Minified code will appear here...') {
                     return;
@@ -448,6 +526,30 @@
                     });
             }
             
+            // Download minified code
+            function downloadFile() {
+                const text = outputCode.textContent;
+                if (!text || text === 'Minified code will appear here...') {
+                    return;
+                }
+                
+                const blob = new Blob([text], { type: 'text/html' });
+                const url = URL.createObjectURL(blob);
+                
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'minified-code.html';
+                document.body.appendChild(a);
+                a.click();
+                
+                // Clean up
+                setTimeout(() => {
+                    document.body.removeChild(a);
+                    URL.revokeObjectURL(url);
+                }, 100);
+            }
+            
+            // Format bytes to human-readable format
             function formatBytes(bytes, decimals = 2) {
                 if (bytes === 0) return '0 B';
                 
@@ -460,6 +562,91 @@
                 return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
             }
         });
+    </script>
+    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "HTML Minifier Tool",
+        "description": "Free online tool to minify HTML code by removing unnecessary characters.",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "Any",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        }
+    }
+    </script>
+    
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://www.vidzimagemaster.online/"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Tools",
+                "item": "https://www.vidzimagemaster.online/tools"
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "HTML Minifier",
+                "item": "https://www.vidzimagemaster.online/html-minifier.html"
+            }
+        ]
+    }
+    </script>
+    
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "Is this HTML minifier tool free to use?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes, our tool is completely free to use with no limitations."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Will minification break my code?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "No, our minifier only removes unnecessary characters without changing the functionality of your code."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What characters are removed during minification?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "The minifier removes comments, unnecessary whitespace, and line breaks while preserving the structure and functionality of your HTML."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Is my code stored on your servers?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "No, all processing happens directly in your browser. Your code is never uploaded to our servers."
+                }
+            }
+        ]
+    }
     </script>
 </body>
 </html>
