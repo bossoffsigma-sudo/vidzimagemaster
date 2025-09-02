@@ -7,104 +7,90 @@
     <priority>1.00</priority>
   </url>
   
-  <!-- All 31 Tools -->
+  <!-- Video Tools -->
   <url>
     <loc>https://www.vidzimagemaster.online/video-url-to-image-downloader.html</loc>
     <lastmod>2025-09-03</lastmod>
-    <priority>0.80</priority>
+    <priority>0.90</priority>
   </url>
   <url>
     <loc>https://www.vidzimagemaster.online/youtube-video-transcripter.html</loc>
     <lastmod>2025-09-03</lastmod>
-    <priority>0.80</priority>
+    <priority>0.90</priority>
   </url>
   <url>
     <loc>https://www.vidzimagemaster.online/youtube-thumbnail-downloader.html</loc>
     <lastmod>2025-09-03</lastmod>
-    <priority>0.80</priority>
+    <priority>0.90</priority>
   </url>
+
+  <!-- Image Tools -->
   <url>
     <loc>https://www.vidzimagemaster.online/image-converter.html</loc>
     <lastmod>2025-09-03</lastmod>
-    <priority>0.80</priority>
+    <priority>0.85</priority>
   </url>
   <url>
     <loc>https://www.vidzimagemaster.online/image-compressor.html</loc>
     <lastmod>2025-09-03</lastmod>
-    <priority>0.80</priority>
+    <priority>0.85</priority>
   </url>
   <url>
     <loc>https://www.vidzimagemaster.online/image-resizer.html</loc>
     <lastmod>2025-09-03</lastmod>
-    <priority>0.80</priority>
+    <priority>0.85</priority>
   </url>
   <url>
     <loc>https://www.vidzimagemaster.online/image-cropper.html</loc>
     <lastmod>2025-09-03</lastmod>
-    <priority>0.80</priority>
+    <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://www.vidzimagemaster.online/image-to-text-(OCR).html</loc>
+    <loc>https://www.vidzimagemaster.online/image-to-text-ocr.html</loc>
     <lastmod>2025-09-03</lastmod>
-    <priority>0.80</priority>
+    <priority>0.85</priority>
   </url>
   <url>
     <loc>https://www.vidzimagemaster.online/image-rotator-flipper.html</loc>
     <lastmod>2025-09-03</lastmod>
-    <priority>0.80</priority>
+    <priority>0.85</priority>
   </url>
+
+  <!-- Document Tools -->
   <url>
     <loc>https://www.vidzimagemaster.online/pdf-to-word-word-to-pdf.html</loc>
     <lastmod>2025-09-03</lastmod>
-    <priority>0.80</priority>
+    <priority>0.85</priority>
   </url>
   <url>
     <loc>https://www.vidzimagemaster.online/pdf-compressor.html</loc>
     <lastmod>2025-09-03</lastmod>
-    <priority>0.80</priority>
+    <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://www.vidzimagemaster.online/qr-code-generator.html</loc>
+    <loc>https://www.vidzimagemaster.online/pdf-merger-splitter.html</loc>
     <lastmod>2025-09-03</lastmod>
-    <priority>0.80</priority>
+    <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://www.vidzimagemaster.online/qr-code-scanner.html</loc>
+    <loc>https://www.vidzimagemaster.online/document-converter.html</loc>
     <lastmod>2025-09-03</lastmod>
-    <priority>0.80</priority>
+    <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://www.vidzimagemaster.online/color-picker.html</loc>
+    <loc>https://www.vidzimagemaster.online/pdf-lock-unlock.html</loc>
     <lastmod>2025-09-03</lastmod>
-    <priority>0.80</priority>
+    <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://www.vidzimagemaster.online/photo-editor.html</loc>
+    <loc>https://www.vidzimagemaster.online/esign-pdf.html</loc>
     <lastmod>2025-09-03</lastmod>
-    <priority>0.80</priority>
+    <priority>0.85</priority>
   </url>
+
+  <!-- Calculator Tools -->
   <url>
-    <loc>https://www.vidzimagemaster.online/photo-collage-maker.html</loc>
-    <lastmod>2025-09-03</lastmod>
-    <priority>0.80</priority>
-  </url>
-  <url>
-    <loc>https://www.vidzimagemaster.online/file-converter.html</loc>
-    <lastmod>2025-09-03</lastmod>
-    <priority>0.80</priority>
-  </url>
-  <url>
-    <loc>https://www.vidzimagemaster.online/file-compressor.html</loc>
-    <lastmod>2025-09-03</lastmod>
-    <priority>0.80</priority>
-  </url>
-  <url>
-    <loc>https://www.vidzimagemaster.online/unit-converter.html</loc>
-    <lastmod>2025-09-03</lastmod>
-    <priority>0.80</priority>
-  </url>
-  <url>
-    <loc>https://www.vidzimagemaster.online/currency-converter.html</loc>
+    <loc>https://www.vidzimagemaster.online/scientific-calculator.html</loc>
     <lastmod>2025-09-03</lastmod>
     <priority>0.80</priority>
   </url>
@@ -119,52 +105,71 @@
     <priority>0.80</priority>
   </url>
   <url>
-    <loc>https://www.vidzimagemaster.online/percentage-calculator.html</loc>
+    <loc>https://www.vidzimagemaster.online/loan-emi-calculator.html</loc>
     <lastmod>2025-09-03</lastmod>
     <priority>0.80</priority>
   </url>
   <url>
-    <loc>https://www.vidzimagemaster.online/interest-calculator.html</loc>
+    <loc>https://www.vidzimagemaster.online/gst-calculator.html</loc>
     <lastmod>2025-09-03</lastmod>
     <priority>0.80</priority>
   </url>
   <url>
-    <loc>https://www.vidzimagemaster.online/word-counter.html</loc>
+    <loc>https://www.vidzimagemaster.online/currency-converter.html</loc>
+    <lastmod>2025-09-03</lastmod>
+    <priority>0.80</priority>
+  </url>
+
+  <!-- Web/Developer Tools -->
+  <url>
+    <loc>https://www.vidzimagemaster.online/html-css-js-minifier.html</loc>
     <lastmod>2025-09-03</lastmod>
     <priority>0.80</priority>
   </url>
   <url>
-    <loc>https://www.vidzimagemaster.online/character-counter.html</loc>
+    <loc>https://www.vidzimagemaster.online/json-formatter-validator.html</loc>
     <lastmod>2025-09-03</lastmod>
     <priority>0.80</priority>
   </url>
   <url>
-    <loc>https://www.vidzimagemaster.online/password-generator.html</loc>
+    <loc>https://www.vidzimagemaster.online/base64-encoder-decoder.html</loc>
     <lastmod>2025-09-03</lastmod>
     <priority>0.80</priority>
   </url>
   <url>
-    <loc>https://www.vidzimagemaster.online/random-number-generator.html</loc>
+    <loc>https://www.vidzimagemaster.online/url-encoder-decoder.html</loc>
+    <lastmod>2025-09-03</lastmod>
+    <priority>0.80</priority>
+  </url>
+
+  <!-- Utility Tools -->
+  <url>
+    <loc>https://www.vidzimagemaster.online/qr-code-generator-scanner.html</loc>
     <lastmod>2025-09-03</lastmod>
     <priority>0.80</priority>
   </url>
   <url>
-    <loc>https://www.vidzimagemaster.online/stopwatch.html</loc>
+    <loc>https://www.vidzimagemaster.online/barcode-generator.html</loc>
     <lastmod>2025-09-03</lastmod>
     <priority>0.80</priority>
   </url>
   <url>
-    <loc>https://www.vidzimagemaster.online/timer.html</loc>
+    <loc>https://www.vidzimagemaster.online/uuid-generator.html</loc>
     <lastmod>2025-09-03</lastmod>
     <priority>0.80</priority>
   </url>
   <url>
-    <loc>https://www.vidzimagemaster.online/notes.html</loc>
+    <loc>https://www.vidzimagemaster.online/unit-converter.html</loc>
     <lastmod>2025-09-03</lastmod>
     <priority>0.80</priority>
   </url>
   <url>
-    <loc>https://www.vidzimagemaster.online/weather.html</loc>
+    <loc>https://www.vidzimagemaster.online/time-zone-converter.html</loc>
+    <lastmod>2025-09-03</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.vidzimagemaster.online/random-number-password-generator.html</loc>
     <lastmod>2025-09-03</lastmod>
     <priority>0.80</priority>
   </url>
