@@ -3,7 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>URL Encoder/Decoder Tool</title>
+    <title>URL Encoder/Decoder - Encode and Decode URLs Online | Vidz Image Master</title>
+    <meta name="description" content="Free online URL encoder and decoder tool. Convert special characters in URLs to their encoded format and vice versa for web development and SEO.">
+    <meta name="keywords" content="url encoder, url decoder, url encode, url decode, percent encoding, url encoding tool">
+    <link rel="canonical" href="https://www.vidzimagemaster.online/url-encoder-decoder.html">
+    
+    <!-- Hindi Version Link -->
+    <link rel="alternate" hreflang="hi" href="https://www.vidzimagemaster.online/hi/url-encoder-decoder.html">
+    <link rel="alternate" hreflang="en" href="https://www.vidzimagemaster.online/url-encoder-decoder.html">
+    <link rel="alternate" hreflang="x-default" href="https://www.vidzimagemaster.online/url-encoder-decoder.html">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -12,132 +21,137 @@
             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        
+
         body {
-            background: linear-gradient(135deg, #0073e6 0%, #003366 100%);
+            background: linear-gradient(135deg, #0074e4 0%, #00a2ff 100%);
+            color: #333;
             min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
             padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
-        
+
         .container {
             width: 100%;
-            max-width: 800px;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            overflow: hidden;
+            max-width: 1200px;
+            margin: 0 auto;
         }
-        
-        .header {
-            background: #0073e6;
-            color: white;
-            padding: 20px;
+
+        header {
             text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            width: 100%;
         }
-        
-        .header h1 {
-            font-size: 2.2rem;
-            margin-bottom: 5px;
+
+        h1 {
+            color: #0074e4;
+            font-size: 2.8rem;
+            margin-bottom: 10px;
         }
-        
-        .header p {
-            font-size: 1.1rem;
-            opacity: 0.9;
+
+        .description {
+            color: #555;
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
         }
-        
-        .tool-container {
+
+        .main-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+
+        .input-section, .output-section {
+            background-color: white;
+            border-radius: 15px;
             padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            flex: 1;
+            min-width: 300px;
         }
-        
-        .input-group, .output-group {
-            margin-bottom: 25px;
+
+        .section-title {
+            color: #0074e4;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #00a2ff;
+            font-size: 1.5rem;
         }
-        
-        .input-group label, .output-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            color: #0073e6;
-        }
-        
+
         textarea {
             width: 100%;
-            height: 150px;
+            height: 200px;
             padding: 15px;
             border: 2px solid #d0e5ff;
             border-radius: 10px;
             resize: vertical;
             font-size: 16px;
             transition: border-color 0.3s;
+            margin-bottom: 20px;
         }
         
         textarea:focus {
             outline: none;
-            border-color: #0073e6;
+            border-color: #0074e4;
             box-shadow: 0 0 0 3px rgba(0, 115, 230, 0.2);
         }
         
         .output-text {
             background-color: #f5f9ff;
         }
-        
+
         .btn-group {
             display: flex;
             flex-wrap: wrap;
-            gap: 12px;
-            margin-bottom: 25px;
+            gap: 15px;
+            margin-bottom: 20px;
         }
-        
+
         .btn {
-            padding: 12px 20px;
+            background-color: #0074e4;
+            color: white;
             border: none;
+            padding: 12px 25px;
             border-radius: 8px;
-            font-size: 16px;
-            font-weight: 600;
             cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
             transition: all 0.3s;
-            display: flex;
+            display: inline-flex;
             align-items: center;
             justify-content: center;
             gap: 8px;
         }
-        
-        .btn-primary {
-            background: #0073e6;
-            color: white;
+
+        .btn:hover {
+            background-color: #005bb9;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
-        
-        .btn-primary:hover {
-            background: #005bb9;
-            transform: translateY(-2px);
+
+        .btn:active {
+            transform: translateY(0);
         }
-        
+
         .btn-secondary {
-            background: #e6f0ff;
-            color: #0073e6;
+            background-color: #00a2ff;
         }
         
-        .btn-secondary:hover {
-            background: #d0e5ff;
-            transform: translateY(-2px);
+        .btn-action {
+            background-color: #4caf50;
         }
-        
-        .btn i {
-            font-size: 18px;
-        }
-        
+
         .action-buttons {
             display: flex;
+            gap: 15px;
             flex-wrap: wrap;
-            gap: 12px;
-        }
-        
-        .btn-full {
-            flex: 1;
-            min-width: 150px;
         }
         
         .notification {
@@ -159,97 +173,176 @@
             transform: translateX(0);
             opacity: 1;
         }
-        
-        .instructions {
-            background: #e6f0ff;
-            padding: 15px;
-            border-radius: 10px;
-            margin-top: 20px;
+
+        footer {
+            margin-top: 40px;
+            text-align: center;
+            color: white;
+            padding: 20px;
+            font-size: 1rem;
         }
         
-        .instructions h3 {
-            color: #0073e6;
-            margin-bottom: 10px;
+        /* SEO Content Styles */
+        .seo-content {
+            padding: 20px;
+            background: white;
+            border-radius: 15px;
+            margin-top: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            width: 100%;
         }
-        
-        .instructions ul {
-            padding-left: 20px;
+        .related-tools {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
         }
-        
-        .instructions li {
-            margin-bottom: 8px;
-            color: #005bb9;
+        .related-tools a {
+            padding: 0.5rem 1rem;
+            background-color: #e6f2ff;
+            color: #0074e4;
+            border-radius: 8px;
+            text-decoration: none;
         }
-        
-        @media (max-width: 600px) {
-            .btn-group {
+        .related-tools a:hover {
+            background-color: #0074e4;
+            color: white;
+        }
+        .faq-item {
+            margin-bottom: 1rem;
+        }
+        .faq-question {
+            font-weight: bold;
+            color: #0074e4;
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                flex-direction: column;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .description {
+                font-size: 1rem;
+            }
+            
+            .btn-group, .action-buttons {
                 flex-direction: column;
             }
             
             .btn {
                 width: 100%;
             }
-            
-            .header h1 {
-                font-size: 1.8rem;
-            }
-            
-            .header p {
-                font-size: 1rem;
-            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="header">
-            <h1><i class="fas fa-link"></i> URL Encoder/Decoder</h1>
-            <p>Quickly encode or decode URLs for your web applications</p>
+        <header>
+            <h1><i class="fas fa-link"></i> URL Encoder/Decoder Tool</h1>
+            <p class="description">Encode URLs for safe transmission or decode encoded URLs to their original form.</p>
+        </header>
+
+        <div class="main-content">
+            <div class="input-section">
+                <h2 class="section-title">Input</h2>
+                <textarea id="input-text" placeholder="Type or paste your URL or text here..."></textarea>
+                <div class="btn-group">
+                    <button class="btn" id="encode-btn">
+                        <i class="fas fa-lock"></i> Encode URL
+                    </button>
+                    <button class="btn btn-secondary" id="decode-btn">
+                        <i class="fas fa-unlock"></i> Decode URL
+                    </button>
+                    <button class="btn" id="clear-btn">
+                        <i class="fas fa-broom"></i> Clear
+                    </button>
+                </div>
+                <p class="crop-info">Press Ctrl+Enter to encode or Shift+Enter to decode.</p>
+            </div>
+
+            <div class="output-section">
+                <h2 class="section-title">Output</h2>
+                <textarea id="output-text" class="output-text" readonly placeholder="Your encoded or decoded result will appear here..."></textarea>
+                <div class="action-buttons">
+                    <button class="btn btn-action" id="copy-btn">
+                        <i class="fas fa-copy"></i> Copy Output
+                    </button>
+                </div>
+            </div>
         </div>
         
-        <div class="tool-container">
-            <div class="input-group">
-                <label for="input-text">Enter text to encode or decode:</label>
-                <textarea id="input-text" placeholder="Type or paste your text here..."></textarea>
+        <!-- SEO Content Section -->
+        <div class="seo-content">
+            <h2>Free Online URL Encoder/Decoder Tool</h2>
+            <p>Our URL Encoder/Decoder tool allows you to easily convert special characters in URLs to their encoded format (percent-encoding) and decode encoded URLs back to their original form. Essential for web development, SEO, and data handling.</p>
+            
+            <h3>How to Use This Tool</h3>
+            <ol>
+                <li>Type or paste your URL or text in the input field</li>
+                <li>Click "Encode URL" to convert special characters to percent-encoded format</li>
+                <li>Click "Decode URL" to convert percent-encoded text back to readable format</li>
+                <li>Use the "Copy Output" button to easily copy the result</li>
+                <li>Use "Clear" to reset both input and output fields</li>
+            </ol>
+            
+            <h3>Common Use Cases</h3>
+            <ul>
+                <li>Encoding special characters in URLs for API requests</li>
+                <li>Decoding encoded URLs received from web services</li>
+                <li>Preparing query parameters for HTTP requests</li>
+                <li>Debugging URL encoding issues in web applications</li>
+                <li>Encoding data for use in URL parameters</li>
+            </ul>
+            
+            <div class="faq-section">
+                <h3>Frequently Asked Questions</h3>
+                
+                <div class="faq-item">
+                    <p class="faq-question">What is URL encoding?</p>
+                    <p>URL encoding converts characters into a format that can be transmitted over the Internet. It replaces unsafe ASCII characters with a "%" followed by two hexadecimal digits.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <p class="faq-question">When should I use URL encoding?</p>
+                    <p>Use URL encoding when including special characters in URLs, such as spaces, symbols, or non-ASCII characters, to ensure they are transmitted correctly.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <p class="faq-question">What characters need to be encoded in URLs?</p>
+                    <p>Characters such as spaces, ampersands (&), percent signs (%), slashes (/), question marks (?), and equals signs (=) need to be encoded in URLs.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <p class="faq-question">Is this tool free to use?</p>
+                    <p>Yes, our URL Encoder/Decoder tool is completely free to use with no limitations.</p>
+                </div>
             </div>
             
-            <div class="btn-group">
-                <button class="btn btn-primary" id="encode-btn">
-                    <i class="fas fa-lock"></i> Encode
-                </button>
-                <button class="btn btn-primary" id="decode-btn">
-                    <i class="fas fa-unlock"></i> Decode
-                </button>
-                <button class="btn btn-secondary" id="clear-btn">
-                    <i class="fas fa-broom"></i> Clear
-                </button>
+            <!-- Related Tools - SPECIFIC TO URL ENCODER/DECODER TOOL -->
+            <div class="related-tools">
+                <span>Related Tools: </span>
+                <a href="https://www.vidzimagemaster.online/base64-encoder-decoder.html" aria-label="Base64 Encoder/Decoder">Base64 Tools</a>
+                <a href="https://www.vidzimagemaster.online/html-css-js-minifier.html" aria-label="HTML CSS JS Minifier">HTML/CSS/JS Minifier</a>
+                <a href="https://www.vidzimagemaster.online/json-formatter-&-validator.html" aria-label="JSON Formatter">JSON Formatter</a>
+                <a href="https://www.vidzimagemaster.online/qr-code-generator-&-scanner.html" aria-label="QR Code Generator">QR Code Generator</a>
+                <a href="https://www.vidzimagemaster.online/uuid-generator.html" aria-label="UUID Generator">UUID Generator</a>
             </div>
             
-            <div class="output-group">
-                <label for="output-text">Output:</label>
-                <textarea id="output-text" class="output-text" readonly placeholder="Your encoded or decoded result will appear here..."></textarea>
-            </div>
-            
-            <div class="action-buttons">
-                <button class="btn btn-secondary btn-full" id="copy-btn">
-                    <i class="fas fa-copy"></i> Copy Output
-                </button>
-            </div>
-            
-            <div class="instructions">
-                <h3>How to use this tool:</h3>
-                <ul>
-                    <li>Type or paste text in the input field above</li>
-                    <li>Click "Encode" to convert text to URL-safe format</li>
-                    <li>Click "Decode" to convert URL-encoded text back to readable format</li>
-                    <li>Use "Copy Output" to easily copy the result</li>
-                </ul>
-            </div>
+            <p><strong>Privacy Note:</strong> All processing occurs locally in your browser. Your data is never uploaded to any server, ensuring complete privacy and security.</p>
         </div>
+
+        <footer>
+            <p>URL Encoder/Decoder Tool &copy; 2023 | Part of Vidz Image Master</p>
+        </footer>
     </div>
-    
+
     <div class="notification" id="notification">Text copied to clipboard!</div>
-    
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const inputText = document.getElementById('input-text');
@@ -307,6 +400,91 @@
                 }
             });
         });
+    </script>
+    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "URL Encoder/Decoder Tool",
+        "description": "Free online tool to encode and decode URLs for web development and data transmission.",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "Any",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        }
+    }
+    </script>
+    
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://www.vidzimagemaster.online/"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Tools",
+                "item": "https://www.vidzimagemaster.online/tools"
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "URL Encoder/Decoder",
+                "item": "https://www.vidzimagemaster.online/url-encoder-decoder.html"
+            }
+        ]
+    }
+    </script>
+    
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "What is URL encoding?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "URL encoding converts characters into a format that can be transmitted over the Internet. It replaces unsafe ASCII characters with a \"%\" followed by two hexadecimal digits."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "When should I use URL encoding?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Use URL encoding when including special characters in URLs, such as spaces, symbols, or non-ASCII characters, to ensure they are transmitted correctly."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What characters need to be encoded in URLs?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Characters such as spaces, ampersands (&), percent signs (%), slashes (/), question marks (?), and equals signs (=) need to be encoded in URLs."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Is this tool free to use?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes, our URL Encoder/Decoder tool is completely free to use with no limitations."
+                }
+            }
+        ]
+    }
     </script>
 </body>
 </html>
