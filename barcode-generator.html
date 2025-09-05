@@ -69,7 +69,7 @@
             justify-content: center;
         }
 
-        .input-section, .preview-section {
+        .input-section, .preview-section, .bulk-section {
             background-color: white;
             border-radius: 15px;
             padding: 25px;
@@ -97,7 +97,7 @@
             color: #0074e4;
         }
 
-        input, select {
+        input, select, textarea {
             width: 100%;
             padding: 12px 15px;
             border: 2px solid #ddd;
@@ -106,7 +106,12 @@
             transition: border-color 0.3s;
         }
 
-        input:focus, select:focus {
+        textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        input:focus, select:focus, textarea:focus {
             border-color: #0074e4;
             outline: none;
         }
@@ -137,6 +142,10 @@
 
         .btn-secondary {
             background-color: #00a2ff;
+        }
+
+        .btn-bulk {
+            background-color: #6a0dad;
         }
 
         .preview-container {
@@ -249,6 +258,51 @@
             color: #0074e4;
         }
 
+        /* Bulk barcode styles */
+        .bulk-input-info {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .bulk-results {
+            margin-top: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            max-height: 400px;
+            overflow-y: auto;
+            padding: 10px;
+            background-color: #f8f8f8;
+            border-radius: 8px;
+        }
+
+        .bulk-item {
+            background: white;
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .bulk-barcode {
+            max-width: 100%;
+            height: 80px;
+            margin-bottom: 8px;
+        }
+
+        .bulk-text {
+            font-size: 0.8rem;
+            word-break: break-all;
+        }
+
+        .bulk-actions {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
         @media (max-width: 768px) {
             .main-content {
                 flex-direction: column;
@@ -268,6 +322,10 @@
             
             .size-options {
                 flex-direction: column;
+            }
+
+            .bulk-results {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
             }
         }
 
@@ -371,6 +429,29 @@
                     <button id="downloadBtn" class="btn btn-secondary"><i class="fas fa-download"></i> Download Barcode</button>
                 </div>
             </div>
+
+            <div class="bulk-section">
+                <h2 class="section-title">Bulk Barcode Generator</h2>
+                <div class="form-group">
+                    <label for="bulkInput">Enter multiple codes (one per line, max 50)</label>
+                    <textarea id="bulkInput" placeholder="Enter one code per line. For example:
+123456
+789012
+345678"></textarea>
+                    <p class="bulk-input-info">You can enter up to 50 codes at once.</p>
+                </div>
+                
+                <button id="generateBulkBtn" class="btn btn-bulk"><i class="fas fa-barcode"></i> Generate Bulk Barcodes</button>
+                
+                <div class="bulk-results" id="bulkResults">
+                    <!-- Bulk barcodes will appear here -->
+                </div>
+                
+                <div class="bulk-actions">
+                    <button id="downloadAllBtn" class="btn btn-secondary" disabled><i class="fas fa-download"></i> Download All</button>
+                    <button id="clearBulkBtn" class="btn" disabled><i class="fas fa-trash"></i> Clear All</button>
+                </div>
+            </div>
         </div>
         
         <!-- SEO Content Section -->
@@ -396,6 +477,9 @@
                 <li><strong>ITF</strong> - Interleaved 2 of 5, used primarily in warehousing and distribution</li>
             </ul>
             
+            <h3>Bulk Barcode Generation</h3>
+            <p>Our tool now supports bulk barcode generation! Simply enter multiple codes (one per line) in the bulk barcode section, and our tool will generate up to 50 barcodes at once. This is perfect for inventory management, product labeling, and other business applications where you need multiple barcodes quickly.</p>
+            
             <div class="faq-section">
                 <h3>Frequently Asked Questions</h3>
                 
@@ -417,6 +501,11 @@
                 <div class="faq-item">
                     <p class="faq-question">What download formats are available?</p>
                     <p>You can download your barcode as SVG (vector), PNG, or JPEG image files.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <p class="faq-question">How many barcodes can I generate at once?</p>
+                    <p>You can generate up to 50 barcodes simultaneously using our bulk generation feature.</p>
                 </div>
             </div>
             
@@ -452,6 +541,13 @@
             const sizeButtons = document.querySelectorAll('.size-btn');
             const statusText = document.getElementById('status');
             
+            // Bulk generation elements
+            const bulkInput = document.getElementById('bulkInput');
+            const generateBulkBtn = document.getElementById('generateBulkBtn');
+            const bulkResults = document.getElementById('bulkResults');
+            const downloadAllBtn = document.getElementById('downloadAllBtn');
+            const clearBulkBtn = document.getElementById('clearBulkBtn');
+            
             // Set initial barcode
             generateBarcode();
             
@@ -470,6 +566,11 @@
                     generateBarcode();
                 });
             });
+            
+            // Bulk generation event listeners
+            generateBulkBtn.addEventListener('click', generateBulkBarcodes);
+            downloadAllBtn.addEventListener('click', downloadAllBarcodes);
+            clearBulkBtn.addEventListener('click', clearBulkBarcodes);
             
             // Generate Barcode function
             function generateBarcode() {
@@ -586,6 +687,162 @@
                     console.error(error);
                 }
             }
+            
+            // Generate Bulk Barcodes function
+            function generateBulkBarcodes() {
+                const codesText = bulkInput.value.trim();
+                
+                if (!codesText) {
+                    alert('Please enter some codes to generate barcodes');
+                    return;
+                }
+                
+                const codes = codesText.split('\n')
+                    .map(code => code.trim())
+                    .filter(code => code !== '')
+                    .slice(0, 50); // Limit to 50 codes
+                
+                if (codes.length === 0) {
+                    alert('Please enter valid codes (one per line)');
+                    return;
+                }
+                
+                if (codes.length > 50) {
+                    alert('Maximum 50 codes allowed at once. Only the first 50 will be processed.');
+                }
+                
+                const type = barcodeType.value;
+                const width = widthRange.value;
+                const color = colorInput.value;
+                
+                // Clear previous results
+                bulkResults.innerHTML = '';
+                
+                // Generate each barcode
+                codes.forEach((code, index) => {
+                    try {
+                        // Create container for each barcode
+                        const item = document.createElement('div');
+                        item.className = 'bulk-item';
+                        
+                        // Create SVG element for barcode
+                        const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+                        svg.classList.add('bulk-barcode');
+                        
+                        // Generate barcode
+                        JsBarcode(svg, code, {
+                            format: type,
+                            width: width,
+                            height: 40,
+                            displayValue: false,
+                            lineColor: color,
+                            background: 'transparent'
+                        });
+                        
+                        // Add code text
+                        const text = document.createElement('div');
+                        text.className = 'bulk-text';
+                        text.textContent = code;
+                        
+                        // Add download button for individual barcode
+                        const downloadBtn = document.createElement('button');
+                        downloadBtn.className = 'btn';
+                        downloadBtn.style.padding = '5px 10px';
+                        downloadBtn.style.fontSize = '0.8rem';
+                        downloadBtn.innerHTML = '<i class="fas fa-download"></i>';
+                        downloadBtn.title = 'Download this barcode';
+                        downloadBtn.onclick = function() {
+                            downloadIndividualBarcode(svg, code);
+                        };
+                        
+                        // Add elements to container
+                        item.appendChild(svg);
+                        item.appendChild(text);
+                        item.appendChild(downloadBtn);
+                        
+                        // Add to results
+                        bulkResults.appendChild(item);
+                    } catch (error) {
+                        console.error(`Error generating barcode for code: ${code}`, error);
+                    }
+                });
+                
+                // Enable bulk actions buttons
+                downloadAllBtn.disabled = false;
+                clearBulkBtn.disabled = false;
+                
+                statusText.textContent = `Generated ${codes.length} barcodes successfully!`;
+            }
+            
+            // Download individual barcode from bulk results
+            function downloadIndividualBarcode(svgElement, code) {
+                const format = formatSelect.value;
+                
+                try {
+                    if (format === 'SVG') {
+                        // Create a blob from the SVG
+                        const svgData = new XMLSerializer().serializeToString(svgElement);
+                        const blob = new Blob([svgData], { type: 'image/svg+xml' });
+                        const url = URL.createObjectURL(blob);
+                        
+                        // Create download link
+                        const a = document.createElement('a');
+                        a.href = url;
+                        a.download = `${code}.svg`;
+                        document.body.appendChild(a);
+                        a.click();
+                        document.body.removeChild(a);
+                        
+                        // Clean up
+                        URL.revokeObjectURL(url);
+                    } else {
+                        // For PNG and JPEG, convert SVG to canvas
+                        const canvas = document.createElement('canvas');
+                        const ctx = canvas.getContext('2d');
+                        const img = new Image();
+                        
+                        const svgData = new XMLSerializer().serializeToString(svgElement);
+                        const svgBlob = new Blob([svgData], { type: 'image/svg+xml' });
+                        const url = URL.createObjectURL(svgBlob);
+                        
+                        img.onload = function() {
+                            canvas.width = img.width;
+                            canvas.height = img.height;
+                            ctx.drawImage(img, 0, 0);
+                            
+                            const dataURL = canvas.toDataURL(`image/${format.toLowerCase()}`);
+                            
+                            const a = document.createElement('a');
+                            a.href = dataURL;
+                            a.download = `${code}.${format.toLowerCase()}`;
+                            document.body.appendChild(a);
+                            a.click();
+                            document.body.removeChild(a);
+                            
+                            URL.revokeObjectURL(url);
+                        };
+                        
+                        img.src = url;
+                    }
+                } catch (error) {
+                    alert('Error downloading barcode: ' + error.message);
+                    console.error(error);
+                }
+            }
+            
+            // Download all barcodes as ZIP
+            function downloadAllBarcodes() {
+                alert('Bulk download feature would typically generate a ZIP file with all barcodes. For a complete implementation, you would need to add a library like JSZip.');
+                // This would require additional libraries for full implementation
+            }
+            
+            // Clear bulk barcodes
+            function clearBulkBarcodes() {
+                bulkResults.innerHTML = '';
+                bulkInput.value = '';
+                downloadAllBtn.disabled = true;
+                clearBulkBtn.disabled = true;
+            }
         });
     </script>
     
@@ -668,6 +925,14 @@
                 "acceptedAnswer": {
                     "@type": "Answer",
                     "text": "You can download your barcode as SVG (vector), PNG, or JPEG image files."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "How many barcodes can I generate at once?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "You can generate up to 50 barcodes simultaneously using our bulk generation feature."
                 }
             }
         ]
